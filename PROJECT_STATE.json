@@ -1,0 +1,31 @@
+{
+  "project": "ai-world-assembly",
+  "version": "v0.1-bootstrap",
+  "updated_at": "2026-09-09",
+  "current_milestone": "Phase 1 — Contracts",
+  "status": "in_progress",
+  "current_goal": "Establish the versioned cross-system contract layer with executable conformance tests.",
+  "completed": [
+    "Repository initialized",
+    "Architecture boundary decisions recorded"
+  ],
+  "active_tasks": [
+    "Define 12 bootstrap contracts",
+    "Add one valid and one invalid fixture per contract",
+    "Add Draft 2020-12 meta-validation",
+    "Add deterministic validation CLI",
+    "Add CI contract checks"
+  ],
+  "next_milestone": "Phase 2 — SEDB read adapter",
+  "blocked": [],
+  "non_goals": [
+    "SEDB kernel rewrite",
+    "CompilableWorld kernel rewrite",
+    "Godot adapter",
+    "Unity adapter",
+    "multiplayer",
+    "cloud marketplace",
+    "live C3/C4 migration",
+    "autonomous core promotion"
+  ]
+}

@@ -1,0 +1,41 @@
+# Architecture Decisions
+
+## ADR-001 — Existing authorities remain separate
+
+**Decision:** SEDB and CompilableWorld remain independent systems. AI World Assembly integrates them through adapters/contracts.
+
+## ADR-002 — Contract-first bootstrap
+
+**Decision:** Establish versioned exchange contracts and conformance tests before autonomy or game-content scale.
+
+## ADR-003 — One integration repository for v0.1
+
+**Decision:** Keep contracts, reference adapters, graph prototype and assembler reference code in this repository initially. Split only when scale justifies it.
+
+## ADR-004 — SEDB read-first
+
+**Decision:** The first SEDB adapter is read-only. No direct canonical mutation from this repo during the bootstrap.
+
+## ADR-005 — CompilableWorld adapter-first
+
+**Decision:** Generate existing CompilableWorld authoring inputs before considering Kernel changes.
+
+## ADR-006 — Three.js first
+
+**Decision:** The first presentation proof uses Three.js because the target is browser-native, agent-observable and already demonstrated by the Alien Lineage prototype.
+
+## ADR-007 — Godot later, only if justified
+
+**Decision:** Add Godot after the first end-to-end contracts are stable, or sooner only if product requirements demand physics/animation/native tooling.
+
+## ADR-008 — Alien Lineage first vertical slice
+
+**Decision:** Use a deliberately small Alien Lineage-like slice rather than a Living World RPG to reduce debugging dimensions.
+
+## ADR-009 — Candidate before canon
+
+**Decision:** AI generation defaults to candidate/proposal scope. Canonicalization requires a separate authority boundary.
+
+## ADR-010 — No presentation world authority
+
+**Decision:** Presentation input maps to semantic intent/ActionIR; presentation effects do not silently mutate persistent world semantics.
