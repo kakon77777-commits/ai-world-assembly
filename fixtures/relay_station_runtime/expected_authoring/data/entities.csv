@@ -1,0 +1,3 @@
+entity_id,entity_type,name,room,health,components,provenance
+facility.storm-relay-core.001,facility,Storm Relay Core,room.relay.core,,maintenance|position|signal,awa:facility.storm_relay
+operator.relay-runner.001,character,Relay Runner,room.relay.hangar,,cargo|contract|position,awa:role.relay_runner

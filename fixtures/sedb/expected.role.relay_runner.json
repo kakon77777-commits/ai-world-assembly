@@ -1,0 +1,12 @@
+{
+  "contract": "semantic-game-entity.v0.1",
+  "entity_id": "role.relay_runner",
+  "kind": "role",
+  "label": "Relay Runner",
+  "namespace": "game.relay_station",
+  "provenance_ref": "sedb://entity/role.relay_runner/namespace/game.relay_station?sha256=904844d3dd9c8e33e2a34b4b71be7095e783add223d446d8c192b58a771fe9d0",
+  "semantic_fields": {
+    "operational_role": "field_maintenance"
+  },
+  "version": "v0.1"
+}

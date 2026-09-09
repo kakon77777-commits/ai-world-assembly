@@ -2,7 +2,6 @@ from __future__ import annotations
 import json,mimetypes
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
-from typing import Any
 from urllib.parse import urlparse
 from .bridge import PresentationBridge,PresentationBridgeError,StalePresentationBinding
 
@@ -42,8 +41,15 @@ class PresentationRequestHandler(BaseHTTPRequestHandler):
 
 def build_bridge(package_path,binding_path,actor_id=None):
     from compilableworld.entity_transaction import EntityTransactionRuntime
-    from awa_alien_lineage.runtime import install_alien_lineage_runtime
-    package=json.loads(Path(package_path).read_text(encoding="utf-8")); binding=json.loads(Path(binding_path).read_text(encoding="utf-8")); runtime=EntityTransactionRuntime(package); install_alien_lineage_runtime(runtime); actor=actor_id or package.get("world",{}).get("default_player_entity")
+    package=json.loads(Path(package_path).read_text(encoding="utf-8")); binding=json.loads(Path(binding_path).read_text(encoding="utf-8")); runtime=EntityTransactionRuntime(package)
+    extensions={item.get("module_id") for item in package.get("world",{}).get("runtime_extensions",[]) if isinstance(item,dict)}
+    if "relay_station.runtime" in extensions:
+        from awa_relay_station.runtime import install_relay_station_runtime
+        install_relay_station_runtime(runtime)
+    else:
+        from awa_alien_lineage.runtime import install_alien_lineage_runtime
+        install_alien_lineage_runtime(runtime)
+    actor=actor_id or package.get("world",{}).get("default_player_entity")
     if not isinstance(actor,str) or not actor: raise PresentationBridgeError("presentation actor is required")
     return PresentationBridge(runtime,actor,binding)
 def serve(package_path,binding_path,static_dir,*,actor_id=None,host="127.0.0.1",port=8767):

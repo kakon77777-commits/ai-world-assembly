@@ -1,0 +1,2 @@
+item_id,name,room,portable,provenance
+item.phase-coupler,Phase Coupler,room.relay.hangar,true,sedb:component.phase_coupler

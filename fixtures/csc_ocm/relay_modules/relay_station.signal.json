@@ -1,0 +1,8 @@
+{
+  "contract":"module-manifest.v0.1",
+  "module":{"id":"relay_station.signal","version":"v0.1","type":"content","namespace":"game.relay_station"},
+  "requires":{"core":["world.core.v0.1"],"modules":["relay_station.facility_core"],"capabilities":[],"semantic_entities":["signal.restored_link"]},
+  "provides":{"actions":[],"events":["signal.online"],"rules":["signal.identity"],"assets":[],"projections":["signal.summary"]},
+  "authority":["semantic.content"],"visibility":["world"],"compatibility":{"class":"C1","conflicts":[]},
+  "provenance_ref":"prov:module:relay_station.signal:v0.1"
+}

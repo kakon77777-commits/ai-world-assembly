@@ -1,0 +1,38 @@
+{
+  "authoring_sha256": "7d6ec14e8ec496e1dc55aa15e60b3bb44d87ab0a936d37faef4e939d23c65c96",
+  "base_intake_receipt_id": "cw-intake:intake.relay-station.phase11:8aea6b303325654a",
+  "compatibility_commit": "cf37f539e0807499e8b337f80a5f152324c087f2",
+  "contract": "relay-station-runtime-receipt.v0.1",
+  "output_hashes": {
+    "data/entities.csv": "3a6563c2c423f5e48aba8371c952280e202b05986e079330c9666096bda3e90a",
+    "data/exits.csv": "4e68ff2d1a1469b5835af94650bea41fc0fa462692f8b3fcab55dbda9bd7fa6f",
+    "data/items.csv": "5ef5335a3815977f0120fd192a7fbc524c1475450d7ecd6362113b3744f4ae97",
+    "data/rooms.csv": "d5035596e12037b78f8e9864e2b591488c391db352a8563fe19a6fb915cf2a1f",
+    "manifest.json": "719c01a1828f1a907f2ee8909445416f9a490ade70d118589ae8cbbfc1e0242d",
+    "quests.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "scenarios.json": "36a0cdf5f0dd5b9480e3bcd0a40ade4c21f083b1faa53a4c1d38157698c010df",
+    "world.json": "78ed089160aae2bb2429aa6924d0e3e5f52d296d96b85df8222fae15aebdc86e"
+  },
+  "receipt_id": "relay-runtime:relay_station.phase11:f021d87857d2475f",
+  "runtime_modules": [
+    {
+      "entrypoint": "awa_relay_station.runtime:RelayStationModule",
+      "module_id": "relay_station.runtime",
+      "version": "0.1.0"
+    },
+    {
+      "entrypoint": "awa_relay_station.activation:RelayActivationModule",
+      "module_id": "relay_station.activation",
+      "version": "0.1.0"
+    }
+  ],
+  "slice_id": "relay_station.phase11",
+  "source_hashes": {
+    "asset_graph_snapshot": "db7c3a95b5900b3f7092f4b37393f2df0f6edc32f5872eeb20f1783f92fe3a68",
+    "base_intake_receipt": "2af933d52cca0a8b655152addb631f414726e92cfe8e749920d8d6970a9f3be0",
+    "composition_receipt": "0bc43f4cc538e7e7e4c39e518e939c9ded175c748b42f282354b7d5c852ab6dc",
+    "intake_plan": "c0e988f340ab9eeb418e7cebf2777a72c4596a55af33d52ebf0d96f687803da6",
+    "runtime_slice": "7f98a5e635a48a91b7a3bf0b140e120e71f908dda3de34133091828ac5b05ef7",
+    "semantic_snapshot": "098a20462afaf48049c6871d00020d2c06430ad13de11cd0a5547ca70d07195b"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "contract": "semantic-game-entity.v0.1",
+  "entity_id": "facility.storm_relay",
+  "kind": "facility",
+  "label": "Storm Relay Core",
+  "namespace": "game.relay_station",
+  "provenance_ref": "sedb://entity/facility.storm_relay/namespace/game.relay_station?sha256=3053730bf2624d0cec985c240315b2e70e0d205c77fa391cc53f4c92436613de",
+  "semantic_fields": {
+    "facility_class": "communications_relay"
+  },
+  "version": "v0.1"
+}

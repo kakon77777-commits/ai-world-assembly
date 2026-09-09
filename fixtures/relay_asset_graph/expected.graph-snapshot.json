@@ -1,0 +1,32 @@
+{
+  "artifact_statuses": [
+    {
+      "artifact_id": "artifact.presentation.relay_core.v1",
+      "effective_status": "passed",
+      "fresh_validation_ids": [
+        "validation.presentation.relay_core.v1"
+      ],
+      "node_id": "artifact.presentation.relay_core",
+      "sha256": "50f22bfbcab164ce8123faf201823323bba294d5a9a513434c3632a77df41508",
+      "stale_validation_ids": []
+    }
+  ],
+  "contract": "asset-graph-snapshot.v0.1",
+  "generation_task_ids": [],
+  "missing_required": [],
+  "required_closure": [
+    "artifact.presentation.relay_core",
+    "facility.storm_relay"
+  ],
+  "roots": [
+    "facility.storm_relay"
+  ],
+  "sha256": "5cda4f296e6b44a93c92711644a4ed9f32638982446aad1c76760f0c529602f9",
+  "snapshot_id": "graph:5cda4f296e6b44a9",
+  "source_hashes": {
+    "artifacts": "f72506fefbdeb6eed08825bc3e456b1934ed14811adcff6cd0bbd9bca9a7884a",
+    "edges": "1a10cf2e40c6a6862ad9a7acef73b521c783ed6a901200969eba2af5a4418616",
+    "nodes": "6eaeed35a98deccdde2fb1b3bab6d5495feb4a976687a45a654a94d1d6f7fece",
+    "validations": "159c5778cc2ecb587b99d19975e088f24a36e3e77f17bd467addad11e5d3840a"
+  }
+}

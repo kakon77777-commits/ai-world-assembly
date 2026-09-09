@@ -1,0 +1,12 @@
+{
+  "contract": "asset-graph-edge.v0.1",
+  "edge_id": "edge:relay-presentation->validation",
+  "from": "artifact.presentation.relay_core",
+  "provenance_ref": "prov:edge:relay-presentation-validation:v1",
+  "reason": "Bind relay visual evidence to exact bytes",
+  "required": false,
+  "scope": "validation",
+  "to": "validation.presentation.relay_core",
+  "type": "validated_by",
+  "version_constraint": "v0.1"
+}

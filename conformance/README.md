@@ -9,3 +9,4 @@ Phase 8 adds bounded assembler task/run receipt fixtures. Both contracts structu
 Phase 9 adds `presentation-effect-recipe.v0.1` valid/invalid evidence. The invalid case carries a Runtime-authority-shaped field and is rejected fail-closed.
 
 Phase 10 adds valid/invalid evidence for the reviewed spawn profile, spawn receipt and dynamic-entity assertion sidecar.
+Phase 11 adds valid/invalid evidence for Relay Station runtime slice/receipt/assertions, the Relay runtime projection, and `presentation-effect-recipe.v0.2`; invalid fixtures fail closed on missing required structure or forbidden/unknown authority-shaped fields.

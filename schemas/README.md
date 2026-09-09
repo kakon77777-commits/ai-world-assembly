@@ -15,3 +15,9 @@ These schemas define exchange structure only. They do not transfer semantic/runt
 - `alien-lineage-spawn-profile.v0.1` — reviewed bounded parent/egg/child Runtime spawn facts plus required entity transaction capability.
 - `alien-lineage-spawn-receipt.v0.1` — Phase 10 deterministic authoring evidence pinned to the CompilableWorld entity-transaction commit.
 - `alien-lineage-spawn-assertions.v0.1` — sidecar evidence for dynamic Runtime Entity existence/type/state after ScenarioIR execution.
+- `relay-station-runtime-slice.v0.1` — bounded Relay Station runtime module/config declaration for the second world.
+- `relay-station-runtime-receipt.v0.1` — deterministic Relay Station authoring evidence pinned to the shared CompilableWorld compatibility target.
+- `relay-station-runtime-assertions.v0.1` — Relay Station domain/entity assertion sidecar for the restore-link proof.
+- `relay-runtime-projection.v0.1` — allowlisted Relay Station Runtime-to-Presentation projection contract.
+- `presentation-effect-recipe.v0.2` — presentation-only effect recipe generalized to bounded `creature_visual` or `relay_visual` targets without Runtime authority.
+

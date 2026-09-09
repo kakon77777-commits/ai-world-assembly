@@ -1,0 +1,3 @@
+exit_id,from_room,to_room,direction,bidirectional,door_entity,open,locked,key_id
+exit.relay.conduit-core,room.relay.conduit,room.relay.core,east,true,,true,false,
+exit.relay.hangar-conduit,room.relay.hangar,room.relay.conduit,east,true,,true,false,

@@ -19,12 +19,23 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 10 — broader world / assembler scaling.
+Phase 12 — multi-world / multi-target assembler orchestration.
 
-Phases 1–9 are complete. The bounded assembler has now repaired two discriminatively different
-modalities: exact-byte audio and a declarative presentation recipe. Current work should scale only
-after preserving proposal-only generation, exact evidence binding, temporary candidate overlays and
-explicit canonical promotion authority.
+Phases 1–11 are complete. Relay Station closes the second independent world vertical proof while
+reusing the same semantic/composition/asset/runtime/presentation/assembler stack. Current work may
+now coordinate multiple world/task graphs, but per-world authority, exact evidence and explicit
+promotion boundaries remain non-negotiable.
+
+## Frozen Phase 11 second-world semantics
+
+- Relay Station uses semantic namespace `game.relay_station`; it is a facility/logistics/maintenance world, not an Alien Lineage reskin.
+- Bounded domain verbs are `inspect`, `pick_up`, `deliver`, `repair`, and `activate`; built-in `move` remains navigation.
+- The same SEDB read adapter, CSC-OCM resolver, Dynamic Asset Graph, CompilableWorld intake/runtime boundary and Three.js target are reused.
+- `relay_station.runtime` has StateDelta/EventIR authority only; `relay_station.activation` alone declares `entity_transaction/v0.1`.
+- `activate` creates the reviewed Runtime Entity `signal.beacon.001`; dynamic entity allocation remains deferred.
+- Three.js dispatches by projection semantic role and contract. Relay Station does not get a second renderer or browser-side world rules.
+- Phase 11 adds an independent assembler target `relay_presentation_recipe` using `presentation-effect-recipe.v0.2`; repaired output remains a temporary `validated_candidate` with `canonical_write=false`.
+- Alien Lineage Phase 5–10 and assembler Phase 8–9 evidence remain regression gates.
 
 ## Frozen Phase 9 broader-proof semantics
 

@@ -1,0 +1,13 @@
+{
+  "artifact_id": "artifact.presentation.relay_core.v1",
+  "contract": "artifact-reference.v0.1",
+  "generator": "human:phase11-reference",
+  "kind": "procedural_recipe",
+  "license_ref": "license:internal-original",
+  "mime_type": "application/json",
+  "parent_artifacts": [],
+  "sha256": "50f22bfbcab164ce8123faf201823323bba294d5a9a513434c3632a77df41508",
+  "size": 132,
+  "uri": "repo://presentation/threejs/assets/relay-core.visual.json",
+  "validation_status": "passed"
+}

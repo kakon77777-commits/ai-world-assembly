@@ -1,0 +1,38 @@
+{
+  "contract":"compilableworld-intake-plan.v0.1",
+  "intake_id":"intake:relay-station:phase11",
+  "world":{"world_id":"relay-station.runtime-slice","world_version":"0.1.0","schema_version":"0.1.0","namespace":"relay","title":"Relay Station Runtime Slice","default_language":"zh-TW","player_spawn":"room.relay.hangar","default_player_entity":"operator.relay-runner.001"},
+  "required_composition_modules":["relay_station.facility_core","relay_station.logistics","relay_station.maintenance","relay_station.signal"],
+  "graph_roots":["facility.storm_relay"],
+  "runtime_modules":["room.core","movement.core"],
+  "rooms":[
+    {"room_id":"room.relay.hangar","name":"Relay Hangar","description":"A storm-scored service hangar holding the replacement phase coupler.","region":"region.relay"},
+    {"room_id":"room.relay.conduit","name":"Conduit Spine","description":"A narrow maintenance spine links the hangar to the damaged relay core.","region":"region.relay"},
+    {"room_id":"room.relay.core","name":"Storm Relay Core","description":"The silent relay core waits for a coupler, repair, and activation sequence.","region":"region.relay"}
+  ],
+  "exits":[
+    {"exit_id":"exit.relay.hangar-conduit","from_room":"room.relay.hangar","to_room":"room.relay.conduit","direction":"east","bidirectional":true},
+    {"exit_id":"exit.relay.conduit-core","from_room":"room.relay.conduit","to_room":"room.relay.core","direction":"east","bidirectional":true}
+  ],
+  "entities":[
+    {"runtime_entity_id":"operator.relay-runner.001","semantic_ref":"role.relay_runner","entity_type":"character","room":"room.relay.hangar","components":["position","cargo","contract"],"health":null},
+    {"runtime_entity_id":"facility.storm-relay-core.001","semantic_ref":"facility.storm_relay","entity_type":"facility","room":"room.relay.core","components":["position","maintenance","signal"],"health":null}
+  ],
+  "items":[
+    {"item_id":"item.phase-coupler","name":"Phase Coupler","room":"room.relay.hangar","portable":true,"provenance":"sedb:component.phase_coupler"}
+  ],
+  "quests":[],
+  "scenarios":[
+    {"scenario_id":"relay-station.move-smoke","title":"Relay Runner enters the conduit","actor_id":"operator.relay-runner.001","given":[],"when":[{"verb":"move","args":{"direction":"east"}}],"expect":{"state":[{"owner":"$actor","namespace":"position","key":"room","equals":"room.relay.conduit"}],"events":["movement.actor_moved"],"status":"completed"},"tags":["phase11","smoke"]},
+    {"scenario_id":"relay-station.restore-link","title":"Restore the bounded storm relay link","actor_id":"operator.relay-runner.001","given":[],"when":[
+      {"verb":"inspect","target_id":"item.phase-coupler"},
+      {"verb":"pick_up","target_id":"item.phase-coupler"},
+      {"verb":"move","args":{"direction":"east"}},
+      {"verb":"move","args":{"direction":"east"}},
+      {"verb":"inspect","target_id":"facility.storm-relay-core.001"},
+      {"verb":"deliver","target_id":"facility.storm-relay-core.001"},
+      {"verb":"repair","target_id":"facility.storm-relay-core.001"},
+      {"verb":"activate","target_id":"facility.storm-relay-core.001"}
+    ],"expect":{"state":[{"owner":"$actor","namespace":"position","key":"room","equals":"room.relay.core"}],"events":["relay_station.inspected","relay_station.coupler_picked","relay_station.coupler_delivered","relay_station.relay_repaired","relay_station.relay_activated"],"status":"completed"},"tags":["phase11","second-world","full-cycle"]}
+  ]
+}

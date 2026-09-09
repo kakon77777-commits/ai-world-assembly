@@ -1,0 +1,27 @@
+{
+  "build": {
+    "fail_on_warning": false,
+    "strict": true
+  },
+  "compiler_version": "0.1.0",
+  "modules": [
+    "movement.core",
+    "room.core"
+  ],
+  "namespace": "relay",
+  "schema_version": "0.1.0",
+  "sources": {
+    "entities": "data/entities.csv",
+    "exits": "data/exits.csv",
+    "items": "data/items.csv",
+    "quests": "quests.json",
+    "rooms": "data/rooms.csv",
+    "scenarios": "scenarios.json",
+    "world": "world.json"
+  },
+  "targets": [
+    "mssp-python-runtime"
+  ],
+  "world_id": "relay-station.runtime-slice",
+  "world_version": "0.1.0"
+}

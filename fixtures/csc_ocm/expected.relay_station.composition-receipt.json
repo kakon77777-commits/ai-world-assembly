@@ -1,0 +1,29 @@
+{
+  "capability_policy": {
+    "available": [],
+    "disabled": [],
+    "required": []
+  },
+  "compatibility_result": "pass",
+  "contract": "composition-receipt.v0.1",
+  "core": "world.core.v0.1",
+  "module_versions": {
+    "relay_station.facility_core": "v0.1",
+    "relay_station.logistics": "v0.1",
+    "relay_station.maintenance": "v0.1",
+    "relay_station.signal": "v0.1"
+  },
+  "profile": "relay_station.mvp",
+  "receipt_id": "composition:relay_station.mvp:0761671dcd8c297e",
+  "resolved_modules": [
+    "relay_station.facility_core",
+    "relay_station.logistics",
+    "relay_station.maintenance",
+    "relay_station.signal"
+  ],
+  "source_hashes": {
+    "capabilities": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "modules": "3dffe4a5d6a51946193767d08b1955857b67086759d3dab8431e46b5f3d6ecf9",
+    "profile": "fc8684d2f9d0da9ddf47edfb6963a4b5708de5a08b9cc2a7233ae8b3d040c187"
+  }
+}

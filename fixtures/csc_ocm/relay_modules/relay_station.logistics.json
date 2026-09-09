@@ -1,0 +1,8 @@
+{
+  "contract":"module-manifest.v0.1",
+  "module":{"id":"relay_station.logistics","version":"v0.1","type":"rule","namespace":"game.relay_station"},
+  "requires":{"core":["world.core.v0.1"],"modules":["relay_station.facility_core"],"capabilities":[],"semantic_entities":["component.phase_coupler"]},
+  "provides":{"actions":["pick_up","deliver"],"events":["coupler.picked","coupler.delivered"],"rules":["cargo.single_slot"],"assets":[],"projections":[]},
+  "authority":["runtime.world"],"visibility":["world"],"compatibility":{"class":"C2","conflicts":[]},
+  "provenance_ref":"prov:module:relay_station.logistics:v0.1"
+}

@@ -1,10 +1,10 @@
 {
   "project": "ai-world-assembly",
-  "version": "v0.10-transaction-safe-spawn",
+  "version": "v0.11-second-world-relay-station",
   "updated_at": "2026-09-09",
-  "current_milestone": "Phase 11 — second world vertical slice",
+  "current_milestone": "Phase 12 — multi-world / multi-target assembler orchestration",
   "status": "ready",
-  "current_goal": "Prove AWA is not Alien-Lineage-specific by carrying a second bounded world through semantic/composition/asset/runtime/presentation assembly while reusing the transaction-safe spawn boundary where useful.",
+  "current_goal": "Coordinate multiple independent world/task graphs and candidate targets without collapsing per-world semantic, runtime, presentation, evidence or promotion authority.",
   "completed": [
     "Repository initialized and architecture boundaries recorded",
     "Versioned contracts and Draft 2020-12 conformance added",
@@ -53,16 +53,28 @@
     "Alien Lineage full cycle now creates true egg and child Runtime Entities in Phase 10 packages",
     "Durable EventLog failure rollback proven for Alien Lineage lay_egg with no partial entity/state mutation",
     "Three.js browser witness observes transactionally created egg and child entity IDs without acquiring Runtime write authority",
-    "Historical Phase 6 state-only egg/hatch route preserved for old packages"
+    "Historical Phase 6 state-only egg/hatch route preserved for old packages",
+    "Relay Station second world introduced under semantic namespace game.relay_station with facility/logistics/maintenance semantics distinct from Alien Lineage",
+    "Relay Station semantic snapshot is regenerated through the same read-only SEDB adapter",
+    "Relay Station module composition resolves through the same CSC-OCM resolver and Composition Receipt contract",
+    "Relay Station base and presentation Asset Graphs resolve through the same Dynamic Asset Graph engine",
+    "Relay Station authoring compiles through the same CompilableWorld intake path with deterministic authoring evidence",
+    "Relay Station runtime adds inspect/pick_up/deliver/repair/activate with module-local authority separation",
+    "Relay activation reuses entity_transaction/v0.1 to create reviewed signal.beacon.001 atomically with StateDelta/EventIR",
+    "Relay activation durable EventLog rollback is proven with no partial state/entity mutation",
+    "Three.js target now consumes both Alien Lineage and Relay Station through versioned projection-role dispatch without a second renderer",
+    "Relay Station browser smoke completes restore-link and observes transactionally created signal.beacon.001",
+    "Phase 11 assembler repairs a separate relay_visual presentation-effect-recipe.v0.2 candidate from authority/bounds diagnostics",
+    "Relay assembler promotion remains validated_candidate with canonical_write=false and temporary browser overlay only"
   ],
   "active_tasks": [
-    "Choose a second bounded world whose verbs and semantic structure differ materially from Alien Lineage",
-    "Reuse existing SEDB/CSC-OCM/Asset Graph/CompilableWorld/Three.js adapters instead of forking a second stack",
-    "Require at least one independently useful assembler target or repair class in the second world",
-    "Keep entity spawn IDs governed and bounded until a later dynamic allocation contract is justified",
-    "Define multi-world scaling limits only after the second vertical slice closes"
+    "Define a multi-world orchestration contract that references independent semantic/composition/asset/runtime/presentation receipts instead of merging their authorities",
+    "Order or parallelize multiple Generation Tasks using graph dependencies and bounded execution budgets",
+    "Keep candidate/evidence identity scoped to the originating world and target while supporting cross-world scheduling",
+    "Detect cross-task or cross-world conflicts before any promotion decision",
+    "Preserve explicit promotion authority; orchestration success must not imply canonical write permission"
   ],
-  "next_milestone": "Phase 12 — multi-world / multi-target assembler orchestration after the second vertical proof",
+  "next_milestone": "Phase 13 — governed multi-candidate conflict and promotion closure after orchestration proof",
   "blocked": [],
   "non_goals": [
     "SEDB kernel rewrite",
