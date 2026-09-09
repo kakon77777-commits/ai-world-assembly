@@ -1,0 +1,8 @@
+{
+  "contract":"world-profile.v0.1",
+  "profile_id":"relay_station.mvp",
+  "core_version":"world.core.v0.1",
+  "modules":{"required":["relay_station.logistics","relay_station.maintenance"],"optional":["relay_station.signal"],"disabled":[]},
+  "capability_profile":{"available":[],"disabled":[]},
+  "compatibility_policy":{"max_class":"C2"}
+}

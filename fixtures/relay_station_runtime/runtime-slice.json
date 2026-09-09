@@ -1,0 +1,17 @@
+{
+  "contract":"relay-station-runtime-slice.v0.1",
+  "slice_id":"relay_station.phase11",
+  "runtime_modules":[
+    {"module_id":"relay_station.runtime","version":"0.1.0","entrypoint":"awa_relay_station.runtime:RelayStationModule"},
+    {"module_id":"relay_station.activation","version":"0.1.0","entrypoint":"awa_relay_station.activation:RelayActivationModule"}
+  ],
+  "runtime_config":{
+    "runner_semantic_ref":"role.relay_runner",
+    "relay_semantic_ref":"facility.storm_relay",
+    "runner_entity_id":"operator.relay-runner.001",
+    "relay_entity_id":"facility.storm-relay-core.001",
+    "coupler_item_id":"item.phase-coupler",
+    "condition_default":"damaged",
+    "beacon":{"entity_id":"signal.beacon.001","entity_type":"signal","name":"Restored Relay Beacon","components":["position","signal"],"semantic_ref":"signal.restored_link"}
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "contract": "asset-graph-node.v0.1",
+  "metadata": {
+    "validation_ref": "validation.presentation.relay_core.v1"
+  },
+  "namespace": "game.relay_station",
+  "node_id": "validation.presentation.relay_core",
+  "node_type": "validation",
+  "provenance_ref": "prov:validation:relay_core:v1",
+  "semantic_ref": "facility.storm_relay",
+  "status": "active",
+  "version": "v0.1"
+}

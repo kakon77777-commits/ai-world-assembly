@@ -1,0 +1,163 @@
+name: phase11-relay
+
+on:
+  push:
+    branches: ["main", "phase11/**"]
+  pull_request:
+
+jobs:
+  relay-station:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout AWA
+        uses: actions/checkout@v4
+      - name: Checkout pinned CompilableWorld
+        uses: actions/checkout@v4
+        with:
+          repository: kakon77777-commits/compilableworld-runtime-mvp
+          ref: cf37f539e0807499e8b337f80a5f152324c087f2
+          path: _vendor/compilableworld-runtime-mvp
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install AWA
+        run: python -m pip install -e ".[dev]"
+      - name: Rebuild Relay semantic/composition/asset evidence
+        run: |
+          python - <<'PY'
+          import json, sqlite3
+          from pathlib import Path
+          from awa_sedb_adapter.source import ReadOnlySedbSource
+          from awa_sedb_adapter.projection import export_namespace
+          from awa_composition.resolver import load_world_profile, load_module_registry, load_capability_registry, resolve_composition
+          from awa_asset_graph.graph import AssetGraph
+          root=Path('.')
+          db=Path('build/relay-station-sedb.db'); db.parent.mkdir(parents=True,exist_ok=True)
+          if db.exists(): db.unlink()
+          conn=sqlite3.connect(db); conn.executescript(Path('fixtures/sedb/relay-station-minimal.sql').read_text()); conn.commit(); conn.close()
+          semantic=export_namespace(ReadOnlySedbSource(db),'game.relay_station')
+          assert semantic==json.loads(Path('fixtures/sedb/expected.game.relay_station.snapshot.json').read_text())
+          receipt=resolve_composition(
+              load_world_profile('fixtures/csc_ocm/relay_station.profile.json',root=root),
+              load_module_registry('fixtures/csc_ocm/relay_modules',root=root),
+              load_capability_registry('fixtures/csc_ocm/capabilities',root=root),root=root)
+          assert receipt==json.loads(Path('fixtures/csc_ocm/expected.relay_station.composition-receipt.json').read_text())
+          graph=AssetGraph.from_directories(nodes='fixtures/relay_asset_graph/nodes',edges='fixtures/relay_asset_graph/edges',artifacts='fixtures/relay_asset_graph/artifacts',validations='fixtures/relay_asset_graph/validations',root=root)
+          assert graph.analyze(['facility.storm_relay']).snapshot==json.loads(Path('fixtures/relay_asset_graph/expected.graph-snapshot.json').read_text())
+          PY
+      - name: Build Relay Station authoring
+        run: |
+          awa-relay-station build \
+            --semantic-snapshot fixtures/sedb/expected.game.relay_station.snapshot.json \
+            --composition-receipt fixtures/csc_ocm/expected.relay_station.composition-receipt.json \
+            --asset-graph-snapshot fixtures/relay_asset_graph/expected.graph-snapshot.json \
+            --intake-plan fixtures/relay_station_runtime/relay_station.intake-plan.json \
+            --runtime-slice fixtures/relay_station_runtime/runtime-slice.json \
+            --out build/relay-station-phase11
+          cmp build/relay-station-phase11/awa-relay-station-runtime-receipt.json fixtures/relay_station_runtime/expected_authoring/awa-relay-station-runtime-receipt.json
+      - name: Validate and compile Relay Station
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: |
+          python -m compilableworld validate build/relay-station-phase11
+          python -m compilableworld compile build/relay-station-phase11 --out build/relay-station-phase11-runtime
+          python -m compilableworld scenario-run build/relay-station-phase11-runtime/world.package.json relay-station.move-smoke
+      - name: Run Relay restore-link with true beacon Entity
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: awa-relay-station scenario-run build/relay-station-phase11-runtime/world.package.json relay-station.restore-link --assertions fixtures/relay_station_runtime/restore-link.assertions.json
+      - name: Prove Relay activation durable rollback
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from unittest.mock import patch
+          from compilableworld.entity_transaction import EntityTransactionRuntime
+          from compilableworld.kernel import KernelTransactionError
+          from compilableworld.models import ActionIR
+          from awa_relay_station.runtime import install_relay_station_runtime
+          package=json.loads(Path('build/relay-station-phase11-runtime/world.package.json').read_text())
+          runtime=EntityTransactionRuntime(package); install_relay_station_runtime(runtime)
+          actor='operator.relay-runner.001'; relay='facility.storm-relay-core.001'
+          sequence=[
+            ActionIR(actor,'inspect',target_id='item.phase-coupler'),
+            ActionIR(actor,'pick_up',target_id='item.phase-coupler'),
+            ActionIR(actor,'move',args={'direction':'east'}),
+            ActionIR(actor,'move',args={'direction':'east'}),
+            ActionIR(actor,'inspect',target_id=relay),
+            ActionIR(actor,'deliver',target_id=relay),
+            ActionIR(actor,'repair',target_id=relay),
+          ]
+          for action in sequence: assert runtime.submit(action).status.value=='completed'
+          state_before=runtime.state.export(); entities_before={e.entity_id for e in runtime.registry.values()}; dynamic_before=set(runtime.dynamic_entities); events_before=len(runtime.event_log.events)
+          with patch.object(runtime.event_log,'append_batch',side_effect=KernelTransactionError('phase11 simulated durable failure')):
+            try: runtime.submit(ActionIR(actor,'activate',target_id=relay))
+            except KernelTransactionError: pass
+            else: raise AssertionError('expected KernelTransactionError')
+          assert runtime.state.export()==state_before
+          assert {e.entity_id for e in runtime.registry.values()}==entities_before
+          assert set(runtime.dynamic_entities)==dynamic_before
+          assert not runtime.registry.contains('signal.beacon.001')
+          assert len(runtime.event_log.events)==events_before
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Test and build shared Three.js target
+        run: |
+          cd presentation/threejs
+          npm install --no-audit --no-fund --package-lock=false
+          npm test
+          npm run build
+          cd ../..
+          awa-threejs verify-assets presentation/threejs/dist
+      - name: Run Relay Station through shared Three.js target
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: |
+          awa-threejs serve build/relay-station-phase11-runtime/world.package.json \
+            --binding fixtures/threejs/relay-station.presentation-binding.json \
+            --static-dir presentation/threejs/dist --port 8770 > /tmp/awa-threejs-relay.log 2>&1 &
+          PID=$!; trap 'kill $PID || true; cat /tmp/awa-threejs-relay.log || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8770/health >/dev/null && break; sleep 0.2; done
+          presentation/threejs/scripts/browser-smoke.sh 'http://127.0.0.1:8770/?smoke=1&relay=1'
+      - name: Run bounded Relay presentation repair loop
+        run: |
+          BEFORE=$(find fixtures/relay_presentation_graph presentation/threejs/src presentation/threejs/assets -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          awa-assembler run \
+            --task fixtures/assembler/relay-station.activation-effect-recipe.task.json \
+            --semantic-snapshot fixtures/sedb/expected.game.relay_station.snapshot.json \
+            --composition-receipt fixtures/csc_ocm/expected.relay_station.composition-receipt.json \
+            --presentation-binding fixtures/threejs/relay-station.presentation-binding.json \
+            --capability-contract fixtures/assembler/presentation_recipe_generation.capability.json \
+            --nodes fixtures/relay_presentation_graph/nodes \
+            --edges fixtures/relay_presentation_graph/edges \
+            --artifacts fixtures/relay_presentation_graph/artifacts \
+            --validations fixtures/relay_presentation_graph/validations \
+            --out build/phase11-relay-assembler
+          AFTER=$(find fixtures/relay_presentation_graph presentation/threejs/src presentation/threejs/assets -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          test "$BEFORE" = "$AFTER"
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          receipt=json.loads(Path('build/phase11-relay-assembler/assembler-run-receipt.json').read_text())
+          assert receipt['status']=='validated_candidate'
+          assert [a['validation_status'] for a in receipt['attempts']]==['failed','passed']
+          assert receipt['attempts'][0]['artifact_sha256']=='ca1997484da2fdcd0ae3f7fd00f21837016883e4d84ddcf30f96909cf24a577b'
+          assert receipt['attempts'][1]['artifact_sha256']=='ea8e25f916df287242fa2096933f7576c3f8efa560245d05e067dbb6f9f11817'
+          first='\n'.join(receipt['attempts'][0]['diagnostics']); assert 'state_delta' in first and 'duration_ms' in first
+          assert receipt['graph_preview']['missing_required']==0 and receipt['graph_preview']['generation_tasks']==0 and receipt['graph_preview']['target_effective_status']=='passed'
+          assert receipt['promotion']['canonical_write'] is False
+          candidate=Path('build/phase11-relay-assembler/candidate/relay_activation_effect_recipe.json')
+          assert hashlib.sha256(candidate.read_bytes()).hexdigest()==receipt['selected_candidate']['sha256']
+          recipe=json.loads(candidate.read_text()); assert recipe['contract']=='presentation-effect-recipe.v0.2' and recipe['event_type']=='relay_station.relay_activated' and recipe['effect']['target']=='relay_visual' and 'state_delta' not in recipe
+          PY
+          mkdir -p presentation/threejs/dist/candidate
+          cp build/phase11-relay-assembler/candidate/relay_activation_effect_recipe.json presentation/threejs/dist/candidate/
+      - name: Run validated Relay recipe as temporary browser overlay
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: |
+          awa-threejs serve build/relay-station-phase11-runtime/world.package.json \
+            --binding fixtures/threejs/relay-station.presentation-binding.json \
+            --static-dir presentation/threejs/dist --port 8771 > /tmp/awa-threejs-relay-candidate.log 2>&1 &
+          PID=$!; trap 'kill $PID || true; cat /tmp/awa-threejs-relay-candidate.log || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8771/health >/dev/null && break; sleep 0.2; done
+          presentation/threejs/scripts/browser-smoke.sh 'http://127.0.0.1:8771/?smoke=1&relay=1&effectRecipe=/candidate/relay_activation_effect_recipe.json'

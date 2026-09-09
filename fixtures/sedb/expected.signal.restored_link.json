@@ -1,0 +1,12 @@
+{
+  "contract": "semantic-game-entity.v0.1",
+  "entity_id": "signal.restored_link",
+  "kind": "signal",
+  "label": "Restored Relay Link",
+  "namespace": "game.relay_station",
+  "provenance_ref": "sedb://entity/signal.restored_link/namespace/game.relay_station?sha256=9ad7c9fa1f03f194a425bf8208ed8dce4032e2ddbc7867b2baa7a9d351007b8d",
+  "semantic_fields": {
+    "signal_scope": "regional"
+  },
+  "version": "v0.1"
+}

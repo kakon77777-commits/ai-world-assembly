@@ -1,0 +1,12 @@
+{
+  "contract": "semantic-game-entity.v0.1",
+  "entity_id": "component.phase_coupler",
+  "kind": "component",
+  "label": "Phase Coupler",
+  "namespace": "game.relay_station",
+  "provenance_ref": "sedb://entity/component.phase_coupler/namespace/game.relay_station?sha256=0c5c14fa5a4d6a799e1b5ed9845768e437efbd5ef0d2dbc75d18baaf4388cd9b",
+  "semantic_fields": {
+    "component_function": "phase_alignment"
+  },
+  "version": "v0.1"
+}

@@ -1,0 +1,41 @@
+{
+  "default_language": "zh-TW",
+  "default_player_entity": "operator.relay-runner.001",
+  "player_spawn": "room.relay.hangar",
+  "provenance": {
+    "canon_status": "runtime_projection",
+    "intake_id": "intake:relay-station:phase11",
+    "source_type": "awa_intake"
+  },
+  "relay_station_runtime": {
+    "beacon": {
+      "components": [
+        "position",
+        "signal"
+      ],
+      "entity_id": "signal.beacon.001",
+      "entity_type": "signal",
+      "name": "Restored Relay Beacon",
+      "semantic_ref": "signal.restored_link"
+    },
+    "condition_default": "damaged",
+    "coupler_item_id": "item.phase-coupler",
+    "relay_entity_id": "facility.storm-relay-core.001",
+    "relay_semantic_ref": "facility.storm_relay",
+    "runner_entity_id": "operator.relay-runner.001",
+    "runner_semantic_ref": "role.relay_runner"
+  },
+  "runtime_extensions": [
+    {
+      "entrypoint": "awa_relay_station.runtime:RelayStationModule",
+      "module_id": "relay_station.runtime",
+      "version": "0.1.0"
+    },
+    {
+      "entrypoint": "awa_relay_station.activation:RelayActivationModule",
+      "module_id": "relay_station.activation",
+      "version": "0.1.0"
+    }
+  ],
+  "title": "Relay Station Runtime Slice"
+}

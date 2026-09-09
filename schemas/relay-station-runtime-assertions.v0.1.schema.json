@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:awa:schema:relay-station-runtime-assertions-v0-1",
+  "title":"Relay Station Runtime Assertions v0.1",
+  "type":"object",
+  "required":["contract","scenario_id","state","entities"],
+  "properties":{
+    "contract":{"const":"relay-station-runtime-assertions.v0.1"},
+    "scenario_id":{"type":"string","minLength":1},
+    "state":{"type":"array","items":{"type":"object","required":["owner","namespace","key","equals"],"properties":{
+      "owner":{"type":"string"},"namespace":{"type":"string"},"key":{"type":"string"},"equals":{}
+    },"additionalProperties":false}},
+    "entities":{"type":"array","items":{"type":"object","required":["entity_id","entity_type","state"],"properties":{
+      "entity_id":{"type":"string","minLength":1},"entity_type":{"type":"string","minLength":1},
+      "state":{"type":"array","items":{"type":"object","required":["namespace","key","equals"],"properties":{"namespace":{"type":"string"},"key":{"type":"string"},"equals":{}},"additionalProperties":false}}
+    },"additionalProperties":false}}
+  },"additionalProperties":false
+}

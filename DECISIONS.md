@@ -207,3 +207,23 @@ prototype/placeholder builds; v0.1 does not.
 ## ADR-050 — Historical Phase 6 spawn semantics remain reproducible
 
 **Decision:** Packages declaring only `alien_lineage.runtime` keep the Phase 6 bounded state-only lay/hatch path. Packages that additionally declare `alien_lineage.spawn` route those verbs exclusively to the transaction-safe spawn module under `EntityTransactionRuntime`.
+
+## ADR-051 — Relay Station is a discriminative second world, not an Alien Lineage reskin
+
+**Decision:** Phase 11 uses the `game.relay_station` semantic namespace and a facility/logistics/maintenance world with `inspect`, `pick_up`, `deliver`, `repair`, and `activate`. The proof is accepted only because its semantic entities, module composition, Runtime verbs and world objective differ materially from Alien Lineage.
+
+## ADR-052 — The second world must reuse the same assembly stack
+
+**Decision:** Relay Station reuses the existing SEDB read adapter, CSC-OCM resolver, Dynamic Asset Graph, CompilableWorld intake/runtime boundary, Three.js target, and bounded assembler. Phase 11 does not create a parallel Relay-specific framework merely to make the second vertical slice pass.
+
+## ADR-053 — Entity transaction authority remains module-local in the second world
+
+**Decision:** `relay_station.runtime` owns inspect/pick-up/deliver/repair and has StateDelta/EventIR authority only. `relay_station.activation` alone declares `entity_transaction/v0.1` and may create the reviewed `signal.beacon.001` entity during `activate`. Shared-world membership does not broaden module authority.
+
+## ADR-054 — Presentation generalizes by projection role, not by duplicating the renderer
+
+**Decision:** The existing Three.js sidecar/target supports both Alien Lineage and Relay Station through versioned projection contracts and semantic-role dispatch. Relay visuals remain disposable Presentation objects; no second renderer or Relay world rules are embedded in browser code.
+
+## ADR-055 — Relay assembler repair remains candidate-only
+
+**Decision:** Phase 11 adds `presentation-effect-recipe.v0.2` for bounded `relay_visual` effects and proves a fail-first authority repair for the Relay activation effect. The repaired artifact is consumed only through a temporary build overlay; `canonical_write=false` remains structural and no canonical presentation/graph registry is rewritten by the assembler.

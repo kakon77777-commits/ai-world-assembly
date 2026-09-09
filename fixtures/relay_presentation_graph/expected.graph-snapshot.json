@@ -1,0 +1,30 @@
+{
+  "artifact_statuses": [],
+  "contract": "asset-graph-snapshot.v0.1",
+  "generation_task_ids": [
+    "task:generate:03811a83aa62f4e4"
+  ],
+  "missing_required": [
+    {
+      "edge_id": "edge:threejs-relay->activation-recipe",
+      "from": "presentation.threejs.relay_station",
+      "scope": "presentation",
+      "to": "artifact.presentation.threejs.relay_activation_recipe",
+      "version_constraint": "v0.2"
+    }
+  ],
+  "required_closure": [
+    "presentation.threejs.relay_station"
+  ],
+  "roots": [
+    "presentation.threejs.relay_station"
+  ],
+  "sha256": "1fc8c065ec6a8e991fd6c6d3b373266e8fb41598ade48a86f766fdf10ff64d2b",
+  "snapshot_id": "graph:1fc8c065ec6a8e99",
+  "source_hashes": {
+    "artifacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "edges": "138f5512bbc3dfc748bedc7ecdd2fb1cf2cbe79350abce0b965f150339905b48",
+    "nodes": "0cb0b3d73bf097b47f0f44284da1645939d69c470f812913ddba9042e6bee543",
+    "validations": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  }
+}

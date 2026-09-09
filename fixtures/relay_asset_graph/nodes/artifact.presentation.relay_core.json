@@ -1,0 +1,14 @@
+{
+  "contract": "asset-graph-node.v0.1",
+  "metadata": {
+    "artifact_ref": "artifact.presentation.relay_core.v1",
+    "role": "relay_visual"
+  },
+  "namespace": "game.relay_station",
+  "node_id": "artifact.presentation.relay_core",
+  "node_type": "artifact",
+  "provenance_ref": "prov:artifact:relay_core:v1",
+  "semantic_ref": "facility.storm_relay",
+  "status": "active",
+  "version": "v0.1"
+}

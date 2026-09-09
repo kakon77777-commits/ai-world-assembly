@@ -1,0 +1,4 @@
+room_id,name,description,region
+room.relay.conduit,Conduit Spine,A narrow maintenance spine links the hangar to the damaged relay core.,region.relay
+room.relay.core,Storm Relay Core,"The silent relay core waits for a coupler, repair, and activation sequence.",region.relay
+room.relay.hangar,Relay Hangar,A storm-scored service hangar holding the replacement phase coupler.,region.relay

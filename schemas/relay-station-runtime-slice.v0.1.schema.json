@@ -1,0 +1,41 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:awa:schema:relay-station-runtime-slice-v0-1",
+  "title":"Relay Station Runtime Slice v0.1",
+  "type":"object",
+  "required":["contract","slice_id","runtime_modules","runtime_config"],
+  "properties":{
+    "contract":{"const":"relay-station-runtime-slice.v0.1"},
+    "slice_id":{"type":"string","pattern":"^[a-z][a-z0-9_.:-]*$"},
+    "runtime_modules":{
+      "type":"array","minItems":2,"maxItems":2,"uniqueItems":true,
+      "items":{"type":"object","required":["module_id","version","entrypoint"],"properties":{
+        "module_id":{"enum":["relay_station.runtime","relay_station.activation"]},
+        "version":{"const":"0.1.0"},
+        "entrypoint":{"type":"string","minLength":1}
+      },"additionalProperties":false}
+    },
+    "runtime_config":{
+      "type":"object",
+      "required":["runner_semantic_ref","relay_semantic_ref","runner_entity_id","relay_entity_id","coupler_item_id","beacon","condition_default"],
+      "properties":{
+        "runner_semantic_ref":{"type":"string","minLength":1},
+        "relay_semantic_ref":{"type":"string","minLength":1},
+        "runner_entity_id":{"type":"string","pattern":"^[a-z][a-z0-9.-]*$"},
+        "relay_entity_id":{"type":"string","pattern":"^[a-z][a-z0-9.-]*$"},
+        "coupler_item_id":{"type":"string","pattern":"^[a-z][a-z0-9.-]*$"},
+        "condition_default":{"const":"damaged"},
+        "beacon":{
+          "type":"object","required":["entity_id","entity_type","name","components","semantic_ref"],
+          "properties":{
+            "entity_id":{"type":"string","pattern":"^[a-z][a-z0-9.-]*$"},
+            "entity_type":{"const":"signal"},
+            "name":{"type":"string","minLength":1},
+            "components":{"type":"array","minItems":2,"uniqueItems":true,"items":{"type":"string","minLength":1}},
+            "semantic_ref":{"type":"string","minLength":1}
+          },"additionalProperties":false
+        }
+      },"additionalProperties":false
+    }
+  },"additionalProperties":false
+}

@@ -1,0 +1,12 @@
+{
+  "contract": "asset-graph-edge.v0.1",
+  "edge_id": "edge:threejs-relay->activation-recipe",
+  "from": "presentation.threejs.relay_station",
+  "provenance_ref": "prov:edge:relay-activation-recipe:v1",
+  "reason": "Relay activation requires a bounded presentation effect recipe",
+  "required": true,
+  "scope": "presentation",
+  "to": "artifact.presentation.threejs.relay_activation_recipe",
+  "type": "requires",
+  "version_constraint": "v0.2"
+}

@@ -1,0 +1,13 @@
+{
+  "contract": "asset-graph-node.v0.1",
+  "metadata": {
+    "role": "presentation_target"
+  },
+  "namespace": "game.relay_station",
+  "node_id": "presentation.threejs.relay_station",
+  "node_type": "fragment",
+  "provenance_ref": "prov:presentation:relay_station:v1",
+  "semantic_ref": "facility.storm_relay",
+  "status": "active",
+  "version": "v0.1"
+}

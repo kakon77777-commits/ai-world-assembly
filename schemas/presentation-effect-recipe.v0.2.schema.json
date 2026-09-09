@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:awa:schema:presentation-effect-recipe-v0-2",
+  "title":"AWA Presentation Effect Recipe v0.2",
+  "description":"Declarative presentation-only entity visual effect. It cannot issue Runtime actions or state/entity mutation.",
+  "type":"object",
+  "required":["contract","recipe_id","event_type","effect","version"],
+  "properties":{
+    "contract":{"const":"presentation-effect-recipe.v0.2"},
+    "recipe_id":{"type":"string","minLength":1},
+    "event_type":{"type":"string","minLength":1},
+    "effect":{"type":"object","required":["target","scale_peak","duration_ms","emissive_boost"],"properties":{
+      "target":{"enum":["creature_visual","relay_visual"]},
+      "scale_peak":{"type":"number","minimum":1.0,"maximum":1.3},
+      "duration_ms":{"type":"integer","minimum":50,"maximum":400},
+      "emissive_boost":{"type":"number","minimum":0.0,"maximum":2.0}
+    },"additionalProperties":false},
+    "version":{"const":"v0.2"}
+  },"additionalProperties":false
+}

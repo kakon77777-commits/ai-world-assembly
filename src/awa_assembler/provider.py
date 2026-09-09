@@ -87,10 +87,41 @@ class ReferencePresentationRecipeProducer:
         })
 
 
+@dataclass(frozen=True)
+class ReferenceRelayPresentationRecipeProducer:
+    """Deterministic Phase 11 producer for Relay Station activation presentation evidence."""
+
+    producer_id: str = "reference.relay-presentation-recipe.repair.v0.1"
+
+    def produce(self, *, attempt: int, task: dict, diagnostics: list[str]) -> bytes:
+        if task["target"]["kind"] != "relay_presentation_recipe" or task["target"]["mime_type"] != "application/json":
+            raise ValueError("reference relay presentation recipe producer only supports relay_presentation_recipe")
+        if attempt == 1:
+            return _canonical_json_bytes({
+                "contract": "presentation-effect-recipe.v0.2",
+                "recipe_id": "effect.relay-activation-pulse",
+                "event_type": "relay_station.relay_activated",
+                "effect": {"target": "relay_visual", "scale_peak": 1.14, "duration_ms": 900, "emissive_boost": 0.8},
+                "state_delta": {"signal.active": True},
+                "version": "v0.2",
+            })
+        if not any("relay_effect_recipe" in item or "state_delta" in item or "duration_ms" in item for item in diagnostics):
+            raise ValueError("repair attempt requires relay presentation validator diagnostics")
+        return _canonical_json_bytes({
+            "contract": "presentation-effect-recipe.v0.2",
+            "recipe_id": "effect.relay-activation-pulse",
+            "event_type": "relay_station.relay_activated",
+            "effect": {"target": "relay_visual", "scale_peak": 1.14, "duration_ms": 220, "emissive_boost": 0.8},
+            "version": "v0.2",
+        })
+
+
 def reference_producer_for(task: dict) -> CandidateProducer:
     kind = task.get("target", {}).get("kind")
     if kind == "audio":
         return ReferenceAudioProducer()
     if kind == "presentation_recipe":
         return ReferencePresentationRecipeProducer()
+    if kind == "relay_presentation_recipe":
+        return ReferenceRelayPresentationRecipeProducer()
     raise ValueError(f"no deterministic reference producer for target kind: {kind!r}")

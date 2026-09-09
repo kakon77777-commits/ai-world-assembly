@@ -1,0 +1,8 @@
+{
+  "contract":"module-manifest.v0.1",
+  "module":{"id":"relay_station.facility_core","version":"v0.1","type":"content","namespace":"game.relay_station"},
+  "requires":{"core":["world.core.v0.1"],"modules":[],"capabilities":[],"semantic_entities":["facility.storm_relay"]},
+  "provides":{"actions":[],"events":[],"rules":["facility.identity"],"assets":[],"projections":["facility.summary"]},
+  "authority":["semantic.content"],"visibility":["world"],"compatibility":{"class":"C1","conflicts":[]},
+  "provenance_ref":"prov:module:relay_station.facility_core:v0.1"
+}

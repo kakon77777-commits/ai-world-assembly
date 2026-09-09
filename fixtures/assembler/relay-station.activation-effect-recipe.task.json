@@ -1,0 +1,57 @@
+{
+  "authority": "proposal",
+  "capability_id": "presentation_recipe_generation",
+  "context_refs": {
+    "composition_receipt_id": "composition:relay_station.mvp:0761671dcd8c297e",
+    "graph_snapshot_id": "graph:1fc8c065ec6a8e99",
+    "presentation_binding_id": "presentation.threejs.relay-station.v0.1",
+    "semantic_snapshot_sha256": "7b7ad12889abcc2c91a808f54a42dce8ff3d170b6388e6dd0f37b0725e1f0ff0"
+  },
+  "contract": "assembler-task.v0.1",
+  "generation_task": {
+    "allowed_layers": [
+      "presentation"
+    ],
+    "authority": "proposal",
+    "budget": {
+      "max_attempts": 2,
+      "max_cost_units": 0
+    },
+    "constraints": [
+      "required_by=edge:threejs-relay->activation-recipe",
+      "version=v0.2"
+    ],
+    "contract": "generation-task.v0.1",
+    "inputs": [
+      "presentation.threejs.relay_station"
+    ],
+    "status": "pending",
+    "target": {
+      "missing_role": "artifact.presentation.threejs.relay_activation_recipe",
+      "node_ref": "presentation.threejs.relay_station"
+    },
+    "task_id": "task:generate:03811a83aa62f4e4",
+    "validators": []
+  },
+  "promotion_policy": {
+    "canonical_write": false,
+    "target_status": "validated_candidate"
+  },
+  "repair_policy": {
+    "max_attempts": 2
+  },
+  "target": {
+    "filename": "relay_activation_effect_recipe.json",
+    "kind": "relay_presentation_recipe",
+    "layer": "presentation",
+    "mime_type": "application/json",
+    "node_id": "artifact.presentation.threejs.relay_activation_recipe",
+    "version": "v0.2"
+  },
+  "task_id": "assembler:relay-station.activation-effect-recipe:v0.1",
+  "validators": [
+    "validator.json.decode",
+    "validator.presentation.effect_recipe_contract",
+    "validator.presentation.effect_recipe_semantics"
+  ]
+}

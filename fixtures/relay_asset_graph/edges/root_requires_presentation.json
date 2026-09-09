@@ -1,0 +1,12 @@
+{
+  "contract": "asset-graph-edge.v0.1",
+  "edge_id": "edge:relay-core->presentation",
+  "from": "facility.storm_relay",
+  "provenance_ref": "prov:edge:relay-core-presentation:v1",
+  "reason": "Relay Station requires a deterministic relay visual recipe",
+  "required": true,
+  "scope": "presentation",
+  "to": "artifact.presentation.relay_core",
+  "type": "requires",
+  "version_constraint": "v0.1"
+}

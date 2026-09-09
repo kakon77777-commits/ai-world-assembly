@@ -25,9 +25,10 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Phase 8 — bounded AI World Assembler loop:** complete.
 - **Phase 9 — broader assembler proof with declarative presentation recipe:** complete.
 - **Phase 10 — transaction-safe Runtime spawn:** complete.
-- **Next: Phase 11 — second world vertical slice.**
+- **Phase 11 — Relay Station second world vertical slice:** complete.
+- **Next: Phase 12 — multi-world / multi-target assembler orchestration.**
 
-Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. Phase 9 proves the same governance loop on a different modality: a declarative Three.js mutation-effect recipe whose first candidate violates presentation authority/contract bounds and whose repaired candidate is consumed only through a temporary browser overlay. Both proofs stop at `validated_candidate` with `canonical_write=false`. Phase 10 then closes the previously deferred Runtime spawn gap: `alien_lineage.spawn` creates a real reviewed Egg Entity and Child Entity through the pinned CompilableWorld `entity_transaction/v0.1` boundary, never by direct registry mutation from an AWA module.
+Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. Phase 9 proves the same governance loop on a different modality: a declarative Three.js mutation-effect recipe whose first candidate violates presentation authority/contract bounds and whose repaired candidate is consumed only through a temporary browser overlay. Both proofs stop at `validated_candidate` with `canonical_write=false`. Phase 10 closes the previously deferred Runtime spawn gap through the pinned CompilableWorld `entity_transaction/v0.1` boundary. Phase 11 then carries a materially different Relay Station facility/logistics world through the same SEDB, CSC-OCM, Asset Graph, CompilableWorld, Three.js and assembler stack, including a transactionally created `signal.beacon.001` and an independent presentation-recipe repair proof.
 
 ## Bootstrap roadmap
 
@@ -43,7 +44,8 @@ Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filter
 10. bounded AI World Assembler loop — **complete**;
 11. second independent presentation/assembler proof — **complete**;
 12. transaction-safe Runtime entity spawn — **complete**;
-13. second world vertical slice — **next**.
+13. second world vertical slice — **complete**;
+14. multi-world / multi-target assembler orchestration — **next**.
 
 ## Quick start
 
@@ -75,6 +77,15 @@ awa-alien-lineage spawn-build \
   --slice fixtures/alien_lineage_runtime/runtime-slice.json \
   --spawn-profile fixtures/alien_lineage_runtime/spawn-profile.json \
   --out build/alien-lineage-phase10
+
+# Phase 11 Relay Station second-world authoring
+awa-relay-station build \
+  --semantic-snapshot fixtures/sedb/expected.game.relay_station.snapshot.json \
+  --composition-receipt fixtures/csc_ocm/expected.relay_station.composition-receipt.json \
+  --asset-graph-snapshot fixtures/relay_asset_graph/expected.graph-snapshot.json \
+  --plan fixtures/relay_station_runtime/relay_station.intake-plan.json \
+  --slice fixtures/relay_station_runtime/runtime-slice.json \
+  --out build/relay-station-phase11
 
 # After compiling Phase 6/10 with the pinned CompilableWorld runtime:
 cd presentation/threejs && npm install --no-audit --no-fund --package-lock=false && npm test && npm run build && cd ../..
@@ -110,7 +121,7 @@ awa-assembler run \
   --out build/phase9-assembler
 ```
 
-See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, `docs/THREEJS_PRESENTATION.md`, and `docs/AI_WORLD_ASSEMBLER.md`. Phase 9 broader-proof details are in `docs/ASSEMBLER_BROADER_PROOF.md`.
+See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, `docs/THREEJS_PRESENTATION.md`, and `docs/AI_WORLD_ASSEMBLER.md`. Phase 9 broader-proof details are in `docs/ASSEMBLER_BROADER_PROOF.md`; the Phase 11 second-world proof is documented in `docs/SECOND_WORLD_RELAY_STATION.md`.
 
 ## Non-goals for the bootstrap
 

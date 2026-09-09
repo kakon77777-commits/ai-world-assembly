@@ -102,9 +102,11 @@ def validate_effect_recipe_contract(payload: bytes, root: Path, task: dict[str, 
     del task
     validator = "validator.presentation.effect_recipe_contract"
     document, error = _decode_json(payload)
-    if error is not None:
+    if error is not None or not isinstance(document, dict):
         return CheckResult(validator, False, [f"{validator}: cannot inspect invalid JSON"])
-    errors = validation_errors(schema(root, "presentation-effect-recipe.v0.1"), document)
+    contract = document.get("contract")
+    name = "presentation-effect-recipe.v0.2" if contract == "presentation-effect-recipe.v0.2" else "presentation-effect-recipe.v0.1"
+    errors = validation_errors(schema(root, name), document)
     if errors:
         return CheckResult(validator, False, [f"{validator}: {item}" for item in errors])
     return CheckResult(validator, True, [])
@@ -121,9 +123,16 @@ def validate_effect_recipe_semantics(payload: bytes, root: Path, task: dict[str,
     forbidden = sorted(set(document) & {"runtime_action", "state_delta", "entity_registry", "world_state"})
     if forbidden:
         return CheckResult(validator, False, [f"{validator}: presentation recipe contains forbidden authority fields: {forbidden}"])
+    effect = document.get("effect")
+    kind = task["target"]["kind"]
+    if kind == "relay_presentation_recipe":
+        if document.get("contract") != "presentation-effect-recipe.v0.2" or document.get("event_type") != "relay_station.relay_activated":
+            return CheckResult(validator, False, [f"{validator}: relay_effect_recipe must bind relay_station.relay_activated using v0.2"])
+        if not isinstance(effect, dict) or effect.get("target") != "relay_visual":
+            return CheckResult(validator, False, [f"{validator}: relay_effect_recipe may target relay_visual only"])
+        return CheckResult(validator, True, [])
     if document.get("event_type") != "alien_lineage.creature_mutated":
         return CheckResult(validator, False, [f"{validator}: recipe must bind alien_lineage.creature_mutated"])
-    effect = document.get("effect")
     if not isinstance(effect, dict) or effect.get("target") != "creature_visual":
         return CheckResult(validator, False, [f"{validator}: recipe may target creature_visual only"])
     return CheckResult(validator, True, [])

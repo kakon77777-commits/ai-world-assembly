@@ -1,0 +1,18 @@
+{
+  "contract":"relay-station-runtime-assertions.v0.1",
+  "scenario_id":"relay-station.restore-link",
+  "state":[
+    {"owner":"$actor","namespace":"cargo","key":"current","equals":null},
+    {"owner":"$actor","namespace":"contract","key":"status","equals":"activated"},
+    {"owner":"facility.storm-relay-core.001","namespace":"maintenance","key":"condition","equals":"repaired"},
+    {"owner":"facility.storm-relay-core.001","namespace":"maintenance","key":"coupler_delivered","equals":true},
+    {"owner":"facility.storm-relay-core.001","namespace":"signal","key":"active","equals":true}
+  ],
+  "entities":[
+    {"entity_id":"signal.beacon.001","entity_type":"signal","state":[
+      {"namespace":"position","key":"room","equals":"room.relay.core"},
+      {"namespace":"signal","key":"state","equals":"online"},
+      {"namespace":"signal","key":"source_relay","equals":"facility.storm-relay-core.001"}
+    ]}
+  ]
+}

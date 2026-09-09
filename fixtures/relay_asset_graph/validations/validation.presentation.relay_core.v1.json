@@ -1,0 +1,11 @@
+{
+  "artifact_id": "artifact.presentation.relay_core.v1",
+  "artifact_sha256": "50f22bfbcab164ce8123faf201823323bba294d5a9a513434c3632a77df41508",
+  "contract": "artifact-validation.v0.1",
+  "diagnostics": [],
+  "evidence_ref": "evidence:relay-core:visual:v1",
+  "status": "passed",
+  "validation_id": "validation.presentation.relay_core.v1",
+  "validator": "validator.presentation.json-structure",
+  "validator_version": "v0.1"
+}

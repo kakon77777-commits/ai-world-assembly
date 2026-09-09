@@ -1,0 +1,103 @@
+{
+  "scenarios": [
+    {
+      "actor_id": "operator.relay-runner.001",
+      "expect": {
+        "events": [
+          "movement.actor_moved"
+        ],
+        "state": [
+          {
+            "equals": "room.relay.conduit",
+            "key": "room",
+            "namespace": "position",
+            "owner": "$actor"
+          }
+        ],
+        "status": "completed"
+      },
+      "given": [],
+      "scenario_id": "relay-station.move-smoke",
+      "tags": [
+        "phase11",
+        "smoke"
+      ],
+      "title": "Relay Runner enters the conduit",
+      "when": [
+        {
+          "args": {
+            "direction": "east"
+          },
+          "verb": "move"
+        }
+      ]
+    },
+    {
+      "actor_id": "operator.relay-runner.001",
+      "expect": {
+        "events": [
+          "relay_station.inspected",
+          "relay_station.coupler_picked",
+          "relay_station.coupler_delivered",
+          "relay_station.relay_repaired",
+          "relay_station.relay_activated"
+        ],
+        "state": [
+          {
+            "equals": "room.relay.core",
+            "key": "room",
+            "namespace": "position",
+            "owner": "$actor"
+          }
+        ],
+        "status": "completed"
+      },
+      "given": [],
+      "scenario_id": "relay-station.restore-link",
+      "tags": [
+        "phase11",
+        "second-world",
+        "full-cycle"
+      ],
+      "title": "Restore the bounded storm relay link",
+      "when": [
+        {
+          "target_id": "item.phase-coupler",
+          "verb": "inspect"
+        },
+        {
+          "target_id": "item.phase-coupler",
+          "verb": "pick_up"
+        },
+        {
+          "args": {
+            "direction": "east"
+          },
+          "verb": "move"
+        },
+        {
+          "args": {
+            "direction": "east"
+          },
+          "verb": "move"
+        },
+        {
+          "target_id": "facility.storm-relay-core.001",
+          "verb": "inspect"
+        },
+        {
+          "target_id": "facility.storm-relay-core.001",
+          "verb": "deliver"
+        },
+        {
+          "target_id": "facility.storm-relay-core.001",
+          "verb": "repair"
+        },
+        {
+          "target_id": "facility.storm-relay-core.001",
+          "verb": "activate"
+        }
+      ]
+    }
+  ]
+}

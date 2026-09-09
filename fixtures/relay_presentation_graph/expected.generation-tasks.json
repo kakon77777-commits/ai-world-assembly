@@ -1,0 +1,27 @@
+[
+  {
+    "allowed_layers": [
+      "presentation"
+    ],
+    "authority": "proposal",
+    "budget": {
+      "max_attempts": 2,
+      "max_cost_units": 0
+    },
+    "constraints": [
+      "required_by=edge:threejs-relay->activation-recipe",
+      "version=v0.2"
+    ],
+    "contract": "generation-task.v0.1",
+    "inputs": [
+      "presentation.threejs.relay_station"
+    ],
+    "status": "pending",
+    "target": {
+      "missing_role": "artifact.presentation.threejs.relay_activation_recipe",
+      "node_ref": "presentation.threejs.relay_station"
+    },
+    "task_id": "task:generate:03811a83aa62f4e4",
+    "validators": []
+  }
+]

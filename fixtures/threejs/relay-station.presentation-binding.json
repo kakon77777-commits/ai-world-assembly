@@ -1,0 +1,11 @@
+{
+  "contract":"presentation-binding.v0.1",
+  "binding_id":"presentation.threejs.relay-station.v0.1",
+  "target":"threejs",
+  "semantic_role":"relay_station.runtime_projection",
+  "artifact_refs":["presentation.threejs.runtime-client","presentation.threejs.relay-procedural","vendor.three.0.180.0"],
+  "runtime_event_map":{"movement.actor_moved":"move-entity","relay_station.inspected":"inspect-pulse","relay_station.coupler_picked":"cargo-picked","relay_station.coupler_delivered":"cargo-delivered","relay_station.relay_repaired":"relay-rebuild","relay_station.relay_activated":"relay-activated"},
+  "input_action_map":{"move":"move","inspect":"inspect","pick_up":"pick_up","deliver":"deliver","repair":"repair","activate":"activate"},
+  "fallback":"presentation.threejs.procedural-fallback",
+  "version":"v0.1"
+}

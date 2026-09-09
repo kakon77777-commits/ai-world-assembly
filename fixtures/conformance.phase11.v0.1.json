@@ -1,0 +1,32 @@
+{
+  "contract":"awa-conformance-fixtures.v0.1",
+  "fixtures":{
+    "relay-station-runtime-slice.v0.1":{
+      "valid":{
+        "contract":"relay-station-runtime-slice.v0.1","slice_id":"relay_station.phase11",
+        "runtime_modules":[
+          {"module_id":"relay_station.runtime","version":"0.1.0","entrypoint":"awa_relay_station.runtime:RelayStationModule"},
+          {"module_id":"relay_station.activation","version":"0.1.0","entrypoint":"awa_relay_station.activation:RelayActivationModule"}
+        ],
+        "runtime_config":{"runner_semantic_ref":"role.relay_runner","relay_semantic_ref":"facility.storm_relay","runner_entity_id":"operator.relay-runner.001","relay_entity_id":"facility.storm-relay-core.001","coupler_item_id":"item.phase-coupler","condition_default":"damaged","beacon":{"entity_id":"signal.beacon.001","entity_type":"signal","name":"Restored Relay Beacon","components":["position","signal"],"semantic_ref":"signal.restored_link"}}
+      },
+      "invalid":{"contract":"relay-station-runtime-slice.v0.1","slice_id":"bad","runtime_modules":[],"runtime_config":{}}
+    },
+    "relay-station-runtime-receipt.v0.1":{
+      "valid":{"contract":"relay-station-runtime-receipt.v0.1","receipt_id":"relay-runtime:relay_station.test:0123456789abcdef","slice_id":"relay_station.test","base_intake_receipt_id":"cw-intake:test","runtime_modules":[{},{}],"compatibility_commit":"0000000000000000000000000000000000000000","source_hashes":{"x":"0000000000000000000000000000000000000000000000000000000000000000"},"output_hashes":{"world.json":"0000000000000000000000000000000000000000000000000000000000000000"},"authoring_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+      "invalid":{"contract":"relay-station-runtime-receipt.v0.1","receipt_id":"bad","slice_id":"x","base_intake_receipt_id":"x","runtime_modules":[],"compatibility_commit":"bad","source_hashes":{},"output_hashes":{},"authoring_sha256":"bad"}
+    },
+    "relay-station-runtime-assertions.v0.1":{
+      "valid":{"contract":"relay-station-runtime-assertions.v0.1","scenario_id":"relay-station.restore-link","state":[{"owner":"$actor","namespace":"contract","key":"status","equals":"activated"}],"entities":[{"entity_id":"signal.beacon.001","entity_type":"signal","state":[]}]},
+      "invalid":{"contract":"relay-station-runtime-assertions.v0.1","scenario_id":"x","state":[],"entities":[{"entity_id":"x"}]}
+    },
+    "relay-runtime-projection.v0.1":{
+      "valid":{"contract":"relay-runtime-projection.v0.1","world_id":"relay-station.runtime-slice","world_version":"0.1.0","projection_revision":0,"presentation_instance_id":"threejs:test","generation":1,"actor":{"world_entity_id":"operator.relay-runner.001","name":"Relay Runner","room_id":"room.relay.hangar","cargo_id":null,"contract_status":"assigned"},"relay":{"world_entity_id":"facility.storm-relay-core.001","name":"Storm Relay Core","room_id":"room.relay.core","condition":"damaged","coupler_delivered":false,"active":false},"visible_items":[],"available_actions":["inspect"],"bindings":[{},{}]},
+      "invalid":{"contract":"relay-runtime-projection.v0.1","world_id":"x","world_version":"x","projection_revision":-1,"presentation_instance_id":"x","generation":0,"actor":{},"relay":{},"visible_items":[],"available_actions":[],"bindings":[]}
+    },
+    "presentation-effect-recipe.v0.2":{
+      "valid":{"contract":"presentation-effect-recipe.v0.2","recipe_id":"effect.relay-activation-pulse","event_type":"relay_station.relay_activated","effect":{"target":"relay_visual","scale_peak":1.14,"duration_ms":220,"emissive_boost":0.8},"version":"v0.2"},
+      "invalid":{"contract":"presentation-effect-recipe.v0.2","recipe_id":"bad","event_type":"relay_station.relay_activated","effect":{"target":"relay_visual","scale_peak":2.0,"duration_ms":900,"emissive_boost":0.8},"version":"v0.2","runtime_action":"activate"}
+    }
+  }
+}

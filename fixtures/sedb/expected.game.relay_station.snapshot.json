@@ -1,0 +1,58 @@
+{
+  "contract": "sedb-namespace-snapshot.v0.1",
+  "entities": [
+    {
+      "contract": "semantic-game-entity.v0.1",
+      "entity_id": "component.phase_coupler",
+      "kind": "component",
+      "label": "Phase Coupler",
+      "namespace": "game.relay_station",
+      "provenance_ref": "sedb://entity/component.phase_coupler/namespace/game.relay_station?sha256=0c5c14fa5a4d6a799e1b5ed9845768e437efbd5ef0d2dbc75d18baaf4388cd9b",
+      "semantic_fields": {
+        "component_function": "phase_alignment"
+      },
+      "version": "v0.1"
+    },
+    {
+      "contract": "semantic-game-entity.v0.1",
+      "entity_id": "facility.storm_relay",
+      "kind": "facility",
+      "label": "Storm Relay Core",
+      "namespace": "game.relay_station",
+      "provenance_ref": "sedb://entity/facility.storm_relay/namespace/game.relay_station?sha256=3053730bf2624d0cec985c240315b2e70e0d205c77fa391cc53f4c92436613de",
+      "semantic_fields": {
+        "facility_class": "communications_relay"
+      },
+      "version": "v0.1"
+    },
+    {
+      "contract": "semantic-game-entity.v0.1",
+      "entity_id": "role.relay_runner",
+      "kind": "role",
+      "label": "Relay Runner",
+      "namespace": "game.relay_station",
+      "provenance_ref": "sedb://entity/role.relay_runner/namespace/game.relay_station?sha256=904844d3dd9c8e33e2a34b4b71be7095e783add223d446d8c192b58a771fe9d0",
+      "semantic_fields": {
+        "operational_role": "field_maintenance"
+      },
+      "version": "v0.1"
+    },
+    {
+      "contract": "semantic-game-entity.v0.1",
+      "entity_id": "signal.restored_link",
+      "kind": "signal",
+      "label": "Restored Relay Link",
+      "namespace": "game.relay_station",
+      "provenance_ref": "sedb://entity/signal.restored_link/namespace/game.relay_station?sha256=9ad7c9fa1f03f194a425bf8208ed8dce4032e2ddbc7867b2baa7a9d351007b8d",
+      "semantic_fields": {
+        "signal_scope": "regional"
+      },
+      "version": "v0.1"
+    }
+  ],
+  "entity_count": 4,
+  "namespace": "game.relay_station",
+  "projection_version": "v0.1",
+  "sha256": "7b7ad12889abcc2c91a808f54a42dce8ff3d170b6388e6dd0f37b0725e1f0ff0",
+  "source": "SEDB"
+}

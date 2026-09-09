@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:awa:schema:relay-station-runtime-receipt-v0-1",
+  "title":"Relay Station Runtime Receipt v0.1",
+  "type":"object",
+  "required":["contract","receipt_id","slice_id","base_intake_receipt_id","runtime_modules","compatibility_commit","source_hashes","output_hashes","authoring_sha256"],
+  "properties":{
+    "contract":{"const":"relay-station-runtime-receipt.v0.1"},
+    "receipt_id":{"type":"string","pattern":"^relay-runtime:[a-z0-9_.:-]+:[0-9a-f]{16}$"},
+    "slice_id":{"type":"string","minLength":1},
+    "base_intake_receipt_id":{"type":"string","minLength":1},
+    "runtime_modules":{"type":"array","minItems":2,"items":{"type":"object"}},
+    "compatibility_commit":{"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "source_hashes":{"type":"object","additionalProperties":{"type":"string","pattern":"^[0-9a-f]{64}$"}},
+    "output_hashes":{"type":"object","additionalProperties":{"type":"string","pattern":"^[0-9a-f]{64}$"}},
+    "authoring_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"}
+  },"additionalProperties":false
+}

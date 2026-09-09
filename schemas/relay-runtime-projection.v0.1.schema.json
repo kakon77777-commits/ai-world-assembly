@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:awa:schema:relay-runtime-projection-v0-1",
+  "title":"Relay Station Runtime Projection v0.1",
+  "type":"object",
+  "required":["contract","world_id","world_version","projection_revision","presentation_instance_id","generation","actor","relay","visible_items","available_actions","bindings"],
+  "properties":{
+    "contract":{"const":"relay-runtime-projection.v0.1"},
+    "world_id":{"type":"string","minLength":1},"world_version":{"type":"string","minLength":1},
+    "projection_revision":{"type":"integer","minimum":0},"presentation_instance_id":{"type":"string","minLength":1},"generation":{"type":"integer","minimum":1},
+    "actor":{"type":"object","required":["world_entity_id","name","room_id","cargo_id","contract_status"],"properties":{
+      "world_entity_id":{"type":"string","minLength":1},"name":{"type":"string","minLength":1},"room_id":{"type":"string","minLength":1},
+      "cargo_id":{"type":["string","null"]},"contract_status":{"enum":["assigned","coupler_picked","coupler_delivered","repaired","activated"]}
+    },"additionalProperties":false},
+    "relay":{"type":"object","required":["world_entity_id","name","room_id","condition","coupler_delivered","active"],"properties":{
+      "world_entity_id":{"type":"string","minLength":1},"name":{"type":"string","minLength":1},"room_id":{"type":"string","minLength":1},
+      "condition":{"enum":["damaged","repaired"]},"coupler_delivered":{"type":"boolean"},"active":{"type":"boolean"}
+    },"additionalProperties":false},
+    "visible_items":{"type":"array","items":{"type":"object","required":["entity_id","name","room_id"],"properties":{"entity_id":{"type":"string"},"name":{"type":"string"},"room_id":{"type":"string"}},"additionalProperties":false}},
+    "available_actions":{"type":"array","uniqueItems":true,"items":{"type":"string"}},
+    "bindings":{"type":"array","minItems":2,"items":{"type":"object"}}
+  },"additionalProperties":false
+}
