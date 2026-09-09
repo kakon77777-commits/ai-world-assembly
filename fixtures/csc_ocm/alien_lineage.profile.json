@@ -1,0 +1,24 @@
+{
+  "contract": "world-profile.v0.1",
+  "profile_id": "alien_lineage.mvp",
+  "core_version": "world.core.v0.1",
+  "modules": {
+    "required": [
+      "alien_lineage.ecology",
+      "alien_lineage.evolution"
+    ],
+    "optional": [
+      "alien_lineage.multiworld_rift"
+    ],
+    "disabled": []
+  },
+  "capability_profile": {
+    "available": [
+      "semantic_analysis"
+    ],
+    "disabled": []
+  },
+  "compatibility_policy": {
+    "max_class": "C2"
+  }
+}

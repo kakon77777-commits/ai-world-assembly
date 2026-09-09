@@ -24,5 +24,6 @@ Current contracts:
 10. `build-manifest.v0.1`
 11. `runtime-binding.v0.1`
 12. `presentation-binding.v0.1`
+13. `world-profile.v0.1`
 
 These schemas define exchange structure only. They do not transfer semantic/runtime authority to this repository.

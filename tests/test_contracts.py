@@ -7,7 +7,7 @@ from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_DIR = ROOT / "schemas"
-FIXTURE_PATH = ROOT / "fixtures" / "conformance.v0.1.json"
+FIXTURE_DIR = ROOT / "fixtures"
 
 
 def contract_name(schema_path: Path) -> str:
@@ -21,7 +21,13 @@ def load(path: Path):
 
 
 def fixtures():
-    return load(FIXTURE_PATH)["fixtures"]
+    merged = {}
+    for path in sorted(FIXTURE_DIR.glob("conformance*.json")):
+        document = load(path)
+        for name, cases in document["fixtures"].items():
+            assert name not in merged, f"duplicate conformance fixture: {name}"
+            merged[name] = cases
+    return merged
 
 
 def test_every_schema_has_valid_and_invalid_fixture() -> None:

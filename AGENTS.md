@@ -19,15 +19,29 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 3 — CSC-OCM resolver.
+Phase 4 — Dynamic Asset Graph MVP.
 
-Phase 1 contracts and the Phase 2 read-only SEDB adapter are complete. Current work should
-resolve a World Profile into a deterministic Composition Receipt. Do not add SEDB canonical
-writes, mutate CompilableWorld state, or begin Presentation adapters during this milestone.
+Phase 1 contracts, the Phase 2 read-only SEDB adapter, and the Phase 3 deterministic CSC-OCM
+resolver are complete. Current work should introduce typed assembly nodes/edges, required
+closure, missing-node tasks, validation/hash binding and deterministic graph snapshots.
+Do not turn the graph into runtime causality, a second semantic database, or a Presentation
+scene graph.
+
+## Frozen Phase 3 composition semantics
+
+- `world-profile.v0.1` preserves the original CSC-OCM Version Profile structure under the
+  integration-level World Profile name.
+- Required dependencies resolve fail-closed and must be acyclic.
+- Optional modules named in a World Profile are selected optional modules, not best-effort
+  imports; missing selected modules fail resolution.
+- v0.1 permits one installed manifest per module ID and locks that version in the receipt.
+- explicit module conflicts and compatibility-class policy violations fail resolution.
+- capability requirements resolve against provider-independent capability contracts.
+- `requires.semantic_entities` is preserved but is not guessed/validated until later intake.
 
 ## SEDB read boundary
 
-The Phase 2 adapter is intentionally constrained:
+The Phase 2 adapter remains constrained:
 
 - SQLite `mode=ro`;
 - `PRAGMA query_only=ON`;
