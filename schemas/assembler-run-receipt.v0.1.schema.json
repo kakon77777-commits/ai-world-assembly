@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:assembler-run-receipt-v0-1",
+  "title": "AWA Bounded Assembler Run Receipt v0.1",
+  "description": "Evidence for one bounded generate/validate/repair loop. Canonical writes are structurally excluded.",
+  "type": "object",
+  "required": ["contract","run_id","task_id","status","source_hashes","attempts","selected_candidate","graph_preview","promotion","evidence_hash"],
+  "properties": {
+    "contract": {"const": "assembler-run-receipt.v0.1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["validated_candidate","blocked","failed"]},
+    "source_hashes": {
+      "type": "object",
+      "required": ["project_state","semantic_snapshot","composition_receipt","graph_snapshot_before","presentation_binding","capability_contract"],
+      "properties": {
+        "project_state": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "semantic_snapshot": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "composition_receipt": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "graph_snapshot_before": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "presentation_binding": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "capability_contract": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "attempts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["attempt","producer_id","artifact_id","artifact_sha256","validation_ids","validation_status","diagnostics"],
+        "properties": {
+          "attempt": {"type": "integer", "minimum": 1},
+          "producer_id": {"type": "string", "minLength": 1},
+          "artifact_id": {"type": "string", "minLength": 1},
+          "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "validation_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "validation_status": {"enum": ["passed","failed"]},
+          "diagnostics": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "selected_candidate": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "required": ["artifact_id","sha256","uri","mime_type"],
+          "properties": {
+            "artifact_id": {"type": "string", "minLength": 1},
+            "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "uri": {"type": "string", "minLength": 1},
+            "mime_type": {"type": "string", "minLength": 1}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "graph_preview": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "required": ["snapshot_id","sha256","missing_required","generation_tasks","target_effective_status"],
+          "properties": {
+            "snapshot_id": {"type": "string", "minLength": 1},
+            "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "missing_required": {"type": "integer", "minimum": 0},
+            "generation_tasks": {"type": "integer", "minimum": 0},
+            "target_effective_status": {"enum": ["passed","failed","stale","unvalidated"]}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "promotion": {
+      "type": "object",
+      "required": ["status","target_node_status","canonical_write","reason"],
+      "properties": {
+        "status": {"enum": ["validated_candidate","blocked"]},
+        "target_node_status": {"enum": ["candidate","none"]},
+        "canonical_write": {"const": false},
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "evidence_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

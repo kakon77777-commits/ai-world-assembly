@@ -7,3 +7,5 @@ Current contracts include the bootstrap semantic/module/asset/build/binding cont
 These schemas define exchange structure only. They do not transfer semantic/runtime authority to this repository.
 
 - `runtime-projection.v0.1` — allowlisted Phase 7 Runtime-to-Presentation projection with generation-bound bindings.
+- `assembler-task.v0.1` — bounded Phase 8 generate/repair task over an existing `generation-task.v0.1`, with proposal-only authority and canonical writes structurally disabled.
+- `assembler-run-receipt.v0.1` — deterministic Phase 8 evidence receipt for attempts, exact-byte validation, graph preview and validated-candidate promotion.

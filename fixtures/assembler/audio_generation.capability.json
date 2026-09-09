@@ -1,0 +1,14 @@
+{
+  "contract": "capability-contract.v0.1",
+  "capability": {
+    "id": "audio_generation",
+    "modality": ["audio"],
+    "tasks": ["creature_sfx_generation"],
+    "visibility": "task_local",
+    "privacy": {"cloud_allowed": true},
+    "latency": "background",
+    "authority": "proposal",
+    "fallback": ["deterministic"],
+    "budget": {"max_calls": 2, "max_cost_units": 20}
+  }
+}
