@@ -12,3 +12,5 @@ Phase 4 adds `artifact-validation.v0.1` and `asset-graph-snapshot.v0.1` fixtures
 older contract fixtures.
 
 Phase 5 adds SEDB namespace snapshot, CompilableWorld Intake Plan and Intake Receipt conformance fixtures.
+
+Phase 6 adds conformance fixtures for the bounded Alien Lineage runtime-slice, runtime-receipt and domain-assertion contracts.

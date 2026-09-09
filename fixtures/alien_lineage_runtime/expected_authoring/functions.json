@@ -1,0 +1,76 @@
+{
+  "functions": [
+    {
+      "expression": {
+        "args": [
+          {
+            "ref": "units"
+          },
+          2
+        ],
+        "op": "mul"
+      },
+      "function_id": "alien_lineage.feed_gain",
+      "inputs": {
+        "units": "number"
+      },
+      "output": "number",
+      "purity": "pure",
+      "version": "1.0.0"
+    },
+    {
+      "expression": {
+        "args": [
+          {
+            "ref": "tier"
+          },
+          2
+        ],
+        "op": "mul"
+      },
+      "function_id": "alien_lineage.mutation_cost",
+      "inputs": {
+        "tier": "number"
+      },
+      "output": "number",
+      "purity": "pure",
+      "version": "1.0.0"
+    },
+    {
+      "expression": {
+        "args": [
+          {
+            "ref": "stage_index"
+          },
+          3
+        ],
+        "op": "add"
+      },
+      "function_id": "alien_lineage.growth_threshold",
+      "inputs": {
+        "stage_index": "number"
+      },
+      "output": "number",
+      "purity": "pure",
+      "version": "1.0.0"
+    },
+    {
+      "expression": {
+        "args": [
+          {
+            "ref": "stage_index"
+          },
+          1
+        ],
+        "op": "add"
+      },
+      "function_id": "alien_lineage.egg_cost",
+      "inputs": {
+        "stage_index": "number"
+      },
+      "output": "number",
+      "purity": "pure",
+      "version": "1.0.0"
+    }
+  ]
+}

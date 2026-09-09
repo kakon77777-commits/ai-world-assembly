@@ -1,10 +1,10 @@
 {
   "project": "ai-world-assembly",
-  "version": "v0.5-compilableworld-intake",
+  "version": "v0.6-alien-lineage-runtime",
   "updated_at": "2026-09-09",
-  "current_milestone": "Phase 6 — Alien Lineage runtime slice",
+  "current_milestone": "Phase 7 — Three.js presentation adapter",
   "status": "ready",
-  "current_goal": "Expand the proven CompilableWorld intake path into the bounded Alien Lineage feed/mutate/grow/egg/hatch/rift runtime slice without collapsing semantic/runtime authority.",
+  "current_goal": "Bind the proven Alien Lineage CompilableWorld Runtime projection to a Three.js presentation without moving semantic/runtime authority into the renderer.",
   "completed": [
     "Repository initialized and architecture boundaries recorded",
     "Versioned contracts and Draft 2020-12 conformance added",
@@ -17,16 +17,23 @@
     "CompilableWorld intake receipt with source/output hashes added",
     "Alien Lineage resolved asset snapshot and intake golden authoring fixtures added",
     "Fail-closed semantic/composition/graph/runtime mapping validation added",
-    "External CompilableWorld compiler conformance workflow pinned to master 70141f364220697fe037cd0047604c608ad4c074"
+    "External CompilableWorld compiler conformance workflow pinned to master 70141f364220697fe037cd0047604c608ad4c074",
+    "Bounded alien_lineage.runtime external CompilableWorld module added",
+    "feed/mutate/grow/lay_egg/hatch/enter_rift ActionIR transitions added",
+    "Lineage costs and thresholds authored as pure FunctionIR",
+    "Alien Lineage runtime-slice and runtime-receipt contracts added",
+    "Full-cycle Alien Lineage ScenarioIR added",
+    "Dynamic EntityRegistry spawn explicitly deferred to a future transaction-safe contract",
+    "Portable ScenarioIR/domain-state assertion boundary proven against pinned CompilableWorld compiler"
   ],
   "active_tasks": [
-    "Define the bounded Alien Lineage Runtime actions: feed, mutate, grow, lay_egg, hatch, enter_rift",
-    "Map semantic species/organ/world data into explicit Runtime authoring without creating a second canon",
-    "Use FunctionIR for bounded deterministic costs/thresholds where appropriate",
-    "Add ScenarioIR coverage for the full bounded lineage loop",
-    "Keep procedural mesh/audio and Presentation effects outside Runtime state"
+    "Define Three.js runtime projection and entity binding for the Alien Lineage slice",
+    "Map Three.js input to existing ActionIR verbs without direct StateStore writes",
+    "Map EventIR to procedural creature rebuild/VFX/UI effects",
+    "Use Dynamic Asset Graph closure for target-specific presentation artifacts",
+    "Prove scene reload changes Presentation instance identity without changing World Entity identity"
   ],
-  "next_milestone": "Phase 7 — Three.js presentation adapter",
+  "next_milestone": "Phase 8 — bounded AI World Assembler loop",
   "blocked": [],
   "non_goals": [
     "SEDB kernel rewrite",

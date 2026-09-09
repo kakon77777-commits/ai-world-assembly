@@ -1,0 +1,31 @@
+{
+  "authoring_sha256": "d58761061c0567fe07f4d1b652c51f3087bb0d2166f67611ea8c2f98baab157d",
+  "base_intake_receipt_id": "cw-intake:intake.alien-lineage.phase6:5e355b7292cad784",
+  "contract": "alien-lineage-runtime-receipt.v0.1",
+  "output_hashes": {
+    "data/entities.csv": "7a57672da1c57b59a1e1ad5d6bc3fa9a889fe54e073867441681d827a1c1a012",
+    "data/exits.csv": "0a0999162c411fa9fe8690284ab29af4db4e92e0398ff60052b132a76e9df785",
+    "data/items.csv": "8d94301df0f5c943b61b0da69d767fa0ec0786af82f498607d67cb1fb735da3a",
+    "data/rooms.csv": "51c43a1dccc8e6deff0096abea90ab52d494f301d3407d0c8263a5905defb972",
+    "functions.json": "2b1a6a3ed8de8a5f4d6908f413f83615ae31d02fa04a131e70dc75edaf9311e8",
+    "manifest.json": "646d96ef867dce9e8906063080b22d7eac33a673112e3018ac8e0f828ca0cd03",
+    "quests.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "scenarios.json": "39d5d7dd63c1b8ab211bec2d591393aec536bc42f771bdb7c6d1d7008f21ef13",
+    "world.json": "e47a1159113b68f86c3f16a62cee0032c7b03b923a7a6422c3652a8e8dbc2474"
+  },
+  "receipt_id": "alien-runtime:alien-lineage.runtime.phase6:7694cc4292fea1c1",
+  "runtime_module": {
+    "entrypoint": "awa_alien_lineage.runtime:AlienLineageModule",
+    "module_id": "alien_lineage.runtime",
+    "version": "0.1.0"
+  },
+  "slice_id": "alien-lineage:runtime:phase6",
+  "source_hashes": {
+    "asset_graph_snapshot": "a26513d11c0d85aff60cd18d0585bbd4a08d528e8c6be137dfa72b6ba0d1b9c5",
+    "base_intake_receipt": "8df72f870e1661bb8f9dcfe7dac434b416ff96ff75dd5a1f3b20844e21e60ada",
+    "composition_receipt": "dd6893101b9c69931476c8e80205e3f4fa9d8d3ae20f9d7b1e4808921de8ea8e",
+    "intake_plan": "cba855719975882c28860e50ef6f3dbb42d5f084829e27b3c1edee7d94064d08",
+    "runtime_slice": "827c168a4fe3a86e0868970b4c5f0c5f7a4f96dde0690293ecb148db5b46644e",
+    "semantic_snapshot": "195871311741b50857b506055e11969bf2f823ef10f63b6752785fb7f5fbb75c"
+  }
+}

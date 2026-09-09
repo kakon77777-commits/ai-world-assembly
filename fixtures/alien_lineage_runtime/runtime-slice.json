@@ -1,0 +1,20 @@
+{
+  "contract":"alien-lineage-runtime-slice.v0.1",
+  "slice_id":"alien-lineage:runtime:phase6",
+  "runtime_module":{"module_id":"alien_lineage.runtime","version":"0.1.0","entrypoint":"awa_alien_lineage.runtime:AlienLineageModule"},
+  "runtime_config":{
+    "species_ref":"species.crystal_filterer",
+    "stages":["juvenile","adult"],
+    "adult_stage":"adult",
+    "hatch_stage":"hatchling",
+    "organs":[{"organ_id":"organ.crystal-gill","tier":1}],
+    "resource_defaults":{"item.mineral-bloom":3},
+    "rifts":{"rift.echo":"world.echo"}
+  },
+  "functions":{"functions":[
+    {"function_id":"alien_lineage.feed_gain","version":"1.0.0","purity":"pure","inputs":{"units":"number"},"output":"number","expression":{"op":"mul","args":[{"ref":"units"},2]}},
+    {"function_id":"alien_lineage.mutation_cost","version":"1.0.0","purity":"pure","inputs":{"tier":"number"},"output":"number","expression":{"op":"mul","args":[{"ref":"tier"},2]}},
+    {"function_id":"alien_lineage.growth_threshold","version":"1.0.0","purity":"pure","inputs":{"stage_index":"number"},"output":"number","expression":{"op":"add","args":[{"ref":"stage_index"},3]}},
+    {"function_id":"alien_lineage.egg_cost","version":"1.0.0","purity":"pure","inputs":{"stage_index":"number"},"output":"number","expression":{"op":"add","args":[{"ref":"stage_index"},1]}}
+  ]}
+}

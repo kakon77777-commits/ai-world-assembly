@@ -1,0 +1,119 @@
+{
+  "scenarios": [
+    {
+      "actor_id": "creature.crystal-filterer.001",
+      "expect": {
+        "events": [
+          "alien_lineage.creature_fed",
+          "alien_lineage.creature_mutated",
+          "alien_lineage.creature_grew",
+          "alien_lineage.egg_laid",
+          "alien_lineage.egg_hatched",
+          "alien_lineage.rift_entered"
+        ],
+        "state": [
+          {
+            "equals": "room.abyss.rift",
+            "key": "room",
+            "namespace": "position",
+            "owner": "$actor"
+          }
+        ],
+        "status": "completed"
+      },
+      "given": [],
+      "scenario_id": "alien-lineage.full-cycle",
+      "tags": [
+        "phase6",
+        "lineage",
+        "full-cycle"
+      ],
+      "title": "Bounded Alien Lineage lifecycle",
+      "when": [
+        {
+          "args": {
+            "direction": "north"
+          },
+          "verb": "move"
+        },
+        {
+          "target_id": "item.mineral-bloom",
+          "verb": "feed"
+        },
+        {
+          "target_id": "item.mineral-bloom",
+          "verb": "feed"
+        },
+        {
+          "target_id": "item.mineral-bloom",
+          "verb": "feed"
+        },
+        {
+          "args": {
+            "organ_id": "organ.crystal-gill"
+          },
+          "verb": "mutate"
+        },
+        {
+          "verb": "grow"
+        },
+        {
+          "args": {
+            "direction": "south"
+          },
+          "verb": "move"
+        },
+        {
+          "verb": "lay_egg"
+        },
+        {
+          "verb": "hatch"
+        },
+        {
+          "args": {
+            "direction": "east"
+          },
+          "verb": "move"
+        },
+        {
+          "args": {
+            "rift_id": "rift.echo"
+          },
+          "verb": "enter_rift"
+        }
+      ]
+    },
+    {
+      "actor_id": "creature.crystal-filterer.001",
+      "expect": {
+        "events": [
+          "movement.actor_moved"
+        ],
+        "state": [
+          {
+            "equals": "room.abyss.feeding",
+            "key": "room",
+            "namespace": "position",
+            "owner": "$actor"
+          }
+        ],
+        "status": "completed"
+      },
+      "given": [],
+      "scenario_id": "alien-lineage.move-smoke",
+      "tags": [
+        "smoke",
+        "phase6"
+      ],
+      "title": "Crystal Filterer moves to feeding shelf",
+      "when": [
+        {
+          "args": {
+            "direction": "north"
+          },
+          "verb": "move"
+        }
+      ]
+    }
+  ]
+}

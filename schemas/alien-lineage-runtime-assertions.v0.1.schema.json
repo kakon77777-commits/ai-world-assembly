@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:alien-lineage-runtime-assertions-v0-1",
+  "title": "Alien Lineage Runtime Assertions v0.1",
+  "type": "object",
+  "required": [
+    "contract",
+    "scenario_id",
+    "state"
+  ],
+  "properties": {
+    "contract": {
+      "const": "alien-lineage-runtime-assertions.v0.1"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]*$"
+    },
+    "state": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "owner",
+          "namespace",
+          "key",
+          "equals"
+        ],
+        "properties": {
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "namespace": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]*$"
+          },
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]*$"
+          },
+          "equals": {}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

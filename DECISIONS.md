@@ -117,3 +117,23 @@ ScenarioIR files. Do not introduce a parallel Runtime Package format or modify t
 **Decision:** Phase 5 Runtime intake rejects missing required graph nodes and any required artifact
 whose effective validation state is not `passed`. A separate future profile may relax this for
 prototype/placeholder builds; v0.1 does not.
+
+## ADR-029 — Alien Lineage domain behavior remains an external Runtime Module
+
+**Decision:** Phase 6 implements `alien_lineage.runtime` in AWA and registers it after CompilableWorld built-ins. The CompilableWorld Kernel and builtin module registry remain unchanged. The compiled `world.json` declares the exact external module/version/entrypoint so the extension is not hidden.
+
+## ADR-030 — Phase 6 does not mutate EntityRegistry from a Module action
+
+**Decision:** `lay_egg` and `hatch` commit bounded lineage state and EventIR only. They do not call `registry.add()` from `evaluate()`, because EntityRegistry mutation currently lacks the same StateDelta/EventIR transaction and rollback boundary. A formal runtime spawn contract is deferred.
+
+## ADR-031 — Bounded lineage costs and thresholds are FunctionIR
+
+**Decision:** feed gain, mutation cost, growth threshold and egg cost are declared as pure CompilableWorld FunctionIR. Runtime Modules own side effects; numeric policy remains inspectable, deterministic and separately testable.
+
+## ADR-032 — Scenario extension compatibility is pinned, not assumed
+
+**Decision:** AWA supplies a thin ScenarioIR-compatible runner that installs the external lineage module and otherwise follows the current CompilableWorld ActionIR/StateStore/EventIR assertion model. CI pins the real CompilableWorld source commit and runs the full lineage scenario on every change.
+
+## ADR-033 — Domain state assertions remain outside portable CompilableWorld ScenarioIR
+
+**Decision:** The pinned CompilableWorld ScenarioIR contract permits only its current StateStore read whitelist and scalar expected values. Phase 6 therefore keeps the full action/event sequence and portable `position` assertion in native ScenarioIR, while lineage/world/list-valued checks live in versioned `alien-lineage-runtime-assertions.v0.1` sidecar evidence consumed by the AWA extension runner. Do not widen the upstream compiler from AWA.

@@ -20,12 +20,10 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Phase 3 — CSC-OCM resolver:** complete.
 - **Phase 4 — Dynamic Asset Graph MVP:** complete.
 - **Phase 5 — CompilableWorld intake adapter:** complete.
-- **Next: Phase 6 — Alien Lineage runtime slice.**
+- **Phase 6 — Alien Lineage runtime slice:** complete.
+- **Next: Phase 7 — Three.js presentation adapter.**
 
-Phase 5 adds a reviewed, deterministic bridge into the existing CompilableWorld Authoring Layer.
-It validates SEDB/composition/asset identities, refuses incomplete or stale required assets, emits
-current CompilableWorld JSON/CSV/ScenarioIR inputs, and records a hash-linked intake receipt.
-GitHub CI then validates, compiles and scenario-runs the output with the real external compiler.
+Phase 6 adds the external `alien_lineage.runtime` CompilableWorld module, bounded lineage FunctionIR, and full-cycle ScenarioIR while leaving the CompilableWorld Kernel unchanged.
 
 ## Bootstrap roadmap
 
@@ -36,8 +34,8 @@ GitHub CI then validates, compiles and scenario-runs the output with the real ex
 5. CSC-OCM resolver — **complete**;
 6. Dynamic Asset Graph MVP — **complete**;
 7. CompilableWorld intake adapter — **complete**;
-8. Alien Lineage vertical slice — **next**;
-9. Three.js first presentation target;
+8. Alien Lineage runtime slice — **complete**;
+9. Three.js first presentation target — **next**;
 10. bounded AI World Assembler loop.
 
 ## Quick start
@@ -73,10 +71,19 @@ awa-cw-intake emit \
   --asset-graph-snapshot fixtures/compilableworld_intake/asset-graph.resolved.json \
   --plan fixtures/compilableworld_intake/alien_lineage.intake-plan.json \
   --out build/alien-lineage-cw
+
+awa-alien-lineage build \
+  --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+  --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+  --asset-graph-snapshot fixtures/compilableworld_intake/asset-graph.resolved.json \
+  --plan fixtures/alien_lineage_runtime/alien_lineage.intake-plan.json \
+  --slice fixtures/alien_lineage_runtime/runtime-slice.json \
+  --out build/alien-lineage-phase6
 ```
 
 See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`,
-`docs/DYNAMIC_ASSET_GRAPH.md`, and `docs/COMPILABLEWORLD_INTAKE.md` for implemented boundaries.
+`docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, and
+`docs/ALIEN_LINEAGE_RUNTIME.md` for implemented boundaries.
 
 ## Non-goals for the bootstrap
 

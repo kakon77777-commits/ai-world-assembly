@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install -e ".[dev]"
-      - name: Emit CompilableWorld Authoring Layer
+      - name: Emit Phase 5 CompilableWorld Authoring Layer
         run: |
           awa-cw-intake emit \
             --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
@@ -39,15 +39,40 @@ jobs:
             --asset-graph-snapshot fixtures/compilableworld_intake/asset-graph.resolved.json \
             --plan fixtures/compilableworld_intake/alien_lineage.intake-plan.json \
             --out build/alien-lineage-cw
-      - name: Validate with real CompilableWorld compiler
+      - name: Validate Phase 5 with real CompilableWorld compiler
         env:
           PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
         run: python -m compilableworld validate build/alien-lineage-cw
-      - name: Compile with real CompilableWorld compiler
+      - name: Compile Phase 5 with real CompilableWorld compiler
         env:
           PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
         run: python -m compilableworld compile build/alien-lineage-cw --out build/alien-lineage-runtime
-      - name: Run real CompilableWorld ScenarioIR
+      - name: Run native CompilableWorld move ScenarioIR
         env:
           PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
         run: python -m compilableworld scenario-run build/alien-lineage-runtime/world.package.json alien-lineage.move-smoke
+      - name: Build bounded Phase 6 Alien Lineage authoring
+        run: |
+          awa-alien-lineage build \
+            --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+            --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+            --asset-graph-snapshot fixtures/compilableworld_intake/asset-graph.resolved.json \
+            --plan fixtures/alien_lineage_runtime/alien_lineage.intake-plan.json \
+            --slice fixtures/alien_lineage_runtime/runtime-slice.json \
+            --out build/alien-lineage-phase6
+      - name: Validate Phase 6 with real CompilableWorld compiler
+        env:
+          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        run: python -m compilableworld validate build/alien-lineage-phase6
+      - name: Compile Phase 6 with real CompilableWorld compiler
+        env:
+          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        run: python -m compilableworld compile build/alien-lineage-phase6 --out build/alien-lineage-phase6-runtime
+      - name: Run native move smoke on Phase 6 package
+        env:
+          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        run: python -m compilableworld scenario-run build/alien-lineage-phase6-runtime/world.package.json alien-lineage.move-smoke
+      - name: Run full Alien Lineage ScenarioIR with declared external module
+        env:
+          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        run: awa-alien-lineage scenario-run build/alien-lineage-phase6-runtime/world.package.json alien-lineage.full-cycle --assertions fixtures/alien_lineage_runtime/full-cycle.assertions.json
