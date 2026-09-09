@@ -173,3 +173,20 @@ prototype/placeholder builds; v0.1 does not.
 ## ADR-042 — CI uses a deterministic reference producer to prove orchestration
 
 **Decision:** The Phase 8 CI producer deliberately emits a silent first WAV and a repaired second WAV. This proves generate/validate/repair/promotion semantics reproducibly without coupling correctness to a vendor/model. Real AI producers may implement the same provider protocol later.
+
+
+## ADR-043 — Phase 9 broadens modality before adding a second renderer
+
+**Decision:** The second independent proof uses a declarative Three.js presentation effect recipe rather than a Godot/Unity adapter. This gives discriminative evidence for a different artifact/repair class while keeping presentation-engine expansion out of the bootstrap.
+
+## ADR-044 — Generated presentation effects are declarative, not arbitrary executable code
+
+**Decision:** `presentation-effect-recipe.v0.1` contains bounded visual parameters only. Phase 9 does not execute provider-generated JavaScript, which would require a stronger sandbox/security boundary than the current bootstrap provides.
+
+## ADR-045 — Validated presentation candidates are tested through a temporary build overlay
+
+**Decision:** A validated recipe may be copied into `dist/candidate/` for browser evidence after exact-byte validation, but the assembler never writes it into canonical Three.js source or Asset Graph registries. Browser consumption is validation evidence, not canonical promotion.
+
+## ADR-046 — The second repair witness is contract/authority failure, not signal quality
+
+**Decision:** Phase 9 attempt 1 carries forbidden `runtime_action` plus an out-of-bounds duration. Repair must be driven by those diagnostics. This intentionally differs from the Phase 8 non-silent audio quality failure.

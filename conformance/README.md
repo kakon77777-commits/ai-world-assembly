@@ -5,3 +5,5 @@ Shared JSON Schema contracts are tested with versioned valid/invalid fixture reg
 Phase 4 added artifact validation/graph snapshot fixtures; Phase 5 added SEDB snapshot and CompilableWorld intake fixtures; Phase 6 added bounded Alien Lineage runtime fixtures; Phase 7 adds `runtime-projection.v0.1` fixtures for the live Three.js presentation boundary.
 
 Phase 8 adds bounded assembler task/run receipt fixtures. Both contracts structurally preserve proposal-only generation and `canonical_write=false`.
+
+Phase 9 adds `presentation-effect-recipe.v0.1` valid/invalid evidence. The invalid case carries a Runtime-authority-shaped field and is rejected fail-closed.

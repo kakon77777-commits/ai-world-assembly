@@ -9,3 +9,5 @@ These schemas define exchange structure only. They do not transfer semantic/runt
 - `runtime-projection.v0.1` — allowlisted Phase 7 Runtime-to-Presentation projection with generation-bound bindings.
 - `assembler-task.v0.1` — bounded Phase 8 generate/repair task over an existing `generation-task.v0.1`, with proposal-only authority and canonical writes structurally disabled.
 - `assembler-run-receipt.v0.1` — deterministic Phase 8 evidence receipt for attempts, exact-byte validation, graph preview and validated-candidate promotion.
+
+- `presentation-effect-recipe.v0.1` — declarative Phase 9 Three.js effect candidate contract; bounded visual fields only, with no Runtime action/state authority.

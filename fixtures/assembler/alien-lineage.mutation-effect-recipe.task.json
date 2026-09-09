@@ -1,0 +1,57 @@
+{
+  "contract": "assembler-task.v0.1",
+  "task_id": "assembler:alien-lineage.mutation-effect-recipe:v0.1",
+  "generation_task": {
+    "allowed_layers": [
+      "presentation"
+    ],
+    "authority": "proposal",
+    "budget": {
+      "max_attempts": 2,
+      "max_cost_units": 0
+    },
+    "constraints": [
+      "required_by=edge:threejs-alien-lineage->mutation-effect-recipe",
+      "version=v0.1"
+    ],
+    "contract": "generation-task.v0.1",
+    "inputs": [
+      "presentation.threejs.alien_lineage"
+    ],
+    "status": "pending",
+    "target": {
+      "missing_role": "artifact.presentation.threejs.mutation_effect_recipe",
+      "node_ref": "presentation.threejs.alien_lineage"
+    },
+    "task_id": "task:generate:227dc7ed254f075e",
+    "validators": []
+  },
+  "context_refs": {
+    "semantic_snapshot_sha256": "b8d66a98d557352bde0783000c2b422224ba37f129a70924d826895a77a49a09",
+    "composition_receipt_id": "composition:alien_lineage.mvp:8b2411305572bac3",
+    "graph_snapshot_id": "graph:bc47e78342f5d715",
+    "presentation_binding_id": "presentation.threejs.alien-lineage.v0.1"
+  },
+  "capability_id": "presentation_recipe_generation",
+  "target": {
+    "layer": "presentation",
+    "node_id": "artifact.presentation.threejs.mutation_effect_recipe",
+    "kind": "presentation_recipe",
+    "filename": "mutation_effect_recipe.json",
+    "mime_type": "application/json",
+    "version": "v0.1"
+  },
+  "validators": [
+    "validator.json.decode",
+    "validator.presentation.effect_recipe_contract",
+    "validator.presentation.effect_recipe_semantics"
+  ],
+  "repair_policy": {
+    "max_attempts": 2
+  },
+  "promotion_policy": {
+    "target_status": "validated_candidate",
+    "canonical_write": false
+  },
+  "authority": "proposal"
+}

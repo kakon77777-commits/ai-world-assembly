@@ -1,0 +1,27 @@
+[
+  {
+    "allowed_layers": [
+      "presentation"
+    ],
+    "authority": "proposal",
+    "budget": {
+      "max_attempts": 2,
+      "max_cost_units": 0
+    },
+    "constraints": [
+      "required_by=edge:threejs-alien-lineage->mutation-effect-recipe",
+      "version=v0.1"
+    ],
+    "contract": "generation-task.v0.1",
+    "inputs": [
+      "presentation.threejs.alien_lineage"
+    ],
+    "status": "pending",
+    "target": {
+      "missing_role": "artifact.presentation.threejs.mutation_effect_recipe",
+      "node_ref": "presentation.threejs.alien_lineage"
+    },
+    "task_id": "task:generate:227dc7ed254f075e",
+    "validators": []
+  }
+]

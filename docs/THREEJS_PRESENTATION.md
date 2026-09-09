@@ -19,3 +19,9 @@ The target pins Three.js `0.180.0`. The build copies the local presentation sour
 CI compiles the real Phase 6 package, builds the Three.js target, starts the localhost sidecar and launches headless Chromium. Smoke mode proves hydration, reload identity separation, browser input -> ActionIR, feed through the Kernel, mutation EventIR -> geometry rebuild, and DOM state from the new Runtime projection.
 
 WebSocket, multiplayer, dynamic EntityRegistry spawn and a second presentation engine remain outside Phase 7.
+
+## Phase 9 validated-candidate overlay
+
+Three.js now has a small declarative effect-recipe host. The host accepts only bounded `presentation-effect-recipe.v0.1` visual fields and applies them after the matching Runtime EventIR is already observed. It does not formulate Runtime actions.
+
+Phase 9 CI copies a validated recipe into `dist/candidate/` only after exact-byte validation, then runs browser smoke with that temporary overlay. The recipe itself is not committed into canonical presentation source or Asset Graph registries.

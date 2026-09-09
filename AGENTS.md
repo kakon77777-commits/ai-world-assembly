@@ -19,12 +19,22 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 9 — optional second presentation / broader assembler proof.
+Phase 10 — broader world / assembler scaling.
 
-Phases 1–8 are complete. The first bounded AI World Assembler loop now observes the existing
-Alien Lineage authority stack, repairs one deliberate missing asset through exact-byte validation,
-and promotes only to a validated candidate. Current work should broaden discriminative coverage
-without turning provider output into canonical authority.
+Phases 1–9 are complete. The bounded assembler has now repaired two discriminatively different
+modalities: exact-byte audio and a declarative presentation recipe. Current work should scale only
+after preserving proposal-only generation, exact evidence binding, temporary candidate overlays and
+explicit canonical promotion authority.
+
+## Frozen Phase 9 broader-proof semantics
+
+- Phase 9 chooses a second assembler modality rather than a second rendering engine because independent repair coverage is the milestone goal.
+- The second target is a missing `presentation-effect-recipe.v0.1` artifact required by a dedicated Three.js presentation Asset Graph root.
+- Attempt 1 deliberately violates the recipe contract with `runtime_action` and an out-of-bounds duration; attempt 2 repairs only from validator diagnostics.
+- The recipe is declarative and presentation-only. It can scale/emissive-pulse a rendered creature after matching EventIR but cannot issue Runtime actions or StateDelta.
+- Browser consumption happens through a temporary candidate overlay copied into the built Three.js target after validation; the candidate is not written into canonical presentation source.
+- Phase 9 promotion still stops at `validated_candidate` with `canonical_write=false`.
+- Existing Phase 5–8 Runtime, Three.js and audio assembler proofs remain regression gates.
 
 ## Frozen Phase 8 assembler semantics
 

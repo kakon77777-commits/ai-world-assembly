@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:presentation-effect-recipe-v0-1",
+  "title": "AWA Presentation Effect Recipe v0.1",
+  "description": "Declarative presentation-only effect recipe. It carries no Runtime action or state mutation authority.",
+  "type": "object",
+  "required": [
+    "contract",
+    "recipe_id",
+    "event_type",
+    "effect",
+    "version"
+  ],
+  "properties": {
+    "contract": {
+      "const": "presentation-effect-recipe.v0.1"
+    },
+    "recipe_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effect": {
+      "type": "object",
+      "required": [
+        "target",
+        "scale_peak",
+        "duration_ms",
+        "emissive_boost"
+      ],
+      "properties": {
+        "target": {
+          "const": "creature_visual"
+        },
+        "scale_peak": {
+          "type": "number",
+          "minimum": 1.0,
+          "maximum": 1.3
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 50,
+          "maximum": 400
+        },
+        "emissive_boost": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 2.0
+        }
+      },
+      "additionalProperties": false
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v\\d+\\.\\d+$"
+    }
+  },
+  "additionalProperties": false
+}

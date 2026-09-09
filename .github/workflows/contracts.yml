@@ -129,3 +129,57 @@ jobs:
           import hashlib
           assert hashlib.sha256(candidate.read_bytes()).hexdigest()==receipt['selected_candidate']['sha256']
           PY
+      - name: Run bounded Phase 9 presentation recipe repair loop
+        run: |
+          BEFORE=$(find fixtures/assembler_presentation_graph presentation/threejs/src -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          awa-assembler run \
+            --task fixtures/assembler/alien-lineage.mutation-effect-recipe.task.json \
+            --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+            --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+            --presentation-binding fixtures/threejs/alien-lineage.presentation-binding.json \
+            --capability-contract fixtures/assembler/presentation_recipe_generation.capability.json \
+            --nodes fixtures/assembler_presentation_graph/nodes \
+            --edges fixtures/assembler_presentation_graph/edges \
+            --artifacts fixtures/assembler_presentation_graph/artifacts \
+            --validations fixtures/assembler_presentation_graph/validations \
+            --out build/phase9-assembler
+          AFTER=$(find fixtures/assembler_presentation_graph presentation/threejs/src -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          test "$BEFORE" = "$AFTER"
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          receipt=json.loads(Path('build/phase9-assembler/assembler-run-receipt.json').read_text())
+          assert receipt['status']=='validated_candidate', receipt
+          assert [a['validation_status'] for a in receipt['attempts']]==['failed','passed'], receipt
+          assert receipt['attempts'][0]['artifact_sha256']=='c1b753e2c8f7150566a146f0e517a323bf4d6ea7d47257aadc23379ad27fdd99'
+          assert receipt['attempts'][1]['artifact_sha256']=='c26cd3b1af92ca515ca81680f2982bb296237ff38f4fe95ca930f2eb83bcaeb5'
+          first='\n'.join(receipt['attempts'][0]['diagnostics'])
+          assert 'runtime_action' in first and 'duration_ms' in first, first
+          assert receipt['selected_candidate']['sha256']==receipt['attempts'][1]['artifact_sha256']
+          assert receipt['graph_preview']['missing_required']==0
+          assert receipt['graph_preview']['generation_tasks']==0
+          assert receipt['graph_preview']['target_effective_status']=='passed'
+          assert receipt['promotion']['canonical_write'] is False
+          candidate=Path('build/phase9-assembler/candidate/mutation_effect_recipe.json')
+          assert hashlib.sha256(candidate.read_bytes()).hexdigest()==receipt['selected_candidate']['sha256']
+          recipe=json.loads(candidate.read_text())
+          assert recipe['contract']=='presentation-effect-recipe.v0.1'
+          assert recipe['event_type']=='alien_lineage.creature_mutated'
+          assert 'runtime_action' not in recipe
+          PY
+          mkdir -p presentation/threejs/dist/candidate
+          cp build/phase9-assembler/candidate/mutation_effect_recipe.json presentation/threejs/dist/candidate/
+      - name: Run validated Phase 9 recipe as temporary Three.js candidate overlay
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: |
+          awa-threejs serve build/alien-lineage-phase6-runtime/world.package.json \
+            --binding fixtures/threejs/alien-lineage.presentation-binding.json \
+            --static-dir presentation/threejs/dist \
+            --port 8768 > /tmp/awa-threejs-phase9.log 2>&1 &
+          PID=$!
+          trap 'kill $PID || true; cat /tmp/awa-threejs-phase9.log || true' EXIT
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8768/health >/dev/null; then break; fi
+            sleep 0.2
+          done
+          presentation/threejs/scripts/browser-smoke.sh 'http://127.0.0.1:8768/?smoke=1&effectRecipe=/candidate/mutation_effect_recipe.json'

@@ -1,0 +1,14 @@
+{
+  "contract": "asset-graph-node.v0.1",
+  "node_id": "presentation.threejs.alien_lineage",
+  "node_type": "module",
+  "namespace": "game.alien_lineage",
+  "semantic_ref": "species.crystal_filterer",
+  "version": "v0.1",
+  "status": "active",
+  "metadata": {
+    "role": "presentation_target",
+    "presentation_binding_ref": "presentation.threejs.alien-lineage.v0.1"
+  },
+  "provenance_ref": "presentation://threejs/alien-lineage/v0.1"
+}

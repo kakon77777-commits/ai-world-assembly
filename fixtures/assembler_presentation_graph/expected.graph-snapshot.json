@@ -1,0 +1,30 @@
+{
+  "artifact_statuses": [],
+  "contract": "asset-graph-snapshot.v0.1",
+  "generation_task_ids": [
+    "task:generate:227dc7ed254f075e"
+  ],
+  "missing_required": [
+    {
+      "edge_id": "edge:threejs-alien-lineage->mutation-effect-recipe",
+      "from": "presentation.threejs.alien_lineage",
+      "scope": "presentation",
+      "to": "artifact.presentation.threejs.mutation_effect_recipe",
+      "version_constraint": "v0.1"
+    }
+  ],
+  "required_closure": [
+    "presentation.threejs.alien_lineage"
+  ],
+  "roots": [
+    "presentation.threejs.alien_lineage"
+  ],
+  "sha256": "bc47e78342f5d715e34118213b534bd61dc68b5f7982033fbd25fe47b18aba33",
+  "snapshot_id": "graph:bc47e78342f5d715",
+  "source_hashes": {
+    "artifacts": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "edges": "09343faccd6730e172dc67cb102e66b15f7008c5c6d2b27183615fc89e9b6d35",
+    "nodes": "61d8bcead2f6c1826236840bba453972981076e8730751f3ed81c235e6fdaf87",
+    "validations": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "contract": "asset-graph-edge.v0.1",
+  "edge_id": "edge:threejs-alien-lineage->mutation-effect-recipe",
+  "from": "presentation.threejs.alien_lineage",
+  "to": "artifact.presentation.threejs.mutation_effect_recipe",
+  "type": "requires",
+  "required": true,
+  "version_constraint": "v0.1",
+  "scope": "presentation",
+  "reason": "Mutation EventIR requires a bounded presentation-only effect recipe for candidate overlay validation",
+  "provenance_ref": "prov:graph:phase9:001"
+}
