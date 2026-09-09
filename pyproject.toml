@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ai-world-assembly"
-version = "0.7.0"
+version = "0.8.0"
 description = "Contract-first integration and deterministic assembly layer for AI World Assembly"
 requires-python = ">=3.11"
 dependencies = [
@@ -24,6 +24,7 @@ awa-asset-graph = "awa_asset_graph.__main__:main"
 awa-cw-intake = "awa_cw_intake.__main__:main"
 awa-alien-lineage = "awa_alien_lineage.__main__:main"
 awa-threejs = "awa_threejs.__main__:main"
+awa-assembler = "awa_assembler.__main__:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

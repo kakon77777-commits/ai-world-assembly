@@ -1,0 +1,38 @@
+{
+  "contract": "assembler-task.v0.1",
+  "task_id": "assembler:alien-lineage.attack-audio:v0.1",
+  "generation_task": {
+    "contract": "generation-task.v0.1",
+    "task_id": "task:generate:5270f6c182e809eb",
+    "target": {
+      "node_ref": "species.crystal_filterer",
+      "missing_role": "artifact.audio.crystal_filterer.attack"
+    },
+    "inputs": ["species.crystal_filterer"],
+    "constraints": ["required_by=edge:crystal_filterer->attack_audio","version=v0.1"],
+    "allowed_layers": ["asset"],
+    "validators": [],
+    "budget": {"max_attempts": 2,"max_cost_units": 0},
+    "authority": "proposal",
+    "status": "pending"
+  },
+  "context_refs": {
+    "semantic_snapshot_sha256": "b8d66a98d557352bde0783000c2b422224ba37f129a70924d826895a77a49a09",
+    "composition_receipt_id": "composition:alien_lineage.mvp:8b2411305572bac3",
+    "graph_snapshot_id": "graph:3b20d2145605e3c1",
+    "presentation_binding_id": "presentation.threejs.alien-lineage.v0.1"
+  },
+  "capability_id": "audio_generation",
+  "target": {
+    "layer": "asset",
+    "node_id": "artifact.audio.crystal_filterer.attack",
+    "kind": "audio",
+    "filename": "crystal_filterer_attack.wav",
+    "mime_type": "audio/wav",
+    "version": "v0.1"
+  },
+  "validators": ["validator.wav.decode","validator.audio.duration","validator.audio.non_silent"],
+  "repair_policy": {"max_attempts": 2},
+  "promotion_policy": {"target_status": "validated_candidate","canonical_write": false},
+  "authority": "proposal"
+}

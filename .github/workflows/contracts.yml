@@ -95,3 +95,37 @@ jobs:
           done
           curl -fsS http://127.0.0.1:8767/api/projection | grep -q 'creature.crystal-filterer.001'
           presentation/threejs/scripts/browser-smoke.sh http://127.0.0.1:8767/?smoke=1
+      - name: Run bounded Phase 8 assembler repair loop
+        run: |
+          BEFORE=$(find fixtures/asset_graph/nodes fixtures/asset_graph/edges fixtures/asset_graph/artifacts fixtures/asset_graph/validations -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          awa-assembler run \
+            --task fixtures/assembler/alien-lineage.attack-audio.task.json \
+            --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+            --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+            --presentation-binding fixtures/threejs/alien-lineage.presentation-binding.json \
+            --capability-contract fixtures/assembler/audio_generation.capability.json \
+            --nodes fixtures/asset_graph/nodes \
+            --edges fixtures/asset_graph/edges \
+            --artifacts fixtures/asset_graph/artifacts \
+            --validations fixtures/asset_graph/validations \
+            --out build/phase8-assembler
+          AFTER=$(find fixtures/asset_graph/nodes fixtures/asset_graph/edges fixtures/asset_graph/artifacts fixtures/asset_graph/validations -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+          test "$BEFORE" = "$AFTER"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          receipt=json.loads(Path('build/phase8-assembler/assembler-run-receipt.json').read_text())
+          assert receipt['status']=='validated_candidate', receipt
+          assert [a['validation_status'] for a in receipt['attempts']]==['failed','passed'], receipt
+          assert receipt['attempts'][0]['artifact_sha256']=='23fc92432963f74bd638f38ea9d7ddb475853f022810bdc8b344269bf43d5830'
+          assert receipt['attempts'][1]['artifact_sha256']=='28f03358e57423849a0a88e87221412ad7421c5c1defea70662f8e23191baabf'
+          assert receipt['selected_candidate']['sha256']==receipt['attempts'][1]['artifact_sha256']
+          assert receipt['graph_preview']['missing_required']==0
+          assert receipt['graph_preview']['generation_tasks']==0
+          assert receipt['graph_preview']['target_effective_status']=='passed'
+          assert receipt['promotion']['status']=='validated_candidate'
+          assert receipt['promotion']['canonical_write'] is False
+          candidate=Path('build/phase8-assembler/candidate/crystal_filterer_attack.wav')
+          import hashlib
+          assert hashlib.sha256(candidate.read_bytes()).hexdigest()==receipt['selected_candidate']['sha256']
+          PY

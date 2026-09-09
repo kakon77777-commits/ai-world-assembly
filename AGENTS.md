@@ -19,12 +19,23 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 8 — bounded AI World Assembler loop.
+Phase 9 — optional second presentation / broader assembler proof.
 
-Phases 1–7 are complete. The Alien Lineage Runtime is projected through a live Three.js sidecar
-without moving semantic/runtime authority into Presentation. Current work should add one bounded
-AI World Assembler loop over the existing authority stack, with candidate-first generation, explicit
-validation evidence, local repair scope and promotion only after the canonical gates pass.
+Phases 1–8 are complete. The first bounded AI World Assembler loop now observes the existing
+Alien Lineage authority stack, repairs one deliberate missing asset through exact-byte validation,
+and promotes only to a validated candidate. Current work should broaden discriminative coverage
+without turning provider output into canonical authority.
+
+## Frozen Phase 8 assembler semantics
+
+- `assembler-task.v0.1` wraps one existing `generation-task.v0.1`; it does not invent a target outside the observed Asset Graph gap.
+- Generation/capability authority remains `proposal`; `canonical_write` is structurally false.
+- The Phase 8 proof target is the deliberate required `artifact.audio.crystal_filterer.attack` gap from Phase 4.
+- Candidate bytes are untrusted until validators bind evidence to the exact SHA-256.
+- The reference CI producer is deterministic proof infrastructure, not a claim about AI model quality.
+- Attempt 1 intentionally fails `validator.audio.non_silent`; attempt 2 repairs from that diagnostic and must pass decode/duration/non-silent checks.
+- Promotion means `validated_candidate` only. The canonical Asset Graph registries, SEDB and CompilableWorld state remain unchanged.
+- Candidate graph closure is a preview/overlay. It must have no missing required nodes or generation tasks before promotion evidence is emitted.
 
 ## Frozen Phase 7 presentation semantics
 

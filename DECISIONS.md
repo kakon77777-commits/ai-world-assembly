@@ -137,3 +137,39 @@ prototype/placeholder builds; v0.1 does not.
 ## ADR-033 — Domain state assertions remain outside portable CompilableWorld ScenarioIR
 
 **Decision:** The pinned CompilableWorld ScenarioIR contract permits only its current StateStore read whitelist and scalar expected values. Phase 6 therefore keeps the full action/event sequence and portable `position` assertion in native ScenarioIR, while lineage/world/list-valued checks live in versioned `alien-lineage-runtime-assertions.v0.1` sidecar evidence consumed by the AWA extension runner. Do not widen the upstream compiler from AWA.
+
+## ADR-034 — Runtime-to-Presentation projection is allowlisted
+
+**Decision:** Phase 7 exposes `runtime-projection.v0.1` instead of handing Three.js unrestricted StateStore/EntityRegistry access. Presentation receives only the bounded state required to render and formulate intents.
+
+## ADR-035 — Presentation identity is generation-bound and disposable
+
+**Decision:** `world_entity_id` remains stable Runtime identity while scene hydration/reload creates a new `presentation_instance_id` and increments generation. Stale presentation intents fail before ActionIR creation.
+
+## ADR-036 — Browser input is never a Runtime write primitive
+
+**Decision:** Three.js emits presentation intents. The Python sidecar is the only Phase 7 adapter that converts them into CompilableWorld ActionIR; browser code never constructs StateDelta or mutates Runtime stores.
+
+## ADR-037 — The first presentation target is pinned and hash-closed
+
+**Decision:** Phase 7 pins Three.js `0.180.0` and emits SHA-256 evidence for every served target file. Browser integration is accepted only after the target closure and headless Chromium smoke both pass.
+
+## ADR-038 — The first assembler loop consumes an existing Generation Task
+
+**Decision:** Phase 8 does not let the assembler invent arbitrary work. `assembler-task.v0.1` must wrap the deterministic `generation-task.v0.1` emitted for the observed required Asset Graph gap.
+
+## ADR-039 — Provider output is untrusted until exact-byte validators pass
+
+**Decision:** Generated candidate bytes receive immutable `artifact-validation.v0.1` evidence bound to their exact SHA-256. New bytes invalidate prior evidence by construction.
+
+## ADR-040 — Repair is diagnostic-driven and budget-bounded
+
+**Decision:** A failed candidate may be retried only within both the Generation Task and capability budgets, and repair input includes validator diagnostics from the previous attempt.
+
+## ADR-041 — Phase 8 promotion stops at validated candidate
+
+**Decision:** Passing validation plus a build-complete candidate graph preview may promote raw output to `validated_candidate`, but never to canonical/active authority. `canonical_write=false` is structural in both task and receipt contracts.
+
+## ADR-042 — CI uses a deterministic reference producer to prove orchestration
+
+**Decision:** The Phase 8 CI producer deliberately emits a silent first WAV and a repaired second WAV. This proves generate/validate/repair/promotion semantics reproducibly without coupling correctness to a vendor/model. Real AI producers may implement the same provider protocol later.

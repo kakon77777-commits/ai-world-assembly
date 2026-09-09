@@ -1,0 +1,100 @@
+{
+  "contract": "awa-conformance-fixtures.phase8.v0.1",
+  "fixtures": {
+    "assembler-task.v0.1": {
+      "valid": {
+        "contract": "assembler-task.v0.1",
+        "task_id": "assembler:alien-lineage.attack-audio:v0.1",
+        "generation_task": {
+          "contract": "generation-task.v0.1",
+          "task_id": "task:generate:5270f6c182e809eb",
+          "target": {"node_ref": "species.crystal_filterer", "missing_role": "artifact.audio.crystal_filterer.attack"},
+          "inputs": ["species.crystal_filterer"],
+          "constraints": ["required_by=edge:crystal_filterer->attack_audio", "version=v0.1"],
+          "allowed_layers": ["asset"],
+          "validators": [],
+          "budget": {"max_attempts": 2, "max_cost_units": 0},
+          "authority": "proposal",
+          "status": "pending"
+        },
+        "context_refs": {
+          "semantic_snapshot_sha256": "b8d66a98d557352bde0783000c2b422224ba37f129a70924d826895a77a49a09",
+          "composition_receipt_id": "composition:alien_lineage.mvp:8b2411305572bac3",
+          "graph_snapshot_id": "graph:3b20d2145605e3c1",
+          "presentation_binding_id": "presentation.threejs.alien-lineage.v0.1"
+        },
+        "capability_id": "audio_generation",
+        "target": {"layer": "asset", "node_id": "artifact.audio.crystal_filterer.attack", "kind": "audio", "filename": "crystal_filterer_attack.wav", "mime_type": "audio/wav", "version": "v0.1"},
+        "validators": ["validator.wav.decode", "validator.audio.duration", "validator.audio.non_silent"],
+        "repair_policy": {"max_attempts": 2},
+        "promotion_policy": {"target_status": "validated_candidate", "canonical_write": false},
+        "authority": "proposal"
+      },
+      "invalid": {
+        "contract": "assembler-task.v0.1",
+        "task_id": "assembler:bad",
+        "generation_task": {},
+        "context_refs": {
+          "semantic_snapshot_sha256": "b8d66a98d557352bde0783000c2b422224ba37f129a70924d826895a77a49a09",
+          "composition_receipt_id": "composition:x",
+          "graph_snapshot_id": "graph:x",
+          "presentation_binding_id": "presentation:x"
+        },
+        "capability_id": "audio_generation",
+        "target": {"layer": "asset", "node_id": "artifact.x", "kind": "audio", "filename": "x.wav", "mime_type": "audio/wav", "version": "v0.1"},
+        "validators": ["validator.wav.decode"],
+        "repair_policy": {"max_attempts": 1},
+        "promotion_policy": {"target_status": "validated_candidate", "canonical_write": true},
+        "authority": "proposal"
+      }
+    },
+    "assembler-run-receipt.v0.1": {
+      "valid": {
+        "contract": "assembler-run-receipt.v0.1",
+        "run_id": "assembler-run:001",
+        "task_id": "assembler:alien-lineage.attack-audio:v0.1",
+        "status": "validated_candidate",
+        "source_hashes": {
+          "project_state": "1111111111111111111111111111111111111111111111111111111111111111",
+          "semantic_snapshot": "2222222222222222222222222222222222222222222222222222222222222222",
+          "composition_receipt": "3333333333333333333333333333333333333333333333333333333333333333",
+          "graph_snapshot_before": "4444444444444444444444444444444444444444444444444444444444444444",
+          "presentation_binding": "5555555555555555555555555555555555555555555555555555555555555555",
+          "capability_contract": "6666666666666666666666666666666666666666666666666666666666666666"
+        },
+        "attempts": [{
+          "attempt": 1,
+          "producer_id": "reference.audio.repair.v0.1",
+          "artifact_id": "artifact.audio.candidate",
+          "artifact_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+          "validation_ids": ["validation.audio.decode"],
+          "validation_status": "passed",
+          "diagnostics": []
+        }],
+        "selected_candidate": {"artifact_id": "artifact.audio.candidate", "sha256": "7777777777777777777777777777777777777777777777777777777777777777", "uri": "bundle://candidate/x.wav", "mime_type": "audio/wav"},
+        "graph_preview": {"snapshot_id": "graph:preview", "sha256": "8888888888888888888888888888888888888888888888888888888888888888", "missing_required": 0, "generation_tasks": 0, "target_effective_status": "passed"},
+        "promotion": {"status": "validated_candidate", "target_node_status": "candidate", "canonical_write": false, "reason": "validated candidate only"},
+        "evidence_hash": "9999999999999999999999999999999999999999999999999999999999999999"
+      },
+      "invalid": {
+        "contract": "assembler-run-receipt.v0.1",
+        "run_id": "assembler-run:bad",
+        "task_id": "assembler:bad",
+        "status": "validated_candidate",
+        "source_hashes": {
+          "project_state": "1111111111111111111111111111111111111111111111111111111111111111",
+          "semantic_snapshot": "2222222222222222222222222222222222222222222222222222222222222222",
+          "composition_receipt": "3333333333333333333333333333333333333333333333333333333333333333",
+          "graph_snapshot_before": "4444444444444444444444444444444444444444444444444444444444444444",
+          "presentation_binding": "5555555555555555555555555555555555555555555555555555555555555555",
+          "capability_contract": "6666666666666666666666666666666666666666666666666666666666666666"
+        },
+        "attempts": [{"attempt": 1, "producer_id": "x", "artifact_id": "x", "artifact_sha256": "7777777777777777777777777777777777777777777777777777777777777777", "validation_ids": ["v"], "validation_status": "passed", "diagnostics": []}],
+        "selected_candidate": null,
+        "graph_preview": null,
+        "promotion": {"status": "validated_candidate", "target_node_status": "candidate", "canonical_write": true, "reason": "invalid canonical write"},
+        "evidence_hash": "9999999999999999999999999999999999999999999999999999999999999999"
+      }
+    }
+  }
+}

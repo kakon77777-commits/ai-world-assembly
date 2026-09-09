@@ -22,9 +22,10 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Phase 5 — CompilableWorld intake adapter:** complete.
 - **Phase 6 — Alien Lineage runtime slice:** complete.
 - **Phase 7 — Three.js presentation adapter:** complete.
-- **Next: Phase 8 — bounded AI World Assembler loop.**
+- **Phase 8 — bounded AI World Assembler loop:** complete.
+- **Next: Phase 9 — optional second presentation / broader assembler proof.**
 
-Phase 7 adds a live localhost Three.js presentation sidecar over the Phase 6 Runtime. Browser input becomes ActionIR only inside the Python bridge; EventIR becomes presentation effects, and scene reload changes only presentation identity.
+Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. The reference proof fails a silent first candidate, repairs from validator diagnostics, binds validation to exact candidate SHA-256, closes a candidate Asset Graph preview, and promotes only to `validated_candidate` with `canonical_write=false`.
 
 ## Bootstrap roadmap
 
@@ -37,7 +38,8 @@ Phase 7 adds a live localhost Three.js presentation sidecar over the Phase 6 Run
 7. CompilableWorld intake adapter — **complete**;
 8. Alien Lineage runtime slice — **complete**;
 9. Three.js first presentation target — **complete**;
-10. bounded AI World Assembler loop — **next**.
+10. bounded AI World Assembler loop — **complete**;
+11. second independent presentation/assembler proof — **next**.
 
 ## Quick start
 
@@ -66,9 +68,22 @@ awa-threejs verify-assets presentation/threejs/dist
 awa-threejs serve build/alien-lineage-phase6-runtime/world.package.json \
   --binding fixtures/threejs/alien-lineage.presentation-binding.json \
   --static-dir presentation/threejs/dist
+
+# Bounded Phase 8 assembler proof
+awa-assembler run \
+  --task fixtures/assembler/alien-lineage.attack-audio.task.json \
+  --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+  --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+  --presentation-binding fixtures/threejs/alien-lineage.presentation-binding.json \
+  --capability-contract fixtures/assembler/audio_generation.capability.json \
+  --nodes fixtures/asset_graph/nodes \
+  --edges fixtures/asset_graph/edges \
+  --artifacts fixtures/asset_graph/artifacts \
+  --validations fixtures/asset_graph/validations \
+  --out build/phase8-assembler
 ```
 
-See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, and `docs/THREEJS_PRESENTATION.md`.
+See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, `docs/THREEJS_PRESENTATION.md`, and `docs/AI_WORLD_ASSEMBLER.md`.
 
 ## Non-goals for the bootstrap
 
