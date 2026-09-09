@@ -13,15 +13,23 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Presentation** — rendering, input, audio, UI, target-local physical state.
 - **AI World Assembler** — proposal, planning, generation, validation and repair across those boundaries.
 
-## Bootstrap scope
+## Current status
 
-v0.1 starts with a contract-first integration layer:
+- **Phase 1 — Contracts:** complete.
+- **Phase 2 — SEDB read adapter:** complete.
+- **Next: Phase 3 — CSC-OCM resolver.**
 
-1. versioned JSON Schema contracts;
-2. valid/invalid conformance fixtures;
-3. deterministic local validation;
-4. SEDB read adapter next;
-5. CSC-OCM resolver;
+Phase 2 adds a deterministic SQLite read-only adapter for the current SEDB entity/field/cell
+schema. It emits `semantic-game-entity.v0.1` projections and namespace snapshots without
+importing or exposing SEDB canonical write services.
+
+## Bootstrap roadmap
+
+1. versioned JSON Schema contracts — **complete**;
+2. valid/invalid conformance fixtures — **complete**;
+3. deterministic contract validation — **complete**;
+4. SEDB read adapter — **complete**;
+5. CSC-OCM resolver — **next**;
 6. Dynamic Asset Graph MVP;
 7. CompilableWorld intake adapter;
 8. Alien Lineage vertical slice;
@@ -33,12 +41,20 @@ v0.1 starts with a contract-first integration layer:
 ```bash
 python -m pip install -e ".[dev]"
 pytest -q
+
 awa-contracts validate schemas/semantic-game-entity.v0.1.schema.json path/to/entity.json
+
+awa-sedb-export check path/to/sedb.db
+awa-sedb-export entity path/to/sedb.db species.crystal_filterer --namespace game.alien_lineage
+awa-sedb-export namespace path/to/sedb.db game.alien_lineage -o snapshot.json
 ```
+
+See `docs/SEDB_READ_ADAPTER.md` for the Phase 2 projection semantics and read-only guarantee.
 
 ## Non-goals for the bootstrap
 
 - no SEDB kernel rewrite;
+- no SEDB canonical write path;
 - no CompilableWorld kernel rewrite;
 - no multiplayer;
 - no cloud marketplace;

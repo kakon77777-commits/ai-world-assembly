@@ -1,0 +1,13 @@
+{
+  "contract": "semantic-game-entity.v0.1",
+  "entity_id": "species.crystal_filterer",
+  "kind": "species",
+  "label": "Crystal Filterer",
+  "namespace": "game.alien_lineage",
+  "provenance_ref": "sedb://entity/species.crystal_filterer/namespace/game.alien_lineage?sha256=cd24095ea5d5b448ae9fb81b4bd6a589d580970a42b1c9564ccf4d0547da226d",
+  "semantic_fields": {
+    "feeding": "filter",
+    "habitat": "abyss"
+  },
+  "version": "v0.1"
+}

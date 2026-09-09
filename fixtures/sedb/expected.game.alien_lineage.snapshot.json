@@ -1,0 +1,35 @@
+{
+  "contract": "sedb-namespace-snapshot.v0.1",
+  "entities": [
+    {
+      "contract": "semantic-game-entity.v0.1",
+      "entity_id": "species.crystal_filterer",
+      "kind": "species",
+      "label": "Crystal Filterer",
+      "namespace": "game.alien_lineage",
+      "provenance_ref": "sedb://entity/species.crystal_filterer/namespace/game.alien_lineage?sha256=cd24095ea5d5b448ae9fb81b4bd6a589d580970a42b1c9564ccf4d0547da226d",
+      "semantic_fields": {
+        "feeding": "filter",
+        "habitat": "abyss"
+      },
+      "version": "v0.1"
+    },
+    {
+      "contract": "semantic-game-entity.v0.1",
+      "entity_id": "species.shellback",
+      "kind": "species",
+      "label": "Desert Shellback",
+      "namespace": "game.alien_lineage",
+      "provenance_ref": "sedb://entity/species.shellback/namespace/game.alien_lineage?sha256=33bb477513106fe67cc3283958da8233fcf37f5905ad410912e821097a9edcb4",
+      "semantic_fields": {
+        "habitat": "desert"
+      },
+      "version": "v0.1"
+    }
+  ],
+  "entity_count": 2,
+  "namespace": "game.alien_lineage",
+  "projection_version": "v0.1",
+  "sha256": "b8d66a98d557352bde0783000c2b422224ba37f129a70924d826895a77a49a09",
+  "source": "SEDB"
+}
