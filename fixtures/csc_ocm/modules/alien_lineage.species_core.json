@@ -1,0 +1,10 @@
+{
+  "contract": "module-manifest.v0.1",
+  "module": {"id": "alien_lineage.species_core", "version": "v0.1", "type": "content", "namespace": "game.alien_lineage"},
+  "requires": {"core": ["world.core.v0.1"], "modules": [], "capabilities": [], "semantic_entities": []},
+  "provides": {"actions": [], "events": [], "rules": ["species.identity"], "assets": [], "projections": ["species.summary"]},
+  "authority": ["semantic.content"],
+  "visibility": ["world"],
+  "compatibility": {"class": "C1", "conflicts": []},
+  "provenance_ref": "prov:module:alien_lineage.species_core:v0.1"
+}

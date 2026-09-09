@@ -1,0 +1,10 @@
+{
+  "contract": "module-manifest.v0.1",
+  "module": {"id": "alien_lineage.evolution", "version": "v0.1", "type": "rule", "namespace": "game.alien_lineage"},
+  "requires": {"core": ["world.core.v0.1"], "modules": ["alien_lineage.species_core"], "capabilities": ["semantic_analysis"], "semantic_entities": []},
+  "provides": {"actions": ["mutate", "grow"], "events": ["creature.mutated", "creature.grew"], "rules": ["evolution.mutation"], "assets": [], "projections": []},
+  "authority": ["runtime.world"],
+  "visibility": ["world"],
+  "compatibility": {"class": "C2", "conflicts": []},
+  "provenance_ref": "prov:module:alien_lineage.evolution:v0.1"
+}

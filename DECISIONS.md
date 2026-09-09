@@ -51,3 +51,23 @@
 ## ADR-013 — Namespace snapshot envelope remains adapter-local in Phase 2
 
 **Decision:** `sedb-namespace-snapshot.v0.1` is emitted and tested by the adapter but is not promoted into the shared contract inventory until another system consumes it. This avoids adding a shared schema before a real cross-system boundary requires one.
+
+## ADR-014 — World Profile specializes the original CSC-OCM Version Profile for integration
+
+**Decision:** `world-profile.v0.1` keeps the original CSC-OCM profile structure (`core_version`, required/optional/disabled modules, capability profile and compatibility policy) while using a world-level name because AWA composes executable worlds rather than only historical release versions.
+
+## ADR-015 — Optional modules listed in a World Profile are selected and fail closed
+
+**Decision:** In resolver v0.1, `modules.optional` means modules selected for this profile but optional relative to the common core. A listed optional module must resolve; the resolver never silently drops a missing selected module. Omit or disable it explicitly instead.
+
+## ADR-016 — Resolver v0.1 allows one installed manifest per module ID
+
+**Decision:** Until a version-selection/range contract exists, the module registry rejects duplicate module IDs even if versions differ. The selected manifest version is locked into the Composition Receipt.
+
+## ADR-017 — Provider identity is structurally excluded from composition semantics
+
+**Decision:** World Profile, Module Manifest and Capability Contract schemas remain provider-independent and fail closed on undeclared provider fields. Phase 3 resolves capabilities but does not route them to a model/vendor.
+
+## ADR-018 — Semantic entity requirements are preserved but not guessed in Phase 3
+
+**Decision:** `requires.semantic_entities` remains part of Module Manifest, but the Phase 3 resolver does not claim those references are satisfied without an explicit SEDB snapshot/intake boundary. Cross-layer satisfaction is deferred rather than inferred.

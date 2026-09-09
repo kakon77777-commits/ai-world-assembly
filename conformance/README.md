@@ -1,11 +1,10 @@
 # Conformance
 
-`tests/test_contracts.py` is the executable contract gate.
+Shared JSON Schema contracts are tested with versioned valid/invalid fixture registries under
+`fixtures/conformance*.json`.
 
-A contract passes the bootstrap gate only when:
+The bootstrap fixture set remains `fixtures/conformance.v0.1.json`. Later phases append small
+phase-scoped fixture files rather than rewriting the bootstrap registry. `tests/test_contracts.py`
+merges the registries fail-closed and rejects duplicate contract fixture names.
 
-- the schema itself is valid Draft 2020-12 JSON Schema;
-- its valid fixture has zero validation errors;
-- its invalid fixture has at least one validation error;
-- `$id` values are unique;
-- the top-level `contract.const` matches the schema filename.
+Every shared schema must have exactly one valid and one invalid fixture across the merged registry.

@@ -1,0 +1,33 @@
+{
+  "capability_policy": {
+    "available": [
+      "semantic_analysis"
+    ],
+    "disabled": [],
+    "required": [
+      "semantic_analysis"
+    ]
+  },
+  "compatibility_result": "pass",
+  "contract": "composition-receipt.v0.1",
+  "core": "world.core.v0.1",
+  "module_versions": {
+    "alien_lineage.ecology": "v0.1",
+    "alien_lineage.evolution": "v0.1",
+    "alien_lineage.multiworld_rift": "v0.1",
+    "alien_lineage.species_core": "v0.1"
+  },
+  "profile": "alien_lineage.mvp",
+  "receipt_id": "composition:alien_lineage.mvp:8b2411305572bac3",
+  "resolved_modules": [
+    "alien_lineage.species_core",
+    "alien_lineage.ecology",
+    "alien_lineage.evolution",
+    "alien_lineage.multiworld_rift"
+  ],
+  "source_hashes": {
+    "capabilities": "13f2f86bfa89e80838ce4f3635b885b789c8be00c01367c61e0a5e7338d7ec75",
+    "modules": "a88e6b973ace702d320dc7f695139e0ea4faea7128df6062adbbc42852386ca5",
+    "profile": "1abf1faf32f7c10399ab813da96bdf6c17932cecc89b01ff7dd86b820e0c8d1a"
+  }
+}

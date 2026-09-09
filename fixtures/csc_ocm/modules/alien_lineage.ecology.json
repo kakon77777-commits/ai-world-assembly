@@ -1,0 +1,10 @@
+{
+  "contract": "module-manifest.v0.1",
+  "module": {"id": "alien_lineage.ecology", "version": "v0.1", "type": "rule", "namespace": "game.alien_lineage"},
+  "requires": {"core": ["world.core.v0.1"], "modules": ["alien_lineage.species_core"], "capabilities": [], "semantic_entities": ["biome.abyss"]},
+  "provides": {"actions": ["feed"], "events": ["creature.fed"], "rules": ["ecology.feeding"], "assets": [], "projections": []},
+  "authority": ["runtime.world"],
+  "visibility": ["world"],
+  "compatibility": {"class": "C2", "conflicts": []},
+  "provenance_ref": "prov:module:alien_lineage.ecology:v0.1"
+}

@@ -1,0 +1,37 @@
+{
+  "contract": "awa-conformance-fixtures.v0.1",
+  "fixtures": {
+    "world-profile.v0.1": {
+      "valid": {
+        "contract": "world-profile.v0.1",
+        "profile_id": "alien_lineage.mvp",
+        "core_version": "world.core.v0.1",
+        "modules": {
+          "required": ["alien_lineage.species_core", "alien_lineage.ecology"],
+          "optional": ["alien_lineage.multiworld_rift"],
+          "disabled": []
+        },
+        "capability_profile": {
+          "available": ["semantic_analysis"],
+          "disabled": []
+        },
+        "compatibility_policy": {"max_class": "C2"}
+      },
+      "invalid": {
+        "contract": "world-profile.v0.1",
+        "profile_id": "alien_lineage.mvp",
+        "core_version": "world.core.v0.1",
+        "modules": {
+          "required": ["alien_lineage.species_core"],
+          "optional": [],
+          "disabled": []
+        },
+        "capability_profile": {
+          "available": [],
+          "disabled": []
+        },
+        "compatibility_policy": {"max_class": "C9"}
+      }
+    }
+  }
+}

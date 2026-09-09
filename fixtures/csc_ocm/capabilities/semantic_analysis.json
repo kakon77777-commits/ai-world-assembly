@@ -1,0 +1,14 @@
+{
+  "contract": "capability-contract.v0.1",
+  "capability": {
+    "id": "semantic_analysis",
+    "modality": ["text"],
+    "tasks": ["semantic_analysis"],
+    "visibility": "task_local",
+    "privacy": {"cloud_allowed": true},
+    "latency": "background",
+    "authority": "proposal",
+    "fallback": ["deterministic"],
+    "budget": {"max_calls": 8, "max_cost_units": 40}
+  }
+}

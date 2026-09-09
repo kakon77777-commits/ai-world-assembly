@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:world-profile-v0-1",
+  "title": "AWA World Profile v0.1",
+  "description": "Deterministic CSC-OCM composition input. Optional modules listed here are selected for this profile; disable them explicitly to omit them.",
+  "type": "object",
+  "required": ["contract", "profile_id", "core_version", "modules", "capability_profile", "compatibility_policy"],
+  "properties": {
+    "contract": {"const": "world-profile.v0.1"},
+    "profile_id": {"type": "string", "minLength": 1},
+    "core_version": {"type": "string", "minLength": 1},
+    "modules": {
+      "type": "object",
+      "required": ["required", "optional", "disabled"],
+      "properties": {
+        "required": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "optional": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "disabled": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "capability_profile": {
+      "type": "object",
+      "required": ["available", "disabled"],
+      "properties": {
+        "available": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "disabled": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "compatibility_policy": {
+      "type": "object",
+      "required": ["max_class"],
+      "properties": {
+        "max_class": {"type": "string", "enum": ["C0", "C1", "C2", "C3", "C4"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
