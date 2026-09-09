@@ -1,0 +1,39 @@
+{
+  "alien_lineage_runtime": {
+    "adult_stage": "adult",
+    "hatch_stage": "hatchling",
+    "organs": [
+      {
+        "organ_id": "organ.crystal-gill",
+        "tier": 1
+      }
+    ],
+    "resource_defaults": {
+      "item.mineral-bloom": 3
+    },
+    "rifts": {
+      "rift.echo": "world.echo"
+    },
+    "species_ref": "species.crystal_filterer",
+    "stages": [
+      "juvenile",
+      "adult"
+    ]
+  },
+  "default_language": "zh-TW",
+  "default_player_entity": "creature.crystal-filterer.001",
+  "player_spawn": "room.abyss.nursery",
+  "provenance": {
+    "canon_status": "runtime_projection",
+    "intake_id": "intake:alien-lineage:phase6",
+    "source_type": "awa_intake"
+  },
+  "runtime_extensions": [
+    {
+      "entrypoint": "awa_alien_lineage.runtime:AlienLineageModule",
+      "module_id": "alien_lineage.runtime",
+      "version": "0.1.0"
+    }
+  ],
+  "title": "Alien Lineage Runtime Slice"
+}

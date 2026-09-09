@@ -1,0 +1,38 @@
+{
+  "contract": "alien-lineage-runtime-assertions.v0.1",
+  "scenario_id": "alien-lineage.full-cycle",
+  "state": [
+    {
+      "owner": "$actor",
+      "namespace": "lineage",
+      "key": "stage",
+      "equals": "adult"
+    },
+    {
+      "owner": "$actor",
+      "namespace": "lineage",
+      "key": "organs",
+      "equals": [
+        "organ.crystal-gill"
+      ]
+    },
+    {
+      "owner": "$actor",
+      "namespace": "lineage",
+      "key": "egg_state",
+      "equals": "hatched"
+    },
+    {
+      "owner": "$actor",
+      "namespace": "lineage",
+      "key": "child_stage",
+      "equals": "hatchling"
+    },
+    {
+      "owner": "$actor",
+      "namespace": "world",
+      "key": "worldline",
+      "equals": "world.echo"
+    }
+  ]
+}

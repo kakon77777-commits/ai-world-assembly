@@ -33,3 +33,6 @@ These schemas define exchange structure only. They do not transfer semantic/runt
 - `sedb-namespace-snapshot.v0.1` — deterministic read-only SEDB namespace projection boundary.
 - `compilableworld-intake-plan.v0.1` — reviewed mapping into existing CompilableWorld authoring.
 - `compilableworld-intake-receipt.v0.1` — source/output hash receipt for deterministic authoring emission.
+- `alien-lineage-runtime-slice.v0.1` — bounded Phase 6 domain module/config/FunctionIR source.
+- `alien-lineage-runtime-receipt.v0.1` — source/output hash receipt for the bounded runtime authoring overlay.
+- `alien-lineage-runtime-assertions.v0.1` — AWA-only domain-state assertions layered over portable CompilableWorld ScenarioIR.

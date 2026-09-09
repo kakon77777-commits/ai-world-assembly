@@ -1,0 +1,3 @@
+exit_id,from_room,to_room,direction,bidirectional,door_entity,open,locked,key_id
+exit.abyss.nursery-feeding,room.abyss.nursery,room.abyss.feeding,north,true,,true,false,
+exit.abyss.nursery-rift,room.abyss.nursery,room.abyss.rift,east,true,,true,false,

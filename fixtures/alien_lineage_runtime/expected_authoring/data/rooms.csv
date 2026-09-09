@@ -1,0 +1,4 @@
+room_id,name,description,region
+room.abyss.feeding,Filter Feeding Shelf,Mineral-rich currents pass across a broad feeding shelf.,region.abyss
+room.abyss.nursery,Abyss Nursery,A quiet nursery chamber at the edge of the abyss biome.,region.abyss
+room.abyss.rift,Echo Rift,A pale rift hums against the abyss wall.,region.abyss

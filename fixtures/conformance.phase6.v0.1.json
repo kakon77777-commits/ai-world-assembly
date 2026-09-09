@@ -1,0 +1,162 @@
+{
+  "contract": "awa-conformance-fixtures.v0.1",
+  "fixtures": {
+    "alien-lineage-runtime-slice.v0.1": {
+      "valid": {
+        "contract": "alien-lineage-runtime-slice.v0.1",
+        "slice_id": "alien-lineage:runtime:test",
+        "runtime_module": {
+          "module_id": "alien_lineage.runtime",
+          "version": "0.1.0",
+          "entrypoint": "awa_alien_lineage.runtime:AlienLineageModule"
+        },
+        "runtime_config": {
+          "species_ref": "species.demo",
+          "stages": [
+            "juvenile",
+            "adult"
+          ],
+          "adult_stage": "adult",
+          "hatch_stage": "hatchling",
+          "organs": [
+            {
+              "organ_id": "organ.demo",
+              "tier": 1
+            }
+          ],
+          "resource_defaults": {
+            "item.food": 1
+          },
+          "rifts": {
+            "rift.demo": "world.demo"
+          }
+        },
+        "functions": {
+          "functions": [
+            {},
+            {},
+            {},
+            {}
+          ]
+        }
+      },
+      "invalid": {
+        "contract": "alien-lineage-runtime-slice.v0.1",
+        "slice_id": "alien-lineage:runtime:test",
+        "runtime_module": {
+          "module_id": "wrong.module",
+          "version": "0.1.0",
+          "entrypoint": "awa_alien_lineage.runtime:AlienLineageModule"
+        },
+        "runtime_config": {
+          "species_ref": "species.demo",
+          "stages": [
+            "juvenile",
+            "adult"
+          ],
+          "adult_stage": "adult",
+          "hatch_stage": "hatchling",
+          "organs": [
+            {
+              "organ_id": "organ.demo",
+              "tier": 1
+            }
+          ],
+          "resource_defaults": {
+            "item.food": 1
+          },
+          "rifts": {
+            "rift.demo": "world.demo"
+          }
+        },
+        "functions": {
+          "functions": [
+            {},
+            {},
+            {},
+            {}
+          ]
+        }
+      }
+    },
+    "alien-lineage-runtime-receipt.v0.1": {
+      "valid": {
+        "contract": "alien-lineage-runtime-receipt.v0.1",
+        "receipt_id": "alien-runtime:alien-lineage.runtime.test:0123456789abcdef",
+        "slice_id": "alien-lineage:runtime:test",
+        "base_intake_receipt_id": "cw-intake:test:0123456789abcdef",
+        "runtime_module": {
+          "module_id": "alien_lineage.runtime",
+          "version": "0.1.0",
+          "entrypoint": "awa_alien_lineage.runtime:AlienLineageModule"
+        },
+        "source_hashes": {
+          "slice": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "output_hashes": {
+          "world.json": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "authoring_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "invalid": {
+        "contract": "alien-lineage-runtime-receipt.v0.1",
+        "receipt_id": "bad",
+        "slice_id": "alien-lineage:runtime:test",
+        "base_intake_receipt_id": "x",
+        "runtime_module": {
+          "module_id": "alien_lineage.runtime",
+          "version": "0.1.0",
+          "entrypoint": "awa_alien_lineage.runtime:AlienLineageModule"
+        },
+        "source_hashes": {},
+        "output_hashes": {},
+        "authoring_sha256": "bad"
+      }
+    },
+    "alien-lineage-runtime-assertions.v0.1": {
+      "valid": {
+        "contract": "alien-lineage-runtime-assertions.v0.1",
+        "scenario_id": "alien-lineage.full-cycle",
+        "state": [
+          {
+            "owner": "$actor",
+            "namespace": "lineage",
+            "key": "stage",
+            "equals": "adult"
+          },
+          {
+            "owner": "$actor",
+            "namespace": "lineage",
+            "key": "organs",
+            "equals": [
+              "organ.crystal-gill"
+            ]
+          },
+          {
+            "owner": "$actor",
+            "namespace": "lineage",
+            "key": "egg_state",
+            "equals": "hatched"
+          },
+          {
+            "owner": "$actor",
+            "namespace": "lineage",
+            "key": "child_stage",
+            "equals": "hatchling"
+          },
+          {
+            "owner": "$actor",
+            "namespace": "world",
+            "key": "worldline",
+            "equals": "world.echo"
+          }
+        ]
+      },
+      "invalid": {
+        "contract": "alien-lineage-runtime-assertions.v0.1",
+        "scenario_id": "BAD ID",
+        "state": []
+      }
+    }
+  }
+}

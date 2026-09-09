@@ -19,11 +19,22 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 6 — Alien Lineage runtime slice.
+Phase 7 — Three.js presentation adapter.
 
-Phases 1–5 are complete. The CompilableWorld intake adapter has proven that governed AWA inputs
-can emit current CompilableWorld Authoring Layer files and pass the real external compiler without
-Kernel modification. Current work should expand only the bounded Alien Lineage Runtime action loop.
+Phases 1–6 are complete. The bounded Alien Lineage Runtime now runs through an external AWA module
+registered on the real CompilableWorld Runtime without Kernel modification. Current work should
+project that world into Three.js without moving semantic/runtime authority into Presentation.
+
+## Frozen Phase 6 runtime semantics
+
+- `alien_lineage.runtime` is an external AWA Runtime Module, not a CompilableWorld builtin.
+- Runtime actions are exactly `feed`, `mutate`, `grow`, `lay_egg`, `hatch`, and `enter_rift`.
+- Lineage side effects commit only through StateDelta/EventIR.
+- Feed gain, mutation cost, growth threshold, and egg cost are pure FunctionIR.
+- Phase 6 never calls `EntityRegistry.add()` from Module evaluation; dynamic child spawning is deferred.
+- `world.runtime_extensions` must declare the exact external module/version/entrypoint before installation.
+- CI pins the CompilableWorld compatibility target and runs the full lineage ScenarioIR.
+- Portable ScenarioIR assertions remain inside the upstream read whitelist; domain-state/list assertions use the versioned AWA sidecar.
 
 ## Frozen Phase 5 intake semantics
 

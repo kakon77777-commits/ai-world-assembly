@@ -1,0 +1,202 @@
+{
+  "contract": "compilableworld-intake-plan.v0.1",
+  "intake_id": "intake:alien-lineage:phase6",
+  "world": {
+    "world_id": "alien-lineage.runtime-slice",
+    "world_version": "0.2.0",
+    "schema_version": "0.1.0",
+    "namespace": "al",
+    "title": "Alien Lineage Runtime Slice",
+    "default_language": "zh-TW",
+    "player_spawn": "room.abyss.nursery",
+    "default_player_entity": "creature.crystal-filterer.001"
+  },
+  "required_composition_modules": [
+    "alien_lineage.species_core",
+    "alien_lineage.ecology",
+    "alien_lineage.evolution",
+    "alien_lineage.multiworld_rift"
+  ],
+  "graph_roots": [
+    "species.crystal_filterer"
+  ],
+  "runtime_modules": [
+    "room.core",
+    "movement.core"
+  ],
+  "rooms": [
+    {
+      "room_id": "room.abyss.nursery",
+      "name": "Abyss Nursery",
+      "description": "A quiet nursery chamber at the edge of the abyss biome.",
+      "region": "region.abyss"
+    },
+    {
+      "room_id": "room.abyss.feeding",
+      "name": "Filter Feeding Shelf",
+      "description": "Mineral-rich currents pass across a broad feeding shelf.",
+      "region": "region.abyss"
+    },
+    {
+      "room_id": "room.abyss.rift",
+      "name": "Echo Rift",
+      "description": "A pale rift hums against the abyss wall.",
+      "region": "region.abyss"
+    }
+  ],
+  "exits": [
+    {
+      "exit_id": "exit.abyss.nursery-feeding",
+      "from_room": "room.abyss.nursery",
+      "to_room": "room.abyss.feeding",
+      "direction": "north",
+      "bidirectional": true
+    },
+    {
+      "exit_id": "exit.abyss.nursery-rift",
+      "from_room": "room.abyss.nursery",
+      "to_room": "room.abyss.rift",
+      "direction": "east",
+      "bidirectional": true
+    }
+  ],
+  "entities": [
+    {
+      "runtime_entity_id": "creature.crystal-filterer.001",
+      "semantic_ref": "species.crystal_filterer",
+      "entity_type": "creature",
+      "room": "room.abyss.nursery",
+      "components": [
+        "position"
+      ],
+      "health": null
+    }
+  ],
+  "items": [
+    {
+      "item_id": "item.mineral-bloom",
+      "name": "Mineral Bloom",
+      "room": "room.abyss.feeding",
+      "portable": false,
+      "provenance": "awa:runtime_resource"
+    }
+  ],
+  "quests": [],
+  "scenarios": [
+    {
+      "scenario_id": "alien-lineage.move-smoke",
+      "title": "Crystal Filterer moves to feeding shelf",
+      "actor_id": "creature.crystal-filterer.001",
+      "given": [],
+      "when": [
+        {
+          "verb": "move",
+          "args": {
+            "direction": "north"
+          }
+        }
+      ],
+      "expect": {
+        "state": [
+          {
+            "owner": "$actor",
+            "namespace": "position",
+            "key": "room",
+            "equals": "room.abyss.feeding"
+          }
+        ],
+        "events": [
+          "movement.actor_moved"
+        ],
+        "status": "completed"
+      },
+      "tags": [
+        "smoke",
+        "phase6"
+      ]
+    },
+    {
+      "scenario_id": "alien-lineage.full-cycle",
+      "title": "Bounded Alien Lineage lifecycle",
+      "actor_id": "creature.crystal-filterer.001",
+      "given": [],
+      "when": [
+        {
+          "verb": "move",
+          "args": {
+            "direction": "north"
+          }
+        },
+        {
+          "verb": "feed",
+          "target_id": "item.mineral-bloom"
+        },
+        {
+          "verb": "feed",
+          "target_id": "item.mineral-bloom"
+        },
+        {
+          "verb": "feed",
+          "target_id": "item.mineral-bloom"
+        },
+        {
+          "verb": "mutate",
+          "args": {
+            "organ_id": "organ.crystal-gill"
+          }
+        },
+        {
+          "verb": "grow"
+        },
+        {
+          "verb": "move",
+          "args": {
+            "direction": "south"
+          }
+        },
+        {
+          "verb": "lay_egg"
+        },
+        {
+          "verb": "hatch"
+        },
+        {
+          "verb": "move",
+          "args": {
+            "direction": "east"
+          }
+        },
+        {
+          "verb": "enter_rift",
+          "args": {
+            "rift_id": "rift.echo"
+          }
+        }
+      ],
+      "expect": {
+        "state": [
+          {
+            "owner": "$actor",
+            "namespace": "position",
+            "key": "room",
+            "equals": "room.abyss.rift"
+          }
+        ],
+        "events": [
+          "alien_lineage.creature_fed",
+          "alien_lineage.creature_mutated",
+          "alien_lineage.creature_grew",
+          "alien_lineage.egg_laid",
+          "alien_lineage.egg_hatched",
+          "alien_lineage.rift_entered"
+        ],
+        "status": "completed"
+      },
+      "tags": [
+        "phase6",
+        "lineage",
+        "full-cycle"
+      ]
+    }
+  ]
+}
