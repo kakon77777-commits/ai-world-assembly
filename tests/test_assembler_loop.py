@@ -43,6 +43,8 @@ def test_reference_loop_repairs_failed_first_candidate(tmp_path: Path) -> None:
     assert receipt["status"] == "validated_candidate"
     assert [item["validation_status"] for item in receipt["attempts"]] == ["failed", "passed"]
     assert any("non_silent" in item for item in receipt["attempts"][0]["diagnostics"])
+    assert receipt["attempts"][0]["artifact_sha256"] == "23fc92432963f74bd638f38ea9d7ddb475853f022810bdc8b344269bf43d5830"
+    assert receipt["attempts"][1]["artifact_sha256"] == "28f03358e57423849a0a88e87221412ad7421c5c1defea70662f8e23191baabf"
     assert receipt["promotion"] == {
         "status": "validated_candidate",
         "target_node_status": "candidate",

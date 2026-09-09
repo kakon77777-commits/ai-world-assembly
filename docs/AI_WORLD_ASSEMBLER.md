@@ -60,3 +60,9 @@ awa-assembler run \
 ```
 
 The output includes both attempt artifacts/evidence, the selected candidate bundle, `graph-snapshot.preview.json`, and `assembler-run-receipt.json`.
+
+## Phase 9 generalization
+
+Phase 9 proves that the bounded loop is not audio-specific. Artifact identity and validation identity are now derived from the task target, while the producer/validator registry remains modality-specific. The same loop therefore handles both the Phase 8 WAV target and the Phase 9 declarative presentation recipe without changing promotion semantics.
+
+The second proof intentionally exercises contract/authority repair rather than signal-quality repair. A passing candidate may be consumed by a downstream validation overlay, but that consumption does not grant canonical authority.

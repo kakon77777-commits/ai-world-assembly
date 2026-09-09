@@ -1,10 +1,10 @@
 {
   "project": "ai-world-assembly",
-  "version": "v0.8-bounded-assembler",
+  "version": "v0.9-presentation-recipe-assembler",
   "updated_at": "2026-09-09",
-  "current_milestone": "Phase 9 — optional second presentation / broader assembler proof",
+  "current_milestone": "Phase 10 — broader world / assembler scaling",
   "status": "ready",
-  "current_goal": "Broaden the proven bounded assembler loop to a second independently useful target or presentation while preserving proposal-only generation and explicit promotion authority.",
+  "current_goal": "Scale the proven authority-preserving assembler beyond one world only after two independent artifact/repair proofs, choosing either a second world slice or a transaction-safe Runtime spawn boundary.",
   "completed": [
     "Repository initialized and architecture boundaries recorded",
     "Versioned contracts and Draft 2020-12 conformance added",
@@ -39,16 +39,22 @@
     "Exact-byte WAV decode/duration/non-silent validation evidence added",
     "Candidate Asset Graph overlay closes the deliberate attack-audio missing dependency without mutating canonical registries",
     "Validated-candidate promotion proven with canonical_write=false and proposal-only authority",
-    "awa-assembler CLI and CI evidence gate added"
+    "awa-assembler CLI and CI evidence gate added",
+    "Phase 9 dedicated Three.js presentation Asset Graph root and missing effect-recipe Generation Task added",
+    "presentation-effect-recipe.v0.1 declarative presentation-only contract added",
+    "Second bounded assembler proof repairs contract/authority diagnostics on structured JSON instead of audio quality",
+    "Generic assembler artifact/validation identity now supports multiple target modalities without changing Phase 8 audio bytes",
+    "Validated presentation recipe is consumed through a temporary Three.js build overlay after matching mutation EventIR",
+    "Phase 9 browser evidence keeps Runtime and canonical presentation registries unchanged"
   ],
   "active_tasks": [
-    "Choose a second bounded assembler target that exercises a different modality or repair class",
-    "Optionally add a second presentation adapter only if it improves discriminative coverage",
-    "Keep provider routing separate from module semantics and promotion authority",
-    "Preserve exact-byte validation evidence and candidate-first governance",
-    "Decide whether dynamic Runtime spawn needs its own future authority contract before broader worlds"
+    "Choose whether Phase 10 should first prove a second world vertical slice or formalize transaction-safe Runtime entity spawn",
+    "Keep provider routing separate from semantic/module contracts and promotion authority",
+    "Retain exact-byte evidence and candidate-only overlays as assembler invariants",
+    "Do not add a second renderer unless it contributes independent architectural evidence",
+    "Define scaling limits before multi-world or multi-candidate parallel assembly"
   ],
-  "next_milestone": "Phase 10 — broader world/assembler scaling only after a second independent proof",
+  "next_milestone": "Phase 11 — broader multi-world/multi-target scaling after Phase 10 architectural choice",
   "blocked": [],
   "non_goals": [
     "SEDB kernel rewrite",

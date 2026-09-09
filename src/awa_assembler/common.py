@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-import hashlib, json
+import hashlib
+import json
 from pathlib import Path
 from typing import Any
 
@@ -38,3 +39,14 @@ def sha_bytes(payload: bytes) -> str:
 
 def slug(value: str) -> str:
     return value.replace("validator.", "").replace(".", "-")
+
+
+def candidate_artifact_id(task: dict[str, Any], artifact_sha: str) -> str:
+    return f"{task['target']['node_id']}.candidate.{artifact_sha[:16]}"
+
+
+def validation_id_prefix(task: dict[str, Any]) -> str:
+    node_id = task["target"]["node_id"]
+    if node_id.startswith("artifact."):
+        node_id = node_id[len("artifact.") :]
+    return f"validation.{node_id}"

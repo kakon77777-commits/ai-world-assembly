@@ -23,9 +23,10 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Phase 6 — Alien Lineage runtime slice:** complete.
 - **Phase 7 — Three.js presentation adapter:** complete.
 - **Phase 8 — bounded AI World Assembler loop:** complete.
-- **Next: Phase 9 — optional second presentation / broader assembler proof.**
+- **Phase 9 — broader assembler proof with declarative presentation recipe:** complete.
+- **Next: Phase 10 — broader world / assembler scaling.**
 
-Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. The reference proof fails a silent first candidate, repairs from validator diagnostics, binds validation to exact candidate SHA-256, closes a candidate Asset Graph preview, and promotes only to `validated_candidate` with `canonical_write=false`.
+Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. Phase 9 proves the same governance loop on a different modality: a declarative Three.js mutation-effect recipe whose first candidate violates presentation authority/contract bounds and whose repaired candidate is consumed only through a temporary browser overlay. Both proofs stop at `validated_candidate` with `canonical_write=false`.
 
 ## Bootstrap roadmap
 
@@ -39,7 +40,8 @@ Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filter
 8. Alien Lineage runtime slice — **complete**;
 9. Three.js first presentation target — **complete**;
 10. bounded AI World Assembler loop — **complete**;
-11. second independent presentation/assembler proof — **next**.
+11. second independent presentation/assembler proof — **complete**;
+12. broader world / assembler scaling — **next**.
 
 ## Quick start
 
@@ -81,9 +83,22 @@ awa-assembler run \
   --artifacts fixtures/asset_graph/artifacts \
   --validations fixtures/asset_graph/validations \
   --out build/phase8-assembler
+
+# Bounded Phase 9 presentation-recipe proof
+awa-assembler run \
+  --task fixtures/assembler/alien-lineage.mutation-effect-recipe.task.json \
+  --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+  --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+  --presentation-binding fixtures/threejs/alien-lineage.presentation-binding.json \
+  --capability-contract fixtures/assembler/presentation_recipe_generation.capability.json \
+  --nodes fixtures/assembler_presentation_graph/nodes \
+  --edges fixtures/assembler_presentation_graph/edges \
+  --artifacts fixtures/assembler_presentation_graph/artifacts \
+  --validations fixtures/assembler_presentation_graph/validations \
+  --out build/phase9-assembler
 ```
 
-See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, `docs/THREEJS_PRESENTATION.md`, and `docs/AI_WORLD_ASSEMBLER.md`.
+See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, `docs/THREEJS_PRESENTATION.md`, and `docs/AI_WORLD_ASSEMBLER.md`. Phase 9 broader-proof details are in `docs/ASSEMBLER_BROADER_PROOF.md`.
 
 ## Non-goals for the bootstrap
 
@@ -96,6 +111,6 @@ See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET
 - no multiplayer;
 - no cloud marketplace;
 - no autonomous core promotion;
-- no Godot/Unity adapter until the first Three.js proof is stable.
+- no second renderer unless it adds independent architectural evidence beyond the stable Three.js proof.
 
 See `DECISIONS.md`, `PROJECT_STATE.json`, and `AGENTS.md`.

@@ -7,7 +7,7 @@ from pathlib import Path
 from awa_contracts.validator import load_json
 
 from .loop import BoundedAssembler
-from .provider import ReferenceAudioProducer
+from .provider import reference_producer_for
 
 
 def main() -> None:
@@ -27,9 +27,10 @@ def main() -> None:
     run.add_argument("--out", required=True)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
-    assembler = BoundedAssembler(root=root, producer=ReferenceAudioProducer())
+    task = load_json(args.task)
+    assembler = BoundedAssembler(root=root, producer=reference_producer_for(task))
     receipt = assembler.run(
-        task=load_json(args.task),
+        task=task,
         project_state=args.project_state,
         semantic_snapshot=args.semantic_snapshot,
         composition_receipt=args.composition_receipt,

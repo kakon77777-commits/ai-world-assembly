@@ -1,0 +1,31 @@
+{
+  "fixtures": {
+    "presentation-effect-recipe.v0.1": {
+      "valid": {
+        "contract": "presentation-effect-recipe.v0.1",
+        "recipe_id": "effect.mutation-pulse",
+        "event_type": "alien_lineage.creature_mutated",
+        "effect": {
+          "target": "creature_visual",
+          "scale_peak": 1.12,
+          "duration_ms": 180,
+          "emissive_boost": 0.7
+        },
+        "version": "v0.1"
+      },
+      "invalid": {
+        "contract": "presentation-effect-recipe.v0.1",
+        "recipe_id": "effect.mutation-pulse",
+        "event_type": "alien_lineage.creature_mutated",
+        "effect": {
+          "target": "creature_visual",
+          "scale_peak": 1.12,
+          "duration_ms": 180,
+          "emissive_boost": 0.7
+        },
+        "runtime_action": "mutate",
+        "version": "v0.1"
+      }
+    }
+  }
+}
