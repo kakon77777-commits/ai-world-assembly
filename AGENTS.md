@@ -19,11 +19,23 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 7 — Three.js presentation adapter.
+Phase 8 — bounded AI World Assembler loop.
 
-Phases 1–6 are complete. The bounded Alien Lineage Runtime now runs through an external AWA module
-registered on the real CompilableWorld Runtime without Kernel modification. Current work should
-project that world into Three.js without moving semantic/runtime authority into Presentation.
+Phases 1–7 are complete. The Alien Lineage Runtime is projected through a live Three.js sidecar
+without moving semantic/runtime authority into Presentation. Current work should add one bounded
+AI World Assembler loop over the existing authority stack, with candidate-first generation, explicit
+validation evidence, local repair scope and promotion only after the canonical gates pass.
+
+## Frozen Phase 7 presentation semantics
+
+- Three.js receives an allowlisted `runtime-projection.v0.1`, never an unrestricted StateStore dump.
+- Browser input is a presentation intent; the Python sidecar converts it to CompilableWorld ActionIR.
+- Presentation never constructs StateDelta or mutates EntityRegistry/StateStore directly.
+- EventIR maps only to Presentation effects such as rebuild/VFX/UI; it does not execute world rules.
+- Runtime bindings are generation-bound. Reload changes Presentation instance identity while preserving World Entity identity.
+- Stale generation/instance intents fail closed.
+- Three.js is pinned to `0.180.0`; built target artifacts are SHA-256 verified before the browser gate.
+- The live sidecar remains localhost/reference-MVP scope; WebSocket, multiplayer and dynamic spawn are not Phase 7 features.
 
 ## Frozen Phase 6 runtime semantics
 

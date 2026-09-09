@@ -1,0 +1,19 @@
+{
+  "fixtures": {
+    "runtime-projection.v0.1": {
+      "valid": {
+        "contract": "runtime-projection.v0.1",
+        "world_id": "alien-lineage.runtime-slice",
+        "world_version": "0.2.0",
+        "projection_revision": 2,
+        "presentation_instance_id": "threejs:session:abc",
+        "generation": 1,
+        "actor": {"world_entity_id": "creature.crystal-filterer.001","name": "Crystal Filterer","room_id": "room.abyss.feeding","worldline": null,"biology": {"energy": 3, "growth_points": 2},"lineage": {"stage": "juvenile", "organs": [], "egg_state": "none", "child_stage": null, "child_species": null, "last_rift": null}},
+        "visible_resources": [{"entity_id":"item.mineral-bloom","name":"Mineral Bloom","room_id":"room.abyss.feeding","amount":2}],
+        "available_actions": ["feed","grow"],
+        "bindings": [{"contract":"runtime-binding.v0.1","world_entity_id":"creature.crystal-filterer.001","presentation_instance_id":"threejs:session:abc:entity:creature.crystal-filterer.001","generation":1,"binding_type":"entity","semantic_asset_refs":["species.crystal_filterer"]}]
+      },
+      "invalid": {"contract": "runtime-projection.v0.1","world_id": "alien-lineage.runtime-slice","world_version": "0.2.0","projection_revision": 0,"presentation_instance_id": "x","generation": 0,"actor": {},"visible_resources": [],"available_actions": [],"bindings": []}
+    }
+  }
+}

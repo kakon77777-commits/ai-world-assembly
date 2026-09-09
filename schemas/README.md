@@ -1,38 +1,9 @@
 # Contracts
 
-The bootstrap contract set is intentionally small and versioned.
+The bootstrap contract set is intentionally small and versioned. Every schema uses JSON Schema Draft 2020-12, has a stable `$id`, a fixed top-level `contract` discriminator, rejects unknown top-level fields unless explicitly open, and has valid/invalid conformance evidence.
 
-Every schema:
-
-- uses JSON Schema Draft 2020-12;
-- has a stable `$id`;
-- has a top-level `contract` discriminator fixed to its contract/version name;
-- rejects unknown top-level fields unless the contract explicitly defines an open metadata map;
-- has one valid and one invalid conformance fixture in `fixtures/conformance.v0.1.json`.
-
-Current contracts:
-
-1. `semantic-game-entity.v0.1`
-2. `fragment-profile.v0.1`
-3. `artifact-reference.v0.1`
-4. `module-manifest.v0.1`
-5. `capability-contract.v0.1`
-6. `composition-receipt.v0.1`
-7. `asset-graph-node.v0.1`
-8. `asset-graph-edge.v0.1`
-9. `generation-task.v0.1`
-10. `build-manifest.v0.1`
-11. `runtime-binding.v0.1`
-12. `presentation-binding.v0.1`
-13. `world-profile.v0.1`
-14. `artifact-validation.v0.1`
-15. `asset-graph-snapshot.v0.1`
+Current contracts include the bootstrap semantic/module/asset/build/binding contracts plus `world-profile.v0.1`, `artifact-validation.v0.1`, `asset-graph-snapshot.v0.1`, `sedb-namespace-snapshot.v0.1`, the CompilableWorld intake contracts, the bounded Alien Lineage runtime contracts, and `runtime-projection.v0.1`.
 
 These schemas define exchange structure only. They do not transfer semantic/runtime authority to this repository.
 
-- `sedb-namespace-snapshot.v0.1` — deterministic read-only SEDB namespace projection boundary.
-- `compilableworld-intake-plan.v0.1` — reviewed mapping into existing CompilableWorld authoring.
-- `compilableworld-intake-receipt.v0.1` — source/output hash receipt for deterministic authoring emission.
-- `alien-lineage-runtime-slice.v0.1` — bounded Phase 6 domain module/config/FunctionIR source.
-- `alien-lineage-runtime-receipt.v0.1` — source/output hash receipt for the bounded runtime authoring overlay.
-- `alien-lineage-runtime-assertions.v0.1` — AWA-only domain-state assertions layered over portable CompilableWorld ScenarioIR.
+- `runtime-projection.v0.1` — allowlisted Phase 7 Runtime-to-Presentation projection with generation-bound bindings.

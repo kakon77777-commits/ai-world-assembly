@@ -1,0 +1,11 @@
+{
+  "contract": "presentation-binding.v0.1",
+  "binding_id": "presentation.threejs.alien-lineage.v0.1",
+  "target": "threejs",
+  "semantic_role": "alien_lineage.runtime_projection",
+  "artifact_refs": ["presentation.threejs.runtime-client","presentation.threejs.creature-procedural","vendor.three.0.180.0"],
+  "runtime_event_map": {"movement.actor_moved": "move-entity","alien_lineage.creature_fed": "pulse-feed","alien_lineage.creature_mutated": "rebuild-creature","alien_lineage.creature_grew": "rebuild-creature","alien_lineage.egg_laid": "egg-effect","alien_lineage.egg_hatched": "hatch-effect","alien_lineage.rift_entered": "rift-transition"},
+  "input_action_map": {"move": "move","feed": "feed","mutate": "mutate","grow": "grow","lay_egg": "lay_egg","hatch": "hatch","enter_rift": "enter_rift"},
+  "fallback": "presentation.threejs.procedural-fallback",
+  "version": "v0.1"
+}
