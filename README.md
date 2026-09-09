@@ -51,6 +51,12 @@ awa-sedb-export namespace path/to/sedb.db game.alien_lineage -o snapshot.json
 
 See `docs/SEDB_READ_ADAPTER.md` for the Phase 2 projection semantics and read-only guarantee.
 
+## Source backups
+
+Every push to `main` runs the `source-backup` workflow. It builds a `git archive` ZIP from the
+exact merged commit, writes a SHA-256 sidecar, and uploads both as a GitHub Actions artifact
+for 90 days. This is a convenience backup; Git history remains the canonical source record.
+
 ## Non-goals for the bootstrap
 
 - no SEDB kernel rewrite;
