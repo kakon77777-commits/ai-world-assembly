@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: kakon77777-commits/compilableworld-runtime-mvp
-          ref: 70141f364220697fe037cd0047604c608ad4c074
+          ref: cf37f539e0807499e8b337f80a5f152324c087f2
           path: _vendor/compilableworld-runtime-mvp
       - uses: actions/setup-python@v5
         with:
@@ -69,6 +69,69 @@ jobs:
       - name: Run full Alien Lineage ScenarioIR with declared external module
         env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
         run: awa-alien-lineage scenario-run build/alien-lineage-phase6-runtime/world.package.json alien-lineage.full-cycle --assertions fixtures/alien_lineage_runtime/full-cycle.assertions.json
+      - name: Build Phase 10 transaction-safe spawn authoring
+        run: |
+          awa-alien-lineage spawn-build \
+            --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+            --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+            --asset-graph-snapshot fixtures/compilableworld_intake/asset-graph.resolved.json \
+            --plan fixtures/alien_lineage_runtime/alien_lineage.intake-plan.json \
+            --slice fixtures/alien_lineage_runtime/runtime-slice.json \
+            --spawn-profile fixtures/alien_lineage_runtime/spawn-profile.json \
+            --out build/alien-lineage-phase10
+      - name: Validate and compile Phase 10 with pinned CompilableWorld
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: |
+          python -m compilableworld validate build/alien-lineage-phase10
+          python -m compilableworld compile build/alien-lineage-phase10 --out build/alien-lineage-phase10-runtime
+      - name: Run true egg and child Runtime Entity lifecycle
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: awa-alien-lineage scenario-run build/alien-lineage-phase10-runtime/world.package.json alien-lineage.full-cycle --assertions fixtures/alien_lineage_runtime/full-cycle.spawn-assertions.json
+      - name: Prove Alien Lineage spawn rolls back on durable EventLog failure
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from unittest.mock import patch
+          from compilableworld.entity_transaction import EntityTransactionRuntime
+          from compilableworld.kernel import KernelTransactionError
+          from compilableworld.models import ActionIR
+          from awa_alien_lineage.runtime import install_alien_lineage_runtime
+
+          package=json.loads(Path('build/alien-lineage-phase10-runtime/world.package.json').read_text())
+          runtime=EntityTransactionRuntime(package)
+          install_alien_lineage_runtime(runtime)
+          actor='creature.crystal-filterer.001'
+          sequence=[
+              ActionIR(actor,'move',args={'direction':'north'}),
+              ActionIR(actor,'feed',target_id='item.mineral-bloom'),
+              ActionIR(actor,'feed',target_id='item.mineral-bloom'),
+              ActionIR(actor,'feed',target_id='item.mineral-bloom'),
+              ActionIR(actor,'mutate',args={'organ_id':'organ.crystal-gill'}),
+              ActionIR(actor,'grow'),
+              ActionIR(actor,'move',args={'direction':'south'}),
+          ]
+          for action in sequence:
+              receipt=runtime.submit(action)
+              assert receipt.status.value=='completed', receipt
+          energy=runtime.state.get(actor,'biology','energy')
+          state_before=runtime.state.export()
+          events_before=len(runtime.event_log.events)
+          assert not runtime.registry.contains('egg.crystal-filterer.001')
+          with patch.object(runtime.event_log,'append_batch',side_effect=KernelTransactionError('phase10 simulated durable failure')):
+              try:
+                  runtime.submit(ActionIR(actor,'lay_egg'))
+              except KernelTransactionError:
+                  pass
+              else:
+                  raise AssertionError('expected KernelTransactionError')
+          assert runtime.state.export()==state_before
+          assert runtime.state.get(actor,'biology','energy')==energy
+          assert not runtime.registry.contains('egg.crystal-filterer.001')
+          assert 'egg.crystal-filterer.001' not in runtime.dynamic_entities
+          assert len(runtime.event_log.events)==events_before
+          PY
       - name: Setup Node for Three.js target
         uses: actions/setup-node@v4
         with: {node-version: "22"}
@@ -95,6 +158,20 @@ jobs:
           done
           curl -fsS http://127.0.0.1:8767/api/projection | grep -q 'creature.crystal-filterer.001'
           presentation/threejs/scripts/browser-smoke.sh http://127.0.0.1:8767/?smoke=1
+      - name: Run Phase 10 browser spawn witness
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: |
+          awa-threejs serve build/alien-lineage-phase10-runtime/world.package.json \
+            --binding fixtures/threejs/alien-lineage.presentation-binding.json \
+            --static-dir presentation/threejs/dist \
+            --port 8769 > /tmp/awa-threejs-phase10.log 2>&1 &
+          PID=$!
+          trap 'kill $PID || true; cat /tmp/awa-threejs-phase10.log || true' EXIT
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8769/health >/dev/null; then break; fi
+            sleep 0.2
+          done
+          presentation/threejs/scripts/browser-smoke.sh 'http://127.0.0.1:8769/?smoke=1&spawn=1'
       - name: Run bounded Phase 8 assembler repair loop
         run: |
           BEFORE=$(find fixtures/asset_graph/nodes fixtures/asset_graph/edges fixtures/asset_graph/artifacts fixtures/asset_graph/validations -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)

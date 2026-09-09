@@ -73,4 +73,4 @@ class PresentationBridge:
     def submit_intent(self,intent):
         if intent.get("presentation_instance_id")!=self.presentation_instance_id or intent.get("generation")!=self.generation: raise StalePresentationBinding("stale presentation binding")
         action=self._action(intent); start=len(self.runtime.event_log.events); receipt=self.runtime.submit(action)
-        return {"receipt":{"action_id":receipt.action_id,"status":receipt.status.value,"message":receipt.message,"event_ids":list(receipt.event_ids),"changed_paths":list(receipt.changed_paths)},"events":[e.to_dict() for e in self.runtime.event_log.events[start:]],"projection":self.projection()}
+        return {"receipt":{"action_id":receipt.action_id,"status":receipt.status.value,"message":receipt.message,"event_ids":list(receipt.event_ids),"changed_paths":list(receipt.changed_paths),"changed_entities":list(getattr(receipt,"changed_entities",[]))},"events":[e.to_dict() for e in self.runtime.event_log.events[start:]],"projection":self.projection()}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:alien-lineage-spawn-receipt-v0-1",
+  "title": "Alien Lineage Spawn Receipt v0.1",
+  "type": "object",
+  "required": [
+    "contract",
+    "receipt_id",
+    "profile_id",
+    "base_runtime_receipt_id",
+    "runtime_modules",
+    "compatibility_commit",
+    "source_hashes",
+    "output_hashes",
+    "authoring_sha256"
+  ],
+  "properties": {
+    "contract": {
+      "const": "alien-lineage-spawn-receipt.v0.1"
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^alien-spawn:[a-z0-9_.:-]+:[0-9a-f]{16}$"
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_runtime_receipt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "runtime_modules": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "module_id",
+          "version",
+          "entrypoint"
+        ],
+        "properties": {
+          "module_id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "entrypoint": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "compatibility_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "source_hashes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "output_hashes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "authoring_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

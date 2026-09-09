@@ -1,0 +1,36 @@
+{
+  "contract": "alien-lineage-spawn-profile.v0.1",
+  "profile_id": "alien-lineage:spawn:phase10",
+  "kernel_capability": "entity_transaction/v0.1",
+  "runtime_module": {
+    "module_id": "alien_lineage.spawn",
+    "version": "0.1.0",
+    "entrypoint": "awa_alien_lineage.spawn:AlienLineageSpawnModule"
+  },
+  "parent_entity_id": "creature.crystal-filterer.001",
+  "egg": {
+    "entity_id": "egg.crystal-filterer.001",
+    "entity_type": "egg",
+    "name": "Crystal Filterer Egg",
+    "components": [
+      "position",
+      "lineage"
+    ],
+    "metadata": {
+      "provenance": "awa:phase10-reviewed-slot"
+    }
+  },
+  "child": {
+    "entity_id": "creature.crystal-filterer.child.001",
+    "entity_type": "creature",
+    "name": "Crystal Filterer Hatchling",
+    "components": [
+      "position",
+      "biology",
+      "lineage"
+    ],
+    "metadata": {
+      "provenance": "awa:phase10-reviewed-slot"
+    }
+  }
+}

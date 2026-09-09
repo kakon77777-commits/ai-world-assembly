@@ -10,18 +10,22 @@ ENTRYPOINT = "awa_alien_lineage.runtime:AlienLineageModule"
 class AlienLineageModule:
     """Bounded domain module loaded outside CompilableWorld's builtin registry.
 
-    The module mutates only StateStore paths through StateDelta and emits EventIR.
-    It deliberately does not add/remove EntityRegistry entries in Phase 6.
+    Historical Phase 6 packages keep the bounded state-only lay_egg/hatch path.
+    Phase 10 packages declare ``alien_lineage.spawn``; then those two verbs are
+    removed from this module and handled by the transaction-safe spawn module.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, *, include_legacy_spawn: bool = True) -> None:
         from compilableworld.models import ModuleContract
 
+        actions = ["feed", "mutate", "grow", "enter_rift"]
+        if include_legacy_spawn:
+            actions[3:3] = ["lay_egg", "hatch"]
         self.contract = ModuleContract(
             MODULE_ID,
             MODULE_VERSION,
             "TMS",
-            ["feed", "mutate", "grow", "lay_egg", "hatch", "enter_rift"],
+            actions,
             [
                 "alien_lineage.creature_fed",
                 "alien_lineage.creature_mutated",
@@ -230,4 +234,17 @@ def install_alien_lineage_runtime(runtime: Any) -> None:
     expected = {"module_id": MODULE_ID, "version": MODULE_VERSION, "entrypoint": ENTRYPOINT}
     if expected not in extensions:
         raise ValueError("compiled world does not declare the expected Alien Lineage runtime extension")
-    runtime.register_module(AlienLineageModule())
+
+    from .spawn import SPAWN_ENTRYPOINT, SPAWN_MODULE_ID, SPAWN_MODULE_VERSION, AlienLineageSpawnModule
+    spawn_expected = {
+        "module_id": SPAWN_MODULE_ID,
+        "version": SPAWN_MODULE_VERSION,
+        "entrypoint": SPAWN_ENTRYPOINT,
+    }
+    spawn_enabled = spawn_expected in extensions
+    runtime.register_module(AlienLineageModule(include_legacy_spawn=not spawn_enabled))
+    if spawn_enabled:
+        from compilableworld.entity_transaction import EntityTransactionRuntime
+        if not isinstance(runtime, EntityTransactionRuntime):
+            raise ValueError("alien_lineage.spawn requires EntityTransactionRuntime")
+        runtime.register_module(AlienLineageSpawnModule())

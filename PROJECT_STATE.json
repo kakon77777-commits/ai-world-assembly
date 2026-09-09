@@ -1,10 +1,10 @@
 {
   "project": "ai-world-assembly",
-  "version": "v0.9-presentation-recipe-assembler",
+  "version": "v0.10-transaction-safe-spawn",
   "updated_at": "2026-09-09",
-  "current_milestone": "Phase 10 — broader world / assembler scaling",
+  "current_milestone": "Phase 11 — second world vertical slice",
   "status": "ready",
-  "current_goal": "Scale the proven authority-preserving assembler beyond one world only after two independent artifact/repair proofs, choosing either a second world slice or a transaction-safe Runtime spawn boundary.",
+  "current_goal": "Prove AWA is not Alien-Lineage-specific by carrying a second bounded world through semantic/composition/asset/runtime/presentation assembly while reusing the transaction-safe spawn boundary where useful.",
   "completed": [
     "Repository initialized and architecture boundaries recorded",
     "Versioned contracts and Draft 2020-12 conformance added",
@@ -45,16 +45,24 @@
     "Second bounded assembler proof repairs contract/authority diagnostics on structured JSON instead of audio quality",
     "Generic assembler artifact/validation identity now supports multiple target modalities without changing Phase 8 audio bytes",
     "Validated presentation recipe is consumed through a temporary Three.js build overlay after matching mutation EventIR",
-    "Phase 9 browser evidence keeps Runtime and canonical presentation registries unchanged"
+    "Phase 9 browser evidence keeps Runtime and canonical presentation registries unchanged",
+    "CompilableWorld entity_transaction/v0.1 upstream extension proven RED to GREEN and pinned by immutable commit",
+    "Create-only EntityDelta commits atomically with StateDelta and EventIR under EntityTransactionRuntime",
+    "alien_lineage.spawn external module added without direct EntityRegistry mutation",
+    "Reviewed egg and child Runtime entity slots added through alien-lineage-spawn-profile.v0.1",
+    "Alien Lineage full cycle now creates true egg and child Runtime Entities in Phase 10 packages",
+    "Durable EventLog failure rollback proven for Alien Lineage lay_egg with no partial entity/state mutation",
+    "Three.js browser witness observes transactionally created egg and child entity IDs without acquiring Runtime write authority",
+    "Historical Phase 6 state-only egg/hatch route preserved for old packages"
   ],
   "active_tasks": [
-    "Choose whether Phase 10 should first prove a second world vertical slice or formalize transaction-safe Runtime entity spawn",
-    "Keep provider routing separate from semantic/module contracts and promotion authority",
-    "Retain exact-byte evidence and candidate-only overlays as assembler invariants",
-    "Do not add a second renderer unless it contributes independent architectural evidence",
-    "Define scaling limits before multi-world or multi-candidate parallel assembly"
+    "Choose a second bounded world whose verbs and semantic structure differ materially from Alien Lineage",
+    "Reuse existing SEDB/CSC-OCM/Asset Graph/CompilableWorld/Three.js adapters instead of forking a second stack",
+    "Require at least one independently useful assembler target or repair class in the second world",
+    "Keep entity spawn IDs governed and bounded until a later dynamic allocation contract is justified",
+    "Define multi-world scaling limits only after the second vertical slice closes"
   ],
-  "next_milestone": "Phase 11 — broader multi-world/multi-target scaling after Phase 10 architectural choice",
+  "next_milestone": "Phase 12 — multi-world / multi-target assembler orchestration after the second vertical proof",
   "blocked": [],
   "non_goals": [
     "SEDB kernel rewrite",

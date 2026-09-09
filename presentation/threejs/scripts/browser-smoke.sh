@@ -9,3 +9,7 @@ grep -q 'data-world-entity-id="creature.crystal-filterer.001"' /tmp/awa-threejs-
 grep -q 'data-rebuild-count="2"\|data-rebuild-count="3"\|data-rebuild-count="4"' /tmp/awa-threejs-dom.html
 
 if [[ "$URL" == *"effectRecipe="* ]]; then grep -q 'data-effect-recipe-applied="true"' /tmp/awa-threejs-dom.html; fi
+
+if [[ "$URL" == *"spawn=1"* ]]; then
+  grep -q 'data-spawned-entity-ids="[^"]*egg.crystal-filterer.001[^"]*creature.crystal-filterer.child.001[^"]*"' /tmp/awa-threejs-dom.html
+fi

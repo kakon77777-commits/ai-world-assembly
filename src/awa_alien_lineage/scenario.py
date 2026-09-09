@@ -31,11 +31,11 @@ def run_alien_lineage_scenario(
     This is intentionally a thin compatibility runner pinned by CI to the current CompilableWorld
     ScenarioIR contract. It does not modify the Kernel or compiled package.
     """
-    from compilableworld.kernel import WorldRuntime
+    from compilableworld.entity_transaction import EntityTransactionRuntime
     from compilableworld.models import ActionIR
 
     scenario = _scenario(package, scenario_id)
-    runtime = WorldRuntime(package)
+    runtime = EntityTransactionRuntime(package)
     install_alien_lineage_runtime(runtime)
     chosen_actor = actor_id or scenario.get("actor_id") or package.get("world", {}).get("default_player_entity")
     if not isinstance(chosen_actor, str) or not runtime.registry.contains(chosen_actor):
@@ -64,7 +64,7 @@ def run_alien_lineage_scenario(
         if receipt.status.value == "scheduled":
             receipts = runtime.advance(int(raw.get("delay", 0)))
         final = receipts[-1] if receipts else receipt
-        action_results.append({"index": index, "verb": action.verb, "status": final.status.value, "message": final.message, "event_ids": list(final.event_ids)})
+        action_results.append({"index": index, "verb": action.verb, "status": final.status.value, "message": final.message, "event_ids": list(final.event_ids), "changed_entities": list(getattr(final, "changed_entities", []))})
 
     observed = runtime.event_log.events[start_event_count:]
     event_types = [event.event_type for event in observed]
@@ -76,7 +76,8 @@ def run_alien_lineage_scenario(
     for event_type in scenario.get("expect", {}).get("events", []):
         assertions.append({"kind": "event", "expected": event_type, "actual": event_type if event_type in event_types else None, "passed": event_type in event_types})
     if domain_assertions is not None:
-        if domain_assertions.get("contract") != "alien-lineage-runtime-assertions.v0.1":
+        contract = domain_assertions.get("contract")
+        if contract not in {"alien-lineage-runtime-assertions.v0.1", "alien-lineage-spawn-assertions.v0.1"}:
             raise AlienLineageScenarioError("unsupported Alien Lineage assertion contract")
         if domain_assertions.get("scenario_id") != scenario_id:
             raise AlienLineageScenarioError("domain assertion scenario_id does not match")
@@ -89,6 +90,25 @@ def run_alien_lineage_scenario(
             owner = _resolve_ref(expected["owner"], chosen_actor)
             actual = runtime.state.get(owner, expected["namespace"], expected["key"])
             assertions.append({"kind": "domain_state", "owner": owner, "namespace": expected["namespace"], "key": expected["key"], "expected": expected["equals"], "actual": actual, "passed": actual == expected["equals"]})
+        if contract == "alien-lineage-spawn-assertions.v0.1":
+            raw_entities = domain_assertions.get("entities")
+            if not isinstance(raw_entities, list):
+                raise AlienLineageScenarioError("spawn assertion entities must be a list")
+            for index, expected in enumerate(raw_entities):
+                if not isinstance(expected, dict) or set(expected) != {"entity_id", "entity_type", "state"}:
+                    raise AlienLineageScenarioError(f"spawn assertion entities[{index}] is invalid")
+                entity_id = expected["entity_id"]
+                exists = runtime.registry.contains(entity_id)
+                actual_type = runtime.registry.get(entity_id).entity_type if exists else None
+                assertions.append({"kind": "entity", "entity_id": entity_id, "expected": expected["entity_type"], "actual": actual_type, "passed": exists and actual_type == expected["entity_type"]})
+                raw_entity_state = expected["state"]
+                if not isinstance(raw_entity_state, list):
+                    raise AlienLineageScenarioError(f"spawn assertion entities[{index}].state must be a list")
+                for item in raw_entity_state:
+                    if not isinstance(item, dict) or set(item) != {"namespace", "key", "equals"}:
+                        raise AlienLineageScenarioError(f"spawn assertion entity state for {entity_id} is invalid")
+                    actual = runtime.state.get(entity_id, item["namespace"], item["key"])
+                    assertions.append({"kind": "entity_state", "entity_id": entity_id, "namespace": item["namespace"], "key": item["key"], "expected": item["equals"], "actual": actual, "passed": exists and actual == item["equals"]})
     statuses = [item["status"] for item in action_results]
     assertions.append({"kind": "action_status", "expected": expected_status, "actual": statuses, "passed": all(status == expected_status for status in statuses)})
     return {

@@ -7,3 +7,5 @@ Phase 4 added artifact validation/graph snapshot fixtures; Phase 5 added SEDB sn
 Phase 8 adds bounded assembler task/run receipt fixtures. Both contracts structurally preserve proposal-only generation and `canonical_write=false`.
 
 Phase 9 adds `presentation-effect-recipe.v0.1` valid/invalid evidence. The invalid case carries a Runtime-authority-shaped field and is rejected fail-closed.
+
+Phase 10 adds valid/invalid evidence for the reviewed spawn profile, spawn receipt and dynamic-entity assertion sidecar.

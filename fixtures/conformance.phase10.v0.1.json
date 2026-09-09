@@ -1,0 +1,143 @@
+{
+  "contract": "awa-conformance-fixtures.v0.1",
+  "fixtures": {
+    "alien-lineage-spawn-profile.v0.1": {
+      "valid": {
+        "contract": "alien-lineage-spawn-profile.v0.1",
+        "profile_id": "alien-lineage:spawn:phase10",
+        "kernel_capability": "entity_transaction/v0.1",
+        "runtime_module": {
+          "module_id": "alien_lineage.spawn",
+          "version": "0.1.0",
+          "entrypoint": "awa_alien_lineage.spawn:AlienLineageSpawnModule"
+        },
+        "parent_entity_id": "creature.crystal-filterer.001",
+        "egg": {
+          "entity_id": "egg.crystal-filterer.001",
+          "entity_type": "egg",
+          "name": "Crystal Filterer Egg",
+          "components": [
+            "position",
+            "lineage"
+          ],
+          "metadata": {
+            "provenance": "awa:phase10-reviewed-slot"
+          }
+        },
+        "child": {
+          "entity_id": "creature.crystal-filterer.child.001",
+          "entity_type": "creature",
+          "name": "Crystal Filterer Hatchling",
+          "components": [
+            "position",
+            "biology",
+            "lineage"
+          ],
+          "metadata": {
+            "provenance": "awa:phase10-reviewed-slot"
+          }
+        }
+      },
+      "invalid": {
+        "contract": "alien-lineage-spawn-profile.v0.1",
+        "profile_id": "alien-lineage:spawn:phase10",
+        "kernel_capability": "entity_transaction/v9",
+        "runtime_module": {
+          "module_id": "alien_lineage.spawn",
+          "version": "0.1.0",
+          "entrypoint": "awa_alien_lineage.spawn:AlienLineageSpawnModule"
+        },
+        "parent_entity_id": "creature.crystal-filterer.001",
+        "egg": {
+          "entity_id": "egg.crystal-filterer.001",
+          "entity_type": "egg",
+          "name": "Crystal Filterer Egg",
+          "components": [
+            "position",
+            "lineage"
+          ],
+          "metadata": {
+            "provenance": "awa:phase10-reviewed-slot"
+          }
+        },
+        "child": {
+          "entity_id": "creature.crystal-filterer.child.001",
+          "entity_type": "creature",
+          "name": "Crystal Filterer Hatchling",
+          "components": [
+            "position",
+            "biology",
+            "lineage"
+          ],
+          "metadata": {
+            "provenance": "awa:phase10-reviewed-slot"
+          }
+        }
+      }
+    },
+    "alien-lineage-spawn-receipt.v0.1": {
+      "valid": {
+        "contract": "alien-lineage-spawn-receipt.v0.1",
+        "receipt_id": "alien-spawn:alien-lineage.spawn.test:0123456789abcdef",
+        "profile_id": "alien-lineage:spawn:test",
+        "base_runtime_receipt_id": "alien-runtime:test",
+        "runtime_modules": [
+          {
+            "module_id": "alien_lineage.spawn",
+            "version": "0.1.0",
+            "entrypoint": "awa_alien_lineage.spawn:AlienLineageSpawnModule"
+          },
+          {
+            "module_id": "alien_lineage.runtime",
+            "version": "0.1.0",
+            "entrypoint": "awa_alien_lineage.runtime:AlienLineageModule"
+          }
+        ],
+        "compatibility_commit": "0000000000000000000000000000000000000000",
+        "source_hashes": {
+          "profile": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "output_hashes": {
+          "world.json": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "authoring_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "invalid": {
+        "contract": "alien-lineage-spawn-receipt.v0.1",
+        "receipt_id": "bad",
+        "profile_id": "x",
+        "base_runtime_receipt_id": "x",
+        "runtime_modules": [],
+        "compatibility_commit": "bad",
+        "source_hashes": {},
+        "output_hashes": {},
+        "authoring_sha256": "bad"
+      }
+    },
+    "alien-lineage-spawn-assertions.v0.1": {
+      "valid": {
+        "contract": "alien-lineage-spawn-assertions.v0.1",
+        "scenario_id": "alien-lineage.full-cycle",
+        "state": [],
+        "entities": [
+          {
+            "entity_id": "egg.demo.001",
+            "entity_type": "egg",
+            "state": []
+          },
+          {
+            "entity_id": "creature.demo.001",
+            "entity_type": "creature",
+            "state": []
+          }
+        ]
+      },
+      "invalid": {
+        "contract": "alien-lineage-spawn-assertions.v0.1",
+        "scenario_id": "BAD ID",
+        "state": [],
+        "entities": []
+      }
+    }
+  }
+}
