@@ -40,16 +40,13 @@ jobs:
             --plan fixtures/compilableworld_intake/alien_lineage.intake-plan.json \
             --out build/alien-lineage-cw
       - name: Validate Phase 5 with real CompilableWorld compiler
-        env:
-          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
         run: python -m compilableworld validate build/alien-lineage-cw
       - name: Compile Phase 5 with real CompilableWorld compiler
-        env:
-          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
         run: python -m compilableworld compile build/alien-lineage-cw --out build/alien-lineage-runtime
       - name: Run native CompilableWorld move ScenarioIR
-        env:
-          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
         run: python -m compilableworld scenario-run build/alien-lineage-runtime/world.package.json alien-lineage.move-smoke
       - name: Build bounded Phase 6 Alien Lineage authoring
         run: |
@@ -61,18 +58,40 @@ jobs:
             --slice fixtures/alien_lineage_runtime/runtime-slice.json \
             --out build/alien-lineage-phase6
       - name: Validate Phase 6 with real CompilableWorld compiler
-        env:
-          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
         run: python -m compilableworld validate build/alien-lineage-phase6
       - name: Compile Phase 6 with real CompilableWorld compiler
-        env:
-          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
         run: python -m compilableworld compile build/alien-lineage-phase6 --out build/alien-lineage-phase6-runtime
       - name: Run native move smoke on Phase 6 package
-        env:
-          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
         run: python -m compilableworld scenario-run build/alien-lineage-phase6-runtime/world.package.json alien-lineage.move-smoke
       - name: Run full Alien Lineage ScenarioIR with declared external module
-        env:
-          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
         run: awa-alien-lineage scenario-run build/alien-lineage-phase6-runtime/world.package.json alien-lineage.full-cycle --assertions fixtures/alien_lineage_runtime/full-cycle.assertions.json
+      - name: Setup Node for Three.js target
+        uses: actions/setup-node@v4
+        with: {node-version: "22"}
+      - name: Test and build Three.js presentation target
+        working-directory: presentation/threejs
+        run: |
+          npm install --no-audit --no-fund --package-lock=false
+          npm test
+          npm run build
+      - name: Verify Three.js target artifact closure
+        run: awa-threejs verify-assets presentation/threejs/dist
+      - name: Run live Three.js browser smoke against real CompilableWorld Runtime
+        env: {PYTHONPATH: _vendor/compilableworld-runtime-mvp/src}
+        run: |
+          awa-threejs serve build/alien-lineage-phase6-runtime/world.package.json \
+            --binding fixtures/threejs/alien-lineage.presentation-binding.json \
+            --static-dir presentation/threejs/dist \
+            --port 8767 > /tmp/awa-threejs.log 2>&1 &
+          PID=$!
+          trap 'kill $PID || true; cat /tmp/awa-threejs.log || true' EXIT
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8767/health >/dev/null; then break; fi
+            sleep 0.2
+          done
+          curl -fsS http://127.0.0.1:8767/api/projection | grep -q 'creature.crystal-filterer.001'
+          presentation/threejs/scripts/browser-smoke.sh http://127.0.0.1:8767/?smoke=1

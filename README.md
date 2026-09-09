@@ -21,9 +21,10 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Phase 4 — Dynamic Asset Graph MVP:** complete.
 - **Phase 5 — CompilableWorld intake adapter:** complete.
 - **Phase 6 — Alien Lineage runtime slice:** complete.
-- **Next: Phase 7 — Three.js presentation adapter.**
+- **Phase 7 — Three.js presentation adapter:** complete.
+- **Next: Phase 8 — bounded AI World Assembler loop.**
 
-Phase 6 adds the external `alien_lineage.runtime` CompilableWorld module, bounded lineage FunctionIR, and full-cycle ScenarioIR while leaving the CompilableWorld Kernel unchanged.
+Phase 7 adds a live localhost Three.js presentation sidecar over the Phase 6 Runtime. Browser input becomes ActionIR only inside the Python bridge; EventIR becomes presentation effects, and scene reload changes only presentation identity.
 
 ## Bootstrap roadmap
 
@@ -35,35 +36,14 @@ Phase 6 adds the external `alien_lineage.runtime` CompilableWorld module, bounde
 6. Dynamic Asset Graph MVP — **complete**;
 7. CompilableWorld intake adapter — **complete**;
 8. Alien Lineage runtime slice — **complete**;
-9. Three.js first presentation target — **next**;
-10. bounded AI World Assembler loop.
+9. Three.js first presentation target — **complete**;
+10. bounded AI World Assembler loop — **next**.
 
 ## Quick start
 
 ```bash
 python -m pip install -e ".[dev]"
 pytest -q
-
-awa-contracts validate schemas/semantic-game-entity.v0.1.schema.json path/to/entity.json
-
-awa-sedb-export check path/to/sedb.db
-awa-sedb-export entity path/to/sedb.db species.crystal_filterer --namespace game.alien_lineage
-awa-sedb-export namespace path/to/sedb.db game.alien_lineage -o snapshot.json
-
-awa-compose fixtures/csc_ocm/alien_lineage.profile.json \
-  --modules fixtures/csc_ocm/modules \
-  --capabilities fixtures/csc_ocm/capabilities \
-  -o composition-receipt.json
-
-awa-asset-graph \
-  --nodes fixtures/asset_graph/nodes \
-  --edges fixtures/asset_graph/edges \
-  --artifacts fixtures/asset_graph/artifacts \
-  --validations fixtures/asset_graph/validations \
-  --root-dir . \
-  snapshot species.crystal_filterer \
-  -o graph-snapshot.json \
-  --tasks-output generation-tasks.json
 
 awa-cw-intake emit \
   --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
@@ -79,11 +59,16 @@ awa-alien-lineage build \
   --plan fixtures/alien_lineage_runtime/alien_lineage.intake-plan.json \
   --slice fixtures/alien_lineage_runtime/runtime-slice.json \
   --out build/alien-lineage-phase6
+
+# After compiling Phase 6 with the pinned CompilableWorld runtime:
+cd presentation/threejs && npm install --no-audit --no-fund --package-lock=false && npm test && npm run build && cd ../..
+awa-threejs verify-assets presentation/threejs/dist
+awa-threejs serve build/alien-lineage-phase6-runtime/world.package.json \
+  --binding fixtures/threejs/alien-lineage.presentation-binding.json \
+  --static-dir presentation/threejs/dist
 ```
 
-See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`,
-`docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, and
-`docs/ALIEN_LINEAGE_RUNTIME.md` for implemented boundaries.
+See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, and `docs/THREEJS_PRESENTATION.md`.
 
 ## Non-goals for the bootstrap
 

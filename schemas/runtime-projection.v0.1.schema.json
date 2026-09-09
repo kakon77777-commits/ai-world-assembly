@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:runtime-projection-v0-1",
+  "title": "AWA Runtime Projection v0.1",
+  "type": "object",
+  "required": ["contract","world_id","world_version","projection_revision","presentation_instance_id","generation","actor","visible_resources","available_actions","bindings"],
+  "properties": {
+    "contract": {"const": "runtime-projection.v0.1"},
+    "world_id": {"type": "string", "minLength": 1},
+    "world_version": {"type": "string", "minLength": 1},
+    "projection_revision": {"type": "integer", "minimum": 0},
+    "presentation_instance_id": {"type": "string", "minLength": 1},
+    "generation": {"type": "integer", "minimum": 1},
+    "actor": {
+      "type": "object",
+      "required": ["world_entity_id","name","room_id","worldline","biology","lineage"],
+      "properties": {
+        "world_entity_id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "room_id": {"type": "string", "minLength": 1},
+        "worldline": {"type": ["string","null"]},
+        "biology": {"type": "object","required": ["energy","growth_points"],"properties": {"energy": {"type": "integer", "minimum": 0},"growth_points": {"type": "integer", "minimum": 0}},"additionalProperties": false},
+        "lineage": {"type": "object","required": ["stage","organs","egg_state","child_stage","child_species","last_rift"],"properties": {"stage": {"type": "string", "minLength": 1},"organs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},"egg_state": {"type": "string", "minLength": 1},"child_stage": {"type": ["string","null"]},"child_species": {"type": ["string","null"]},"last_rift": {"type": ["string","null"]}},"additionalProperties": false}
+      },
+      "additionalProperties": false
+    },
+    "visible_resources": {"type": "array","items": {"type": "object","required": ["entity_id","name","room_id","amount"],"properties": {"entity_id": {"type": "string", "minLength": 1},"name": {"type": "string", "minLength": 1},"room_id": {"type": "string", "minLength": 1},"amount": {"type": "integer", "minimum": 0}},"additionalProperties": false}},
+    "available_actions": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "bindings": {"type": "array","items": {"type": "object","required": ["contract","world_entity_id","presentation_instance_id","generation","binding_type","semantic_asset_refs"],"properties": {"contract": {"const": "runtime-binding.v0.1"},"world_entity_id": {"type": "string", "minLength": 1},"presentation_instance_id": {"type": "string", "minLength": 1},"generation": {"type": "integer", "minimum": 1},"binding_type": {"type": "string", "enum": ["entity","scene","ui","audio","effect"]},"semantic_asset_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}},"additionalProperties": false}}
+  },
+  "additionalProperties": false
+}
