@@ -1,29 +1,35 @@
 {
   "project": "ai-world-assembly",
-  "version": "v0.1-bootstrap",
+  "version": "v0.2-sedb-read-adapter",
   "updated_at": "2026-09-09",
-  "current_milestone": "Phase 2 — SEDB read adapter",
+  "current_milestone": "Phase 3 — CSC-OCM resolver",
   "status": "ready",
-  "current_goal": "Implement a deterministic read-only SEDB adapter that emits semantic-game-entity.v0.1 projections and namespace snapshots.",
+  "current_goal": "Resolve a deterministic World Profile into a Composition Receipt without provider-specific module semantics.",
   "completed": [
     "Repository initialized",
     "Architecture boundary decisions recorded",
     "12 versioned bootstrap contracts defined",
     "Draft 2020-12 schema meta-validation added",
-    "Valid/invalid conformance fixtures added for all contracts",
+    "Valid/invalid conformance fixtures added for all bootstrap contracts",
     "Deterministic contract validation CLI added",
     "GitHub Actions contract CI added",
-    "Local pytest verification passed: 6 tests",
-    "GitHub Actions validation passed"
+    "Phase 1 GitHub Actions validation passed",
+    "Read-only SQLite SEDB source boundary added",
+    "SEDB entity/field/cell data mapped to semantic-game-entity.v0.1",
+    "Active/converged namespace projection semantics documented",
+    "Deterministic namespace snapshot and SHA-256 added",
+    "SEDB adapter CLI added",
+    "SEDB minimal SQL/golden fixtures added",
+    "SEDB adapter read-only/fail-closed tests added"
   ],
   "active_tasks": [
-    "Define read-only SEDB adapter boundary",
-    "Map SEDB entity/field/cell data to semantic-game-entity.v0.1",
-    "Emit deterministic namespace snapshot metadata and hashes",
-    "Add adapter fixtures without requiring SEDB canonical writes",
-    "Add adapter conformance tests"
+    "Define World Profile input for the CSC-OCM resolver",
+    "Resolve required and optional module closure deterministically",
+    "Reject missing dependencies and explicit conflicts",
+    "Lock module versions in composition-receipt.v0.1",
+    "Keep provider identity outside module semantic contracts"
   ],
-  "next_milestone": "Phase 3 — CSC-OCM resolver",
+  "next_milestone": "Phase 4 — Dynamic Asset Graph MVP",
   "blocked": [],
   "non_goals": [
     "SEDB kernel rewrite",

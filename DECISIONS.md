@@ -39,3 +39,15 @@
 ## ADR-010 — No presentation world authority
 
 **Decision:** Presentation input maps to semantic intent/ActionIR; presentation effects do not silently mutate persistent world semantics.
+
+## ADR-011 — SEDB adapter enforces read-only at the database boundary
+
+**Decision:** AWA opens the SEDB SQLite source using URI `mode=ro` plus `PRAGMA query_only=ON` and does not import SEDB write services. This makes the Phase 2 read-only claim executable rather than conventional.
+
+## ADR-012 — Namespace projection follows field ownership
+
+**Decision:** SEDB namespaces live on fields, not entities. AWA namespace projections therefore select an entity's active/converged field cells in the requested namespace. Proposed, merged, split and deprecated field definitions are excluded from v0.1 game semantic projections.
+
+## ADR-013 — Namespace snapshot envelope remains adapter-local in Phase 2
+
+**Decision:** `sedb-namespace-snapshot.v0.1` is emitted and tested by the adapter but is not promoted into the shared contract inventory until another system consumes it. This avoids adding a shared schema before a real cross-system boundary requires one.
