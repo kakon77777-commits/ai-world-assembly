@@ -1,0 +1,107 @@
+{
+  "contract": "awa-conformance-fixtures.v0.1",
+  "fixtures": {
+    "sedb-namespace-snapshot.v0.1": {
+      "valid": {
+        "contract": "sedb-namespace-snapshot.v0.1",
+        "source": "SEDB",
+        "namespace": "game.alien_lineage",
+        "projection_version": "v0.1",
+        "entity_count": 0,
+        "entities": [],
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "invalid": {
+        "contract": "sedb-namespace-snapshot.v0.1",
+        "source": "SEDB",
+        "namespace": "game.alien_lineage",
+        "projection_version": "v0.1",
+        "entity_count": 0,
+        "entities": [],
+        "sha256": "bad"
+      }
+    },
+    "compilableworld-intake-plan.v0.1": {
+      "valid": {
+        "contract": "compilableworld-intake-plan.v0.1",
+        "intake_id": "intake:demo:v0.1",
+        "world": {
+          "world_id": "demo.world",
+          "world_version": "0.1.0",
+          "schema_version": "0.1.0",
+          "namespace": "demo",
+          "title": "Demo",
+          "default_language": "zh-TW",
+          "player_spawn": "room.start",
+          "default_player_entity": "actor.demo"
+        },
+        "required_composition_modules": [],
+        "graph_roots": ["semantic.demo"],
+        "runtime_modules": ["room.core"],
+        "rooms": [{"room_id": "room.start", "name": "Start", "description": "Start room", "region": "region.demo"}],
+        "exits": [],
+        "entities": [{"runtime_entity_id": "actor.demo", "semantic_ref": "semantic.demo", "entity_type": "character", "room": "room.start", "components": ["position"], "health": null}],
+        "items": [],
+        "quests": [],
+        "scenarios": []
+      },
+      "invalid": {
+        "contract": "compilableworld-intake-plan.v0.1",
+        "intake_id": "intake:demo:v0.1",
+        "world": {
+          "world_id": "bad_world_id",
+          "world_version": "0.1.0",
+          "schema_version": "0.1.0",
+          "namespace": "demo",
+          "title": "Demo",
+          "default_language": "zh-TW",
+          "player_spawn": "room.start",
+          "default_player_entity": "actor.demo"
+        },
+        "required_composition_modules": [],
+        "graph_roots": ["semantic.demo"],
+        "runtime_modules": ["room.core"],
+        "rooms": [{"room_id": "room.start", "name": "Start", "description": "Start room", "region": "region.demo"}],
+        "exits": [],
+        "entities": [{"runtime_entity_id": "actor.demo", "semantic_ref": "semantic.demo", "entity_type": "character", "room": "room.start", "components": ["position"], "health": null}],
+        "items": [],
+        "quests": [],
+        "scenarios": []
+      }
+    },
+    "compilableworld-intake-receipt.v0.1": {
+      "valid": {
+        "contract": "compilableworld-intake-receipt.v0.1",
+        "receipt_id": "cw-intake:intake.demo:0123456789abcdef",
+        "intake_id": "intake:demo",
+        "world_id": "demo.world",
+        "target": "compilableworld.authoring/v0.1",
+        "files": ["manifest.json"],
+        "source_hashes": {
+          "semantic_snapshot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "composition_receipt": "1111111111111111111111111111111111111111111111111111111111111111",
+          "asset_graph_snapshot": "2222222222222222222222222222222222222222222222222222222222222222",
+          "intake_plan": "3333333333333333333333333333333333333333333333333333333333333333"
+        },
+        "output_hashes": {"manifest.json": "4444444444444444444444444444444444444444444444444444444444444444"},
+        "authoring_sha256": "5555555555555555555555555555555555555555555555555555555555555555"
+      },
+      "invalid": {
+        "contract": "compilableworld-intake-receipt.v0.1",
+        "receipt_id": "cw-intake:intake.demo:0123456789abcdef",
+        "intake_id": "intake:demo",
+        "world_id": "demo.world",
+        "target": "compilableworld.authoring/v0.1",
+        "files": ["manifest.json"],
+        "source_hashes": {
+          "semantic_snapshot": "0000000000000000000000000000000000000000000000000000000000000000",
+          "composition_receipt": "1111111111111111111111111111111111111111111111111111111111111111",
+          "asset_graph_snapshot": "2222222222222222222222222222222222222222222222222222222222222222",
+          "intake_plan": "3333333333333333333333333333333333333333333333333333333333333333"
+        },
+        "output_hashes": {"manifest.json": "4444444444444444444444444444444444444444444444444444444444444444"},
+        "authoring_sha256": "short"
+      }
+    }
+  }
+}

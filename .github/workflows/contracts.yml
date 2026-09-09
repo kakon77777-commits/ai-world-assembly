@@ -15,3 +15,39 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install -e ".[dev]"
       - run: pytest -q
+
+  compilableworld-intake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout AWA
+        uses: actions/checkout@v4
+      - name: Checkout pinned CompilableWorld compatibility target
+        uses: actions/checkout@v4
+        with:
+          repository: kakon77777-commits/compilableworld-runtime-mvp
+          ref: 70141f364220697fe037cd0047604c608ad4c074
+          path: _vendor/compilableworld-runtime-mvp
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[dev]"
+      - name: Emit CompilableWorld Authoring Layer
+        run: |
+          awa-cw-intake emit \
+            --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+            --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+            --asset-graph-snapshot fixtures/compilableworld_intake/asset-graph.resolved.json \
+            --plan fixtures/compilableworld_intake/alien_lineage.intake-plan.json \
+            --out build/alien-lineage-cw
+      - name: Validate with real CompilableWorld compiler
+        env:
+          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        run: python -m compilableworld validate build/alien-lineage-cw
+      - name: Compile with real CompilableWorld compiler
+        env:
+          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        run: python -m compilableworld compile build/alien-lineage-cw --out build/alien-lineage-runtime
+      - name: Run real CompilableWorld ScenarioIR
+        env:
+          PYTHONPATH: _vendor/compilableworld-runtime-mvp/src
+        run: python -m compilableworld scenario-run build/alien-lineage-runtime/world.package.json alien-lineage.move-smoke

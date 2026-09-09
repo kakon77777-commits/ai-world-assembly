@@ -1,0 +1,11 @@
+{
+  "default_language": "zh-TW",
+  "default_player_entity": "creature.crystal-filterer.001",
+  "player_spawn": "room.abyss.spawn",
+  "provenance": {
+    "canon_status": "runtime_projection",
+    "intake_id": "intake:alien-lineage:phase5",
+    "source_type": "awa_intake"
+  },
+  "title": "Alien Lineage Intake Demo"
+}

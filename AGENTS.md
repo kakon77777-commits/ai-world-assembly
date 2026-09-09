@@ -19,12 +19,22 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 5 — CompilableWorld intake adapter.
+Phase 6 — Alien Lineage runtime slice.
 
-Phases 1–4 are complete. Current work should translate SEDB semantic projections, CSC-OCM
-Composition Receipts and Dynamic Asset Graph build closure into the **existing CompilableWorld
-authoring/runtime-package pipeline**. Adapter-first remains mandatory: do not modify the
-CompilableWorld Kernel unless a concrete contract gap is proven by tests.
+Phases 1–5 are complete. The CompilableWorld intake adapter has proven that governed AWA inputs
+can emit current CompilableWorld Authoring Layer files and pass the real external compiler without
+Kernel modification. Current work should expand only the bounded Alien Lineage Runtime action loop.
+
+## Frozen Phase 5 intake semantics
+
+- Upstream semantic/composition/asset data does not uniquely determine Runtime authoring facts.
+- Unknown Runtime facts must be stated in a reviewed `compilableworld-intake-plan.v0.1`; never guessed.
+- Intake requires the referenced Composition modules to be resolved.
+- Intake requires the Asset Graph snapshot roots to match and required build state to be complete.
+- Every required artifact entering intake must have effective validation state `passed`.
+- Runtime entity names are grounded in SEDB semantic labels; Runtime IDs/components/rooms come from the reviewed plan.
+- The adapter emits existing CompilableWorld files; it does not define a second Runtime Package format.
+- Compatibility proof is pinned to CompilableWorld master `70141f364220697fe037cd0047604c608ad4c074`.
 
 ## Frozen Dynamic Asset Graph semantics
 

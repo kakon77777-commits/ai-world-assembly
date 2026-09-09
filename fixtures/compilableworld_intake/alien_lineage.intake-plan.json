@@ -1,0 +1,79 @@
+{
+  "contract": "compilableworld-intake-plan.v0.1",
+  "intake_id": "intake:alien-lineage:phase5",
+  "world": {
+    "world_id": "alien-lineage.intake-demo",
+    "world_version": "0.1.0",
+    "schema_version": "0.1.0",
+    "namespace": "al",
+    "title": "Alien Lineage Intake Demo",
+    "default_language": "zh-TW",
+    "player_spawn": "room.abyss.spawn",
+    "default_player_entity": "creature.crystal-filterer.001"
+  },
+  "required_composition_modules": [
+    "alien_lineage.species_core",
+    "alien_lineage.ecology"
+  ],
+  "graph_roots": ["species.crystal_filterer"],
+  "runtime_modules": ["room.core", "movement.core"],
+  "rooms": [
+    {
+      "room_id": "room.abyss.spawn",
+      "name": "Abyss Nursery",
+      "description": "A quiet nursery chamber at the edge of the abyss biome.",
+      "region": "region.abyss"
+    },
+    {
+      "room_id": "room.abyss.feeding",
+      "name": "Filter Feeding Shelf",
+      "description": "Mineral-rich currents pass across a broad feeding shelf.",
+      "region": "region.abyss"
+    }
+  ],
+  "exits": [
+    {
+      "exit_id": "exit.abyss.spawn-feeding",
+      "from_room": "room.abyss.spawn",
+      "to_room": "room.abyss.feeding",
+      "direction": "north",
+      "bidirectional": true
+    }
+  ],
+  "entities": [
+    {
+      "runtime_entity_id": "creature.crystal-filterer.001",
+      "semantic_ref": "species.crystal_filterer",
+      "entity_type": "creature",
+      "room": "room.abyss.spawn",
+      "components": ["position"],
+      "health": null
+    }
+  ],
+  "items": [],
+  "quests": [],
+  "scenarios": [
+    {
+      "scenario_id": "alien-lineage.move-smoke",
+      "title": "Crystal Filterer moves to feeding shelf",
+      "actor_id": "creature.crystal-filterer.001",
+      "given": [],
+      "when": [
+        {"verb": "move", "args": {"direction": "north"}}
+      ],
+      "expect": {
+        "state": [
+          {
+            "owner": "$actor",
+            "namespace": "position",
+            "key": "room",
+            "equals": "room.abyss.feeding"
+          }
+        ],
+        "events": ["movement.actor_moved"],
+        "status": "completed"
+      },
+      "tags": ["smoke", "awa-intake"]
+    }
+  ]
+}

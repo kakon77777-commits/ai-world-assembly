@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:compilableworld-intake-receipt-v0-1",
+  "title": "AWA CompilableWorld Intake Receipt v0.1",
+  "type": "object",
+  "required": ["contract", "receipt_id", "intake_id", "world_id", "target", "files", "source_hashes", "output_hashes", "authoring_sha256"],
+  "properties": {
+    "contract": {"const": "compilableworld-intake-receipt.v0.1"},
+    "receipt_id": {"type": "string", "pattern": "^cw-intake:[a-z0-9_.:-]+:[0-9a-f]{16}$"},
+    "intake_id": {"type": "string", "minLength": 1},
+    "world_id": {"type": "string", "minLength": 1},
+    "target": {"const": "compilableworld.authoring/v0.1"},
+    "files": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+    "source_hashes": {
+      "type": "object",
+      "required": ["semantic_snapshot", "composition_receipt", "asset_graph_snapshot", "intake_plan"],
+      "properties": {
+        "semantic_snapshot": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "composition_receipt": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "asset_graph_snapshot": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "intake_plan": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }, "additionalProperties": false
+    },
+    "output_hashes": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "authoring_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

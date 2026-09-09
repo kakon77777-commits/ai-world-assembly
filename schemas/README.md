@@ -29,3 +29,7 @@ Current contracts:
 15. `asset-graph-snapshot.v0.1`
 
 These schemas define exchange structure only. They do not transfer semantic/runtime authority to this repository.
+
+- `sedb-namespace-snapshot.v0.1` — deterministic read-only SEDB namespace projection boundary.
+- `compilableworld-intake-plan.v0.1` — reviewed mapping into existing CompilableWorld authoring.
+- `compilableworld-intake-receipt.v0.1` — source/output hash receipt for deterministic authoring emission.
