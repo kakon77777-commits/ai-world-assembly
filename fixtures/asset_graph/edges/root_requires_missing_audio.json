@@ -1,0 +1,12 @@
+{
+  "contract": "asset-graph-edge.v0.1",
+  "edge_id": "edge:crystal_filterer->attack_audio",
+  "from": "species.crystal_filterer",
+  "to": "artifact.audio.crystal_filterer.attack",
+  "type": "requires",
+  "required": true,
+  "version_constraint": "v0.1",
+  "scope": "asset",
+  "reason": "Attack audio is required by the commercial slice",
+  "provenance_ref": "prov:graph:003"
+}

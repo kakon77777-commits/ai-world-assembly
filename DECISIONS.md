@@ -71,3 +71,27 @@
 ## ADR-018 — Semantic entity requirements are preserved but not guessed in Phase 3
 
 **Decision:** `requires.semantic_entities` remains part of Module Manifest, but the Phase 3 resolver does not claim those references are satisfied without an explicit SEDB snapshot/intake boundary. Cross-layer satisfaction is deferred rather than inferred.
+
+## ADR-019 — Dynamic Asset Graph is assembly topology, not runtime causality
+
+**Decision:** Phase 4 graph edges describe build/content dependencies and evidence relationships. Runtime causal state transitions remain CompilableWorld authority, and Presentation scene hierarchy remains Presentation-local.
+
+## ADR-020 — Only the required dependency subgraph must be acyclic
+
+**Decision:** `requires` edges with `required=true` define the closure/cycle-check graph. Optional and non-dependency relations may form cycles without being rejected as build cycles.
+
+## ADR-021 — Missing required dependencies become Generation Task proposals
+
+**Decision:** A missing target on a required dependency is represented explicitly and produces a deterministic `generation-task.v0.1` proposal. Missing optional targets remain legal without automatic generation; missing targets on non-dependency relations fail closed.
+
+## ADR-022 — Validation evidence is bound to exact artifact bytes
+
+**Decision:** `artifact-validation.v0.1` records the artifact SHA-256 it validated. Evidence whose hash no longer matches the current `artifact-reference.v0.1` is stale and cannot satisfy validation.
+
+## ADR-023 — Required-build snapshots are root-scoped and ignore unrelated optional edges
+
+**Decision:** `asset-graph-snapshot.v0.1` hashes the selected required closure, its required/validation edges, selected artifacts and validation evidence. Unrelated optional relations do not perturb the required build identity.
+
+## ADR-024 — Graph version constraints are exact-only in v0.1
+
+**Decision:** `version_constraint` is either null or an exact `vN.N` node version during Phase 4. Range selection is deferred instead of being silently interpreted.

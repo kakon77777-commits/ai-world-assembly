@@ -1,0 +1,43 @@
+{
+  "artifact_statuses": [
+    {
+      "artifact_id": "artifact.mesh.crystal_filterer.v1",
+      "effective_status": "passed",
+      "fresh_validation_ids": [
+        "validation.mesh.crystal_filterer.v1"
+      ],
+      "node_id": "artifact.mesh.crystal_filterer",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "stale_validation_ids": []
+    }
+  ],
+  "contract": "asset-graph-snapshot.v0.1",
+  "generation_task_ids": [
+    "task:generate:5270f6c182e809eb"
+  ],
+  "missing_required": [
+    {
+      "edge_id": "edge:crystal_filterer->attack_audio",
+      "from": "species.crystal_filterer",
+      "scope": "asset",
+      "to": "artifact.audio.crystal_filterer.attack",
+      "version_constraint": "v0.1"
+    }
+  ],
+  "required_closure": [
+    "artifact.mesh.crystal_filterer",
+    "behavior.filter_feed",
+    "species.crystal_filterer"
+  ],
+  "roots": [
+    "species.crystal_filterer"
+  ],
+  "sha256": "3b20d2145605e3c1cf967a5ae6d41b44ac93feaabdbd11bce75a7fa83a5b8a98",
+  "snapshot_id": "graph:3b20d2145605e3c1",
+  "source_hashes": {
+    "artifacts": "e3880f88005fdde5bfd2ce480eec106361ae3ac2c0d0646e11a5b3d529c8f4e7",
+    "edges": "333b3e14dc9aa7f7f1ba99b960b4eadb986110179884f74082c1d1c50fdb3aa8",
+    "nodes": "3e6e5f4cf05dc5db9ab6647373cb987f38a440f6ee26fc09e88fc94005386ab4",
+    "validations": "97f258070b490dcb4d023c92e6b28b6931119aad1557550b4974c884760cdb8b"
+  }
+}

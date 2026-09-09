@@ -1,0 +1,12 @@
+{
+  "contract": "asset-graph-edge.v0.1",
+  "edge_id": "edge:filter_feed->species_optional",
+  "from": "behavior.filter_feed",
+  "to": "species.crystal_filterer",
+  "type": "optional",
+  "required": false,
+  "version_constraint": null,
+  "scope": "asset",
+  "reason": "Optional relation intentionally forms a non-required cycle",
+  "provenance_ref": "prov:graph:005"
+}

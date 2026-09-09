@@ -1,0 +1,12 @@
+{
+  "contract": "asset-graph-edge.v0.1",
+  "edge_id": "edge:mesh->validation",
+  "from": "artifact.mesh.crystal_filterer",
+  "to": "validation.mesh.crystal_filterer",
+  "type": "validated_by",
+  "required": false,
+  "version_constraint": null,
+  "scope": "validation",
+  "reason": "Mesh finite-geometry validation",
+  "provenance_ref": "prov:graph:004"
+}

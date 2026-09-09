@@ -1,0 +1,12 @@
+{
+  "contract": "asset-graph-edge.v0.1",
+  "edge_id": "edge:crystal_filterer->mesh",
+  "from": "species.crystal_filterer",
+  "to": "artifact.mesh.crystal_filterer",
+  "type": "requires",
+  "required": true,
+  "version_constraint": "v0.1",
+  "scope": "asset",
+  "reason": "Creature mesh is required",
+  "provenance_ref": "prov:graph:002"
+}
