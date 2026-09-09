@@ -20,7 +20,7 @@
       "kind": "species",
       "label": "Desert Shellback",
       "namespace": "game.alien_lineage",
-      "provenance_ref": "sedb://entity/species.shellback/namespace/game.alien_lineage?sha256=2d680c3a13e70c3c59f29475327e5b60e66c81ac26deef222609b40849cb8d65",
+      "provenance_ref": "sedb://entity/species.shellback/namespace/game.alien_lineage?sha256=33bb477513106fe67cc3283958da8233fcf37f5905ad410912e821097a9edcb4",
       "semantic_fields": {
         "habitat": "desert"
       },
