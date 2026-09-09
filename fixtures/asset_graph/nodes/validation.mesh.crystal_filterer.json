@@ -1,0 +1,11 @@
+{
+  "contract": "asset-graph-node.v0.1",
+  "node_id": "validation.mesh.crystal_filterer",
+  "node_type": "validation",
+  "namespace": "game.alien_lineage",
+  "semantic_ref": "species.crystal_filterer",
+  "version": "v0.1",
+  "status": "active",
+  "metadata": {"validation_ref": "validation.mesh.crystal_filterer.v1"},
+  "provenance_ref": "prov:validator:mesh:v1"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:artifact-validation-v0-1",
+  "title": "AWA Artifact Validation v0.1",
+  "description": "Immutable validation evidence bound to an exact artifact SHA-256.",
+  "type": "object",
+  "required": [
+    "contract",
+    "validation_id",
+    "artifact_id",
+    "artifact_sha256",
+    "validator",
+    "validator_version",
+    "status",
+    "diagnostics",
+    "evidence_ref"
+  ],
+  "properties": {
+    "contract": {"const": "artifact-validation.v0.1"},
+    "validation_id": {"type": "string", "minLength": 1},
+    "artifact_id": {"type": "string", "minLength": 1},
+    "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "validator": {"type": "string", "minLength": 1},
+    "validator_version": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "enum": ["passed", "failed"]},
+    "diagnostics": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "evidence_ref": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

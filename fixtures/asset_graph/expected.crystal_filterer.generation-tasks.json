@@ -1,0 +1,27 @@
+[
+  {
+    "allowed_layers": [
+      "asset"
+    ],
+    "authority": "proposal",
+    "budget": {
+      "max_attempts": 2,
+      "max_cost_units": 0
+    },
+    "constraints": [
+      "required_by=edge:crystal_filterer->attack_audio",
+      "version=v0.1"
+    ],
+    "contract": "generation-task.v0.1",
+    "inputs": [
+      "species.crystal_filterer"
+    ],
+    "status": "pending",
+    "target": {
+      "missing_role": "artifact.audio.crystal_filterer.attack",
+      "node_ref": "species.crystal_filterer"
+    },
+    "task_id": "task:generate:5270f6c182e809eb",
+    "validators": []
+  }
+]

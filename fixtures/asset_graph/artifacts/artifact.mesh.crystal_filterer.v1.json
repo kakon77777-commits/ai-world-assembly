@@ -1,0 +1,13 @@
+{
+  "contract": "artifact-reference.v0.1",
+  "artifact_id": "artifact.mesh.crystal_filterer.v1",
+  "kind": "mesh",
+  "uri": "asset://mesh/crystal_filterer_v1.glb",
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "mime_type": "model/gltf-binary",
+  "size": 4096,
+  "generator": "procedural:alien-lineage:v0.1",
+  "license_ref": "license:internal-original",
+  "parent_artifacts": [],
+  "validation_status": "passed"
+}

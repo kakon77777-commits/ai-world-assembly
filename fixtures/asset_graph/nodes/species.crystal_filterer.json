@@ -1,0 +1,11 @@
+{
+  "contract": "asset-graph-node.v0.1",
+  "node_id": "species.crystal_filterer",
+  "node_type": "semantic",
+  "namespace": "game.alien_lineage",
+  "semantic_ref": "species.crystal_filterer",
+  "version": "v0.1",
+  "status": "active",
+  "metadata": {"role": "species"},
+  "provenance_ref": "sedb://species.crystal_filterer"
+}

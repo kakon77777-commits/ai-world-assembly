@@ -1,0 +1,11 @@
+{
+  "contract": "asset-graph-node.v0.1",
+  "node_id": "artifact.mesh.crystal_filterer",
+  "node_type": "artifact",
+  "namespace": "game.alien_lineage",
+  "semantic_ref": "species.crystal_filterer",
+  "version": "v0.1",
+  "status": "active",
+  "metadata": {"artifact_ref": "artifact.mesh.crystal_filterer.v1", "role": "creature_mesh"},
+  "provenance_ref": "prov:artifact:mesh.crystal_filterer:v1"
+}

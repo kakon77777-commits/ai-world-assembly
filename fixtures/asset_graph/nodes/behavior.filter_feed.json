@@ -1,0 +1,11 @@
+{
+  "contract": "asset-graph-node.v0.1",
+  "node_id": "behavior.filter_feed",
+  "node_type": "fragment",
+  "namespace": "game.alien_lineage",
+  "semantic_ref": "species.crystal_filterer",
+  "version": "v0.1",
+  "status": "active",
+  "metadata": {"role": "feeding_behavior"},
+  "provenance_ref": "prov:fragment:behavior.filter_feed:v0.1"
+}

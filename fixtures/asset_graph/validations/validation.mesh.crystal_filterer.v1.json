@@ -1,0 +1,11 @@
+{
+  "contract": "artifact-validation.v0.1",
+  "validation_id": "validation.mesh.crystal_filterer.v1",
+  "artifact_id": "artifact.mesh.crystal_filterer.v1",
+  "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "validator": "validator.mesh.finite",
+  "validator_version": "v0.1",
+  "status": "passed",
+  "diagnostics": [],
+  "evidence_ref": "evidence:mesh:crystal_filterer:v1"
+}

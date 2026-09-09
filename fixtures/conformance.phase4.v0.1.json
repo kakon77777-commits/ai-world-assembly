@@ -1,0 +1,81 @@
+{
+  "contract": "awa-conformance-fixtures.phase4.v0.1",
+  "fixtures": {
+    "artifact-validation.v0.1": {
+      "valid": {
+        "contract": "artifact-validation.v0.1",
+        "validation_id": "validation.mesh.crystal_filterer.v1",
+        "artifact_id": "artifact.mesh.crystal_filterer.v1",
+        "artifact_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "validator": "validator.mesh.finite",
+        "validator_version": "v0.1",
+        "status": "passed",
+        "diagnostics": [],
+        "evidence_ref": "evidence:mesh:crystal_filterer:v1"
+      },
+      "invalid": {
+        "contract": "artifact-validation.v0.1",
+        "validation_id": "validation.mesh.crystal_filterer.v1",
+        "artifact_id": "artifact.mesh.crystal_filterer.v1",
+        "artifact_sha256": "not-a-hash",
+        "validator": "validator.mesh.finite",
+        "validator_version": "v0.1",
+        "status": "passed",
+        "diagnostics": [],
+        "evidence_ref": "evidence:mesh:crystal_filterer:v1"
+      }
+    },
+    "asset-graph-snapshot.v0.1": {
+      "valid": {
+        "contract": "asset-graph-snapshot.v0.1",
+        "snapshot_id": "graph:0011223344556677",
+        "roots": ["species.crystal_filterer"],
+        "required_closure": ["artifact.mesh.crystal_filterer", "species.crystal_filterer"],
+        "missing_required": [],
+        "generation_task_ids": [],
+        "artifact_statuses": [
+          {
+            "node_id": "artifact.mesh.crystal_filterer",
+            "artifact_id": "artifact.mesh.crystal_filterer.v1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "effective_status": "passed",
+            "fresh_validation_ids": ["validation.mesh.crystal_filterer.v1"],
+            "stale_validation_ids": []
+          }
+        ],
+        "source_hashes": {
+          "nodes": "1111111111111111111111111111111111111111111111111111111111111111",
+          "edges": "2222222222222222222222222222222222222222222222222222222222222222",
+          "artifacts": "3333333333333333333333333333333333333333333333333333333333333333",
+          "validations": "4444444444444444444444444444444444444444444444444444444444444444"
+        },
+        "sha256": "5555555555555555555555555555555555555555555555555555555555555555"
+      },
+      "invalid": {
+        "contract": "asset-graph-snapshot.v0.1",
+        "snapshot_id": "graph:0011223344556677",
+        "roots": ["species.crystal_filterer"],
+        "required_closure": ["species.crystal_filterer"],
+        "missing_required": [],
+        "generation_task_ids": [],
+        "artifact_statuses": [
+          {
+            "node_id": "artifact.mesh.crystal_filterer",
+            "artifact_id": "artifact.mesh.crystal_filterer.v1",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "effective_status": "mystery",
+            "fresh_validation_ids": [],
+            "stale_validation_ids": []
+          }
+        ],
+        "source_hashes": {
+          "nodes": "1111111111111111111111111111111111111111111111111111111111111111",
+          "edges": "2222222222222222222222222222222222222222222222222222222222222222",
+          "artifacts": "3333333333333333333333333333333333333333333333333333333333333333",
+          "validations": "4444444444444444444444444444444444444444444444444444444444444444"
+        },
+        "sha256": "5555555555555555555555555555555555555555555555555555555555555555"
+      }
+    }
+  }
+}

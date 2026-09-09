@@ -1,0 +1,12 @@
+{
+  "contract": "asset-graph-edge.v0.1",
+  "edge_id": "edge:crystal_filterer->filter_feed",
+  "from": "species.crystal_filterer",
+  "to": "behavior.filter_feed",
+  "type": "requires",
+  "required": true,
+  "version_constraint": "v0.1",
+  "scope": "asset",
+  "reason": "Feeding behavior is required",
+  "provenance_ref": "prov:graph:001"
+}
