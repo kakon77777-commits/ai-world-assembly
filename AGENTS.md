@@ -19,9 +19,9 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 1 — Contracts.
+Phase 2 — SEDB read adapter.
 
-Work on schemas, fixtures, validators and conformance tests only unless `PROJECT_STATE.json` advances the milestone.
+The contract bootstrap is complete. Current work is limited to a read-only SEDB adapter that emits `semantic-game-entity.v0.1` projections and deterministic namespace snapshots. Do not add SEDB canonical writes or modify the SEDB kernel from this repository.
 
 ## Validation before claiming completion
 
