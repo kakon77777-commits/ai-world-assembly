@@ -190,3 +190,20 @@ prototype/placeholder builds; v0.1 does not.
 ## ADR-046 — The second repair witness is contract/authority failure, not signal quality
 
 **Decision:** Phase 9 attempt 1 carries forbidden `runtime_action` plus an out-of-bounds duration. Repair must be driven by those diagnostics. This intentionally differs from the Phase 8 non-silent audio quality failure.
+
+
+## ADR-047 — A proven Runtime contract gap justifies the minimal upstream extension
+
+**Decision:** Phase 10 may advance the CompilableWorld compatibility pin because the pinned Runtime could not represent EntityRegistry mutation inside the existing StateDelta/EventIR rollback boundary. AWA does not monkey-patch the registry or use event subscribers to fake atomicity. The upstream extension is additive and independently tested.
+
+## ADR-048 — Entity transaction v0.1 is create-only and opt-in
+
+**Decision:** `entity_transaction/v0.1` adds create-only `EntityDelta` through `EntityTransactionRuntime`. StateDelta, EntityDelta(create), and EventIR share one rollback boundary. A module must declare the capability explicitly; remove/despawn/replace remain deferred.
+
+## ADR-049 — Runtime spawn IDs are reviewed bounded facts, not generated authority
+
+**Decision:** Phase 10 uses one reviewed egg ID and one reviewed child ID from `alien-lineage-spawn-profile.v0.1`. The Runtime derives position from the committed parent/egg state at action time, but it does not invent entity identity or semantic canon.
+
+## ADR-050 — Historical Phase 6 spawn semantics remain reproducible
+
+**Decision:** Packages declaring only `alien_lineage.runtime` keep the Phase 6 bounded state-only lay/hatch path. Packages that additionally declare `alien_lineage.spawn` route those verbs exclusively to the transaction-safe spawn module under `EntityTransactionRuntime`.

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:alien-lineage-spawn-profile-v0-1",
+  "title": "Alien Lineage Spawn Profile v0.1",
+  "type": "object",
+  "required": [
+    "contract",
+    "profile_id",
+    "kernel_capability",
+    "runtime_module",
+    "parent_entity_id",
+    "egg",
+    "child"
+  ],
+  "properties": {
+    "contract": {
+      "const": "alien-lineage-spawn-profile.v0.1"
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.:-]*$"
+    },
+    "kernel_capability": {
+      "const": "entity_transaction/v0.1"
+    },
+    "runtime_module": {
+      "type": "object",
+      "required": [
+        "module_id",
+        "version",
+        "entrypoint"
+      ],
+      "properties": {
+        "module_id": {
+          "const": "alien_lineage.spawn"
+        },
+        "version": {
+          "const": "0.1.0"
+        },
+        "entrypoint": {
+          "const": "awa_alien_lineage.spawn:AlienLineageSpawnModule"
+        }
+      },
+      "additionalProperties": false
+    },
+    "parent_entity_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9.-]*$"
+    },
+    "egg": {
+      "type": "object",
+      "required": [
+        "entity_id",
+        "entity_type",
+        "name",
+        "components",
+        "metadata"
+      ],
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9.-]*$"
+        },
+        "entity_type": {
+          "type": "string",
+          "enum": [
+            "egg",
+            "creature"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "child": {
+      "type": "object",
+      "required": [
+        "entity_id",
+        "entity_type",
+        "name",
+        "components",
+        "metadata"
+      ],
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9.-]*$"
+        },
+        "entity_type": {
+          "type": "string",
+          "enum": [
+            "egg",
+            "creature"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

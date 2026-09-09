@@ -24,9 +24,10 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Phase 7 — Three.js presentation adapter:** complete.
 - **Phase 8 — bounded AI World Assembler loop:** complete.
 - **Phase 9 — broader assembler proof with declarative presentation recipe:** complete.
-- **Next: Phase 10 — broader world / assembler scaling.**
+- **Phase 10 — transaction-safe Runtime spawn:** complete.
+- **Next: Phase 11 — second world vertical slice.**
 
-Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. Phase 9 proves the same governance loop on a different modality: a declarative Three.js mutation-effect recipe whose first candidate violates presentation authority/contract bounds and whose repaired candidate is consumed only through a temporary browser overlay. Both proofs stop at `validated_candidate` with `canonical_write=false`.
+Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. Phase 9 proves the same governance loop on a different modality: a declarative Three.js mutation-effect recipe whose first candidate violates presentation authority/contract bounds and whose repaired candidate is consumed only through a temporary browser overlay. Both proofs stop at `validated_candidate` with `canonical_write=false`. Phase 10 then closes the previously deferred Runtime spawn gap: `alien_lineage.spawn` creates a real reviewed Egg Entity and Child Entity through the pinned CompilableWorld `entity_transaction/v0.1` boundary, never by direct registry mutation from an AWA module.
 
 ## Bootstrap roadmap
 
@@ -41,7 +42,8 @@ Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filter
 9. Three.js first presentation target — **complete**;
 10. bounded AI World Assembler loop — **complete**;
 11. second independent presentation/assembler proof — **complete**;
-12. broader world / assembler scaling — **next**.
+12. transaction-safe Runtime entity spawn — **complete**;
+13. second world vertical slice — **next**.
 
 ## Quick start
 
@@ -64,7 +66,17 @@ awa-alien-lineage build \
   --slice fixtures/alien_lineage_runtime/runtime-slice.json \
   --out build/alien-lineage-phase6
 
-# After compiling Phase 6 with the pinned CompilableWorld runtime:
+# Phase 10 transaction-safe egg/child Runtime entities
+awa-alien-lineage spawn-build \
+  --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+  --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+  --asset-graph-snapshot fixtures/compilableworld_intake/asset-graph.resolved.json \
+  --plan fixtures/alien_lineage_runtime/alien_lineage.intake-plan.json \
+  --slice fixtures/alien_lineage_runtime/runtime-slice.json \
+  --spawn-profile fixtures/alien_lineage_runtime/spawn-profile.json \
+  --out build/alien-lineage-phase10
+
+# After compiling Phase 6/10 with the pinned CompilableWorld runtime:
 cd presentation/threejs && npm install --no-audit --no-fund --package-lock=false && npm test && npm run build && cd ../..
 awa-threejs verify-assets presentation/threejs/dist
 awa-threejs serve build/alien-lineage-phase6-runtime/world.package.json \

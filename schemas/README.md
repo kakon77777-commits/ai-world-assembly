@@ -11,3 +11,7 @@ These schemas define exchange structure only. They do not transfer semantic/runt
 - `assembler-run-receipt.v0.1` — deterministic Phase 8 evidence receipt for attempts, exact-byte validation, graph preview and validated-candidate promotion.
 
 - `presentation-effect-recipe.v0.1` — declarative Phase 9 Three.js effect candidate contract; bounded visual fields only, with no Runtime action/state authority.
+
+- `alien-lineage-spawn-profile.v0.1` — reviewed bounded parent/egg/child Runtime spawn facts plus required entity transaction capability.
+- `alien-lineage-spawn-receipt.v0.1` — Phase 10 deterministic authoring evidence pinned to the CompilableWorld entity-transaction commit.
+- `alien-lineage-spawn-assertions.v0.1` — sidecar evidence for dynamic Runtime Entity existence/type/state after ScenarioIR execution.

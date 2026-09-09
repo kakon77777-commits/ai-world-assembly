@@ -1,0 +1,113 @@
+{
+  "contract": "alien-lineage-spawn-assertions.v0.1",
+  "scenario_id": "alien-lineage.full-cycle",
+  "state": [
+    {
+      "owner": "$actor",
+      "namespace": "lineage",
+      "key": "stage",
+      "equals": "adult"
+    },
+    {
+      "owner": "$actor",
+      "namespace": "lineage",
+      "key": "organs",
+      "equals": [
+        "organ.crystal-gill"
+      ]
+    },
+    {
+      "owner": "$actor",
+      "namespace": "lineage",
+      "key": "egg_state",
+      "equals": "hatched"
+    },
+    {
+      "owner": "$actor",
+      "namespace": "lineage",
+      "key": "egg_id",
+      "equals": "egg.crystal-filterer.001"
+    },
+    {
+      "owner": "$actor",
+      "namespace": "lineage",
+      "key": "child_id",
+      "equals": "creature.crystal-filterer.child.001"
+    },
+    {
+      "owner": "$actor",
+      "namespace": "world",
+      "key": "worldline",
+      "equals": "world.echo"
+    }
+  ],
+  "entities": [
+    {
+      "entity_id": "egg.crystal-filterer.001",
+      "entity_type": "egg",
+      "state": [
+        {
+          "namespace": "position",
+          "key": "room",
+          "equals": "room.abyss.nursery"
+        },
+        {
+          "namespace": "lineage",
+          "key": "stage",
+          "equals": "hatched"
+        },
+        {
+          "namespace": "lineage",
+          "key": "species_ref",
+          "equals": "species.crystal_filterer"
+        },
+        {
+          "namespace": "lineage",
+          "key": "parent_id",
+          "equals": "creature.crystal-filterer.001"
+        },
+        {
+          "namespace": "lineage",
+          "key": "child_id",
+          "equals": "creature.crystal-filterer.child.001"
+        }
+      ]
+    },
+    {
+      "entity_id": "creature.crystal-filterer.child.001",
+      "entity_type": "creature",
+      "state": [
+        {
+          "namespace": "position",
+          "key": "room",
+          "equals": "room.abyss.nursery"
+        },
+        {
+          "namespace": "lineage",
+          "key": "stage",
+          "equals": "hatchling"
+        },
+        {
+          "namespace": "lineage",
+          "key": "species_ref",
+          "equals": "species.crystal_filterer"
+        },
+        {
+          "namespace": "lineage",
+          "key": "parent_id",
+          "equals": "creature.crystal-filterer.001"
+        },
+        {
+          "namespace": "biology",
+          "key": "energy",
+          "equals": 0
+        },
+        {
+          "namespace": "biology",
+          "key": "growth_points",
+          "equals": 0
+        }
+      ]
+    }
+  ]
+}

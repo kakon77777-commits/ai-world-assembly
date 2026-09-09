@@ -36,6 +36,17 @@ explicit canonical promotion authority.
 - Phase 9 promotion still stops at `validated_candidate` with `canonical_write=false`.
 - Existing Phase 5–8 Runtime, Three.js and audio assembler proofs remain regression gates.
 
+
+## Frozen Phase 10 spawn semantics
+
+- AWA pins CompilableWorld commit `cf37f539e0807499e8b337f80a5f152324c087f2` for `entity_transaction/v0.1`.
+- `alien_lineage.spawn` exclusively owns `lay_egg` and `hatch` in Phase 10 packages.
+- The module returns create-only EntityDelta; it never calls `EntityRegistry.add()` or `remove()`.
+- StateDelta + EntityDelta(create) + EventIR share the upstream transaction rollback boundary.
+- One reviewed egg slot and child slot are explicit Runtime facts; no dynamic ID allocator is implied.
+- Egg is retained and marked `hatched`; remove/despawn remains out of scope.
+- Historical Phase 6 packages remain reproducible through the legacy state-only route.
+
 ## Frozen Phase 8 assembler semantics
 
 - `assembler-task.v0.1` wraps one existing `generation-task.v0.1`; it does not invent a target outside the observed Asset Graph gap.

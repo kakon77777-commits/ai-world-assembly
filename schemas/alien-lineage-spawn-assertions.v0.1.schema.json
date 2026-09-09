@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:alien-lineage-spawn-assertions-v0-1",
+  "title": "Alien Lineage Spawn Assertions v0.1",
+  "type": "object",
+  "required": [
+    "contract",
+    "scenario_id",
+    "state",
+    "entities"
+  ],
+  "properties": {
+    "contract": {
+      "const": "alien-lineage-spawn-assertions.v0.1"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]*$"
+    },
+    "state": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/stateAssertion"
+      }
+    },
+    "entities": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "entity_id",
+          "entity_type",
+          "state"
+        ],
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9.-]*$"
+          },
+          "entity_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/entityState"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "stateAssertion": {
+      "type": "object",
+      "required": [
+        "owner",
+        "namespace",
+        "key",
+        "equals"
+      ],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "namespace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "equals": {}
+      },
+      "additionalProperties": false
+    },
+    "entityState": {
+      "type": "object",
+      "required": [
+        "namespace",
+        "key",
+        "equals"
+      ],
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "equals": {}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

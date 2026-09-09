@@ -41,9 +41,9 @@ class PresentationRequestHandler(BaseHTTPRequestHandler):
         body=candidate.read_bytes(); self.send_response(200); self.send_header("Content-Type",mimetypes.guess_type(candidate.name)[0] or "application/octet-stream"); self.send_header("Content-Length",str(len(body))); self.end_headers(); self.wfile.write(body)
 
 def build_bridge(package_path,binding_path,actor_id=None):
-    from compilableworld.kernel import WorldRuntime
+    from compilableworld.entity_transaction import EntityTransactionRuntime
     from awa_alien_lineage.runtime import install_alien_lineage_runtime
-    package=json.loads(Path(package_path).read_text(encoding="utf-8")); binding=json.loads(Path(binding_path).read_text(encoding="utf-8")); runtime=WorldRuntime(package); install_alien_lineage_runtime(runtime); actor=actor_id or package.get("world",{}).get("default_player_entity")
+    package=json.loads(Path(package_path).read_text(encoding="utf-8")); binding=json.loads(Path(binding_path).read_text(encoding="utf-8")); runtime=EntityTransactionRuntime(package); install_alien_lineage_runtime(runtime); actor=actor_id or package.get("world",{}).get("default_player_entity")
     if not isinstance(actor,str) or not actor: raise PresentationBridgeError("presentation actor is required")
     return PresentationBridge(runtime,actor,binding)
 def serve(package_path,binding_path,static_dir,*,actor_id=None,host="127.0.0.1",port=8767):
