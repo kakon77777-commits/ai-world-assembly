@@ -2,24 +2,32 @@
   "project": "ai-world-assembly",
   "version": "v0.1-bootstrap",
   "updated_at": "2026-09-09",
-  "current_milestone": "Phase 1 — Contracts",
-  "status": "in_progress",
-  "current_goal": "Establish the versioned cross-system contract layer with executable conformance tests.",
+  "current_milestone": "Phase 2 — SEDB read adapter",
+  "status": "ready",
+  "current_goal": "Implement a deterministic read-only SEDB adapter that emits semantic-game-entity.v0.1 projections and namespace snapshots.",
   "completed": [
     "Repository initialized",
-    "Architecture boundary decisions recorded"
+    "Architecture boundary decisions recorded",
+    "12 versioned bootstrap contracts defined",
+    "Draft 2020-12 schema meta-validation added",
+    "Valid/invalid conformance fixtures added for all contracts",
+    "Deterministic contract validation CLI added",
+    "GitHub Actions contract CI added",
+    "Local pytest verification passed: 6 tests",
+    "GitHub Actions validation passed"
   ],
   "active_tasks": [
-    "Define 12 bootstrap contracts",
-    "Add one valid and one invalid fixture per contract",
-    "Add Draft 2020-12 meta-validation",
-    "Add deterministic validation CLI",
-    "Add CI contract checks"
+    "Define read-only SEDB adapter boundary",
+    "Map SEDB entity/field/cell data to semantic-game-entity.v0.1",
+    "Emit deterministic namespace snapshot metadata and hashes",
+    "Add adapter fixtures without requiring SEDB canonical writes",
+    "Add adapter conformance tests"
   ],
-  "next_milestone": "Phase 2 — SEDB read adapter",
+  "next_milestone": "Phase 3 — CSC-OCM resolver",
   "blocked": [],
   "non_goals": [
     "SEDB kernel rewrite",
+    "SEDB canonical write path",
     "CompilableWorld kernel rewrite",
     "Godot adapter",
     "Unity adapter",
