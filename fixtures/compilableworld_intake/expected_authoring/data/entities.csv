@@ -1,0 +1,2 @@
+entity_id,entity_type,name,room,health,components,provenance
+creature.crystal-filterer.001,creature,Crystal Filterer,room.abyss.spawn,,position,awa:species.crystal_filterer

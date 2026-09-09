@@ -1,0 +1,2 @@
+exit_id,from_room,to_room,direction,bidirectional,door_entity,open,locked,key_id
+exit.abyss.spawn-feeding,room.abyss.spawn,room.abyss.feeding,north,true,,true,false,

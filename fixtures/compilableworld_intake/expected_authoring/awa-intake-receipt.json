@@ -1,0 +1,34 @@
+{
+  "authoring_sha256": "59756a96ac576cf68a50cac086e1848185fb67980442bc242933d0513df3d4b8",
+  "contract": "compilableworld-intake-receipt.v0.1",
+  "files": [
+    "data/entities.csv",
+    "data/exits.csv",
+    "data/items.csv",
+    "data/rooms.csv",
+    "manifest.json",
+    "quests.json",
+    "scenarios.json",
+    "world.json"
+  ],
+  "intake_id": "intake:alien-lineage:phase5",
+  "output_hashes": {
+    "data/entities.csv": "6fefcf2903fab0a165cdcc22a77d5546dd86c7706cc61d5e1c24da520d41e5e6",
+    "data/exits.csv": "1505578ea57eb3046d78b938063d0f06bb292341f4d2c05501e1681c7a966ff5",
+    "data/items.csv": "d66ea055e32dcd5b860ac0df01e0a7ba891db91b754f773896e036bd4a541d72",
+    "data/rooms.csv": "e2d6a86a17a6d78d0789586d414eda1cc30b75c99014a63a44348763b099fd5f",
+    "manifest.json": "19e34e226101abd46138e86bb463a1d6594323f1ac94b2173b3fe53b60ac22b3",
+    "quests.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "scenarios.json": "dd20d6f6014cd68cfd8c82ab1eaaec6c1d326ff3efc55e69c564bb081d781e98",
+    "world.json": "c40bef57042df8c0bc0345baf9427edce9c6039770e56df190d2d728fcd1aa05"
+  },
+  "receipt_id": "cw-intake:intake.alien-lineage.phase5:72b4f8346eefc5fa",
+  "source_hashes": {
+    "asset_graph_snapshot": "a26513d11c0d85aff60cd18d0585bbd4a08d528e8c6be137dfa72b6ba0d1b9c5",
+    "composition_receipt": "dd6893101b9c69931476c8e80205e3f4fa9d8d3ae20f9d7b1e4808921de8ea8e",
+    "intake_plan": "c3a954ac38beadd89fd85fcfa12af26cf183c05041d7f557a3235583dd2ec1aa",
+    "semantic_snapshot": "195871311741b50857b506055e11969bf2f823ef10f63b6752785fb7f5fbb75c"
+  },
+  "target": "compilableworld.authoring/v0.1",
+  "world_id": "alien-lineage.intake-demo"
+}

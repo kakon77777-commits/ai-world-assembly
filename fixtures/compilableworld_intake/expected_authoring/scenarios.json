@@ -1,0 +1,36 @@
+{
+  "scenarios": [
+    {
+      "actor_id": "creature.crystal-filterer.001",
+      "expect": {
+        "events": [
+          "movement.actor_moved"
+        ],
+        "state": [
+          {
+            "equals": "room.abyss.feeding",
+            "key": "room",
+            "namespace": "position",
+            "owner": "$actor"
+          }
+        ],
+        "status": "completed"
+      },
+      "given": [],
+      "scenario_id": "alien-lineage.move-smoke",
+      "tags": [
+        "smoke",
+        "awa-intake"
+      ],
+      "title": "Crystal Filterer moves to feeding shelf",
+      "when": [
+        {
+          "args": {
+            "direction": "north"
+          },
+          "verb": "move"
+        }
+      ]
+    }
+  ]
+}

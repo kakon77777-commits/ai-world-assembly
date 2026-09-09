@@ -95,3 +95,25 @@
 ## ADR-024 — Graph version constraints are exact-only in v0.1
 
 **Decision:** `version_constraint` is either null or an exact `vN.N` node version during Phase 4. Range selection is deferred instead of being silently interpreted.
+
+## ADR-025 — Reviewed CompilableWorld Intake Plan
+
+**Decision:** SEDB semantic projection, Composition Receipt and Asset Graph snapshot do not uniquely
+determine Runtime rooms/components/spawn/scenarios. Phase 5 uses an explicit reviewed
+`compilableworld-intake-plan.v0.1`; the adapter never guesses missing Runtime authoring facts.
+
+## ADR-026 — Existing CompilableWorld authoring is the integration target
+
+**Decision:** AWA emits the current CompilableWorld `manifest.json`, `world.json`, CSV data and
+ScenarioIR files. Do not introduce a parallel Runtime Package format or modify the Kernel first.
+
+## ADR-027 — Pin the first external compiler compatibility proof
+
+**Decision:** Phase 5 CI proves compatibility against `compilableworld-runtime-mvp` master commit
+`70141f364220697fe037cd0047604c608ad4c074`. Future upgrades must deliberately advance this pin.
+
+## ADR-028 — Intake requires a build-complete asset snapshot
+
+**Decision:** Phase 5 Runtime intake rejects missing required graph nodes and any required artifact
+whose effective validation state is not `passed`. A separate future profile may relax this for
+prototype/placeholder builds; v0.1 does not.

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:sedb-namespace-snapshot-v0-1",
+  "title": "AWA SEDB Namespace Snapshot v0.1",
+  "type": "object",
+  "required": ["contract", "source", "namespace", "projection_version", "entity_count", "entities", "sha256"],
+  "properties": {
+    "contract": {"const": "sedb-namespace-snapshot.v0.1"},
+    "source": {"const": "SEDB"},
+    "namespace": {"type": "string", "minLength": 1},
+    "projection_version": {"const": "v0.1"},
+    "entity_count": {"type": "integer", "minimum": 0},
+    "entities": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

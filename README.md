@@ -19,12 +19,13 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Phase 2 — SEDB read adapter:** complete.
 - **Phase 3 — CSC-OCM resolver:** complete.
 - **Phase 4 — Dynamic Asset Graph MVP:** complete.
-- **Next: Phase 5 — CompilableWorld intake adapter.**
+- **Phase 5 — CompilableWorld intake adapter:** complete.
+- **Next: Phase 6 — Alien Lineage runtime slice.**
 
-Phase 4 adds a deterministic typed assembly graph. It resolves only required-dependency closure,
-permits non-required cycles, emits Generation Task proposals for missing required nodes, binds
-validation evidence to exact artifact SHA-256 values, marks old evidence stale after artifact
-changes, and emits reproducible root-scoped graph snapshots.
+Phase 5 adds a reviewed, deterministic bridge into the existing CompilableWorld Authoring Layer.
+It validates SEDB/composition/asset identities, refuses incomplete or stale required assets, emits
+current CompilableWorld JSON/CSV/ScenarioIR inputs, and records a hash-linked intake receipt.
+GitHub CI then validates, compiles and scenario-runs the output with the real external compiler.
 
 ## Bootstrap roadmap
 
@@ -34,8 +35,8 @@ changes, and emits reproducible root-scoped graph snapshots.
 4. SEDB read adapter — **complete**;
 5. CSC-OCM resolver — **complete**;
 6. Dynamic Asset Graph MVP — **complete**;
-7. CompilableWorld intake adapter — **next**;
-8. Alien Lineage vertical slice;
+7. CompilableWorld intake adapter — **complete**;
+8. Alien Lineage vertical slice — **next**;
 9. Three.js first presentation target;
 10. bounded AI World Assembler loop.
 
@@ -65,10 +66,17 @@ awa-asset-graph \
   snapshot species.crystal_filterer \
   -o graph-snapshot.json \
   --tasks-output generation-tasks.json
+
+awa-cw-intake emit \
+  --semantic-snapshot fixtures/sedb/expected.game.alien_lineage.snapshot.json \
+  --composition-receipt fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json \
+  --asset-graph-snapshot fixtures/compilableworld_intake/asset-graph.resolved.json \
+  --plan fixtures/compilableworld_intake/alien_lineage.intake-plan.json \
+  --out build/alien-lineage-cw
 ```
 
-See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, and
-`docs/DYNAMIC_ASSET_GRAPH.md` for implemented boundaries.
+See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`,
+`docs/DYNAMIC_ASSET_GRAPH.md`, and `docs/COMPILABLEWORLD_INTAKE.md` for implemented boundaries.
 
 ## Non-goals for the bootstrap
 

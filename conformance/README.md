@@ -10,3 +10,5 @@ merges the registries fail-closed and rejects duplicate contract fixture names.
 Every shared schema must have exactly one valid and one invalid fixture across the merged registry.
 Phase 4 adds `artifact-validation.v0.1` and `asset-graph-snapshot.v0.1` fixtures without changing
 older contract fixtures.
+
+Phase 5 adds SEDB namespace snapshot, CompilableWorld Intake Plan and Intake Receipt conformance fixtures.
