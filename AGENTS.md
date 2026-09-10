@@ -19,12 +19,23 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 12 — multi-world / multi-target assembler orchestration.
+Phase 13 — governed multi-candidate conflict and promotion closure.
 
-Phases 1–11 are complete. Relay Station closes the second independent world vertical proof while
-reusing the same semantic/composition/asset/runtime/presentation/assembler stack. Current work may
-now coordinate multiple world/task graphs, but per-world authority, exact evidence and explicit
-promotion boundaries remain non-negotiable.
+Phases 1–12 are complete. Alien Lineage and Relay Station can now be coordinated through one bounded
+multi-world orchestration plan while preserving independent child evidence and authority. Current work
+must add explicit conflict resolution / promotion policy without turning orchestration success into
+canonical write permission.
+
+## Frozen Phase 12 orchestration semantics
+
+- `multi-world-orchestration-plan.v0.1` references existing assembler tasks; it does not create a merged world authority.
+- Every child keeps its original `world_scope`, semantic snapshot, Composition Receipt, Asset Graph context, Presentation binding and `assembler-run-receipt.v0.1`.
+- Task dependencies form a fail-closed DAG; ready tasks are grouped into deterministic batches bounded by `max_parallel`.
+- Concurrent completion timing cannot change receipt identity; results are canonicalized back into reviewed schedule order.
+- Every task must claim its target as a world-scoped write claim. Same-key world claims in different worlds are legal; duplicate same-world or shared claims are conflicts.
+- Claim conflicts block before child generation. Phase 12 does not choose a winner or silently serialize conflicting writes.
+- Orchestration attempt budget must reserve all declared child repair ceilings before execution.
+- `multi-world-orchestration-receipt.v0.1` aggregates child evidence hashes per world and structurally keeps `canonical_write=false`.
 
 ## Frozen Phase 11 second-world semantics
 

@@ -1,0 +1,83 @@
+name: phase12-orchestration
+
+on:
+  push:
+    branches: ["main", "phase12/**"]
+  pull_request:
+
+jobs:
+  multi-world-orchestration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout AWA
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install AWA
+        run: python -m pip install -e ".[dev]"
+      - name: Run Phase 12 multi-world orchestration
+        run: |
+          awa-orchestrate run \
+            --plan fixtures/orchestration/phase12.multi-world.plan.json \
+            --out build/phase12-orchestration
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          actual=json.loads(Path('build/phase12-orchestration/multi-world-orchestration-receipt.json').read_text())
+          expected=json.loads(Path('fixtures/orchestration/expected.phase12.multi-world.receipt.json').read_text())
+          assert actual==expected
+          assert actual['status']=='completed'
+          assert actual['authority']=='coordination'
+          assert actual['execution_batches']==[
+              ['alien-audio','relay-activation-recipe'],
+              ['alien-mutation-recipe'],
+          ]
+          assert actual['budget']=={
+              'max_parallel':2,
+              'max_tasks':3,
+              'max_total_attempts':6,
+              'used_tasks':3,
+              'used_attempts':6,
+          }
+          assert [x['selected_candidate_sha256'] for x in actual['task_results']]==[
+              '28f03358e57423849a0a88e87221412ad7421c5c1defea70662f8e23191baabf',
+              'ea8e25f916df287242fa2096933f7576c3f8efa560245d05e067dbb6f9f11817',
+              'c26cd3b1af92ca515ca81680f2982bb296237ff38f4fe95ca930f2eb83bcaeb5',
+          ]
+          assert {x['world_scope'] for x in actual['world_evidence']}=={'game.alien_lineage','game.relay_station'}
+          assert actual['promotion']['canonical_write'] is False
+          PY
+          git diff --exit-code
+      - name: Prove shared cross-world conflict blocks before generation
+        run: |
+          python - <<'PY'
+          import copy,json
+          from pathlib import Path
+          from awa_orchestrator import MultiWorldOrchestrator
+          root=Path('.').resolve()
+          plan=json.loads(Path('fixtures/orchestration/phase12.multi-world.plan.json').read_text())
+          conflict=copy.deepcopy(plan)
+          shared={'scope':'shared','key':'presentation.shared.effect-registry'}
+          conflict['tasks'][0]['write_claims'].append(shared)
+          conflict['tasks'][1]['write_claims'].append(shared)
+          out=Path('build/phase12-conflict')
+          receipt=MultiWorldOrchestrator(root=root).run(plan=conflict,out=out)
+          assert receipt['status']=='blocked'
+          assert receipt['task_results']==[]
+          assert len(receipt['conflicts'])==1
+          assert receipt['conflicts'][0]['claim']==shared
+          assert receipt['promotion']['canonical_write'] is False
+          assert not (out/'tasks').exists()
+          PY
+          git diff --exit-code
+      - name: Verify Phase 12 contract and source authority boundaries
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          source='\n'.join(p.read_text() for p in sorted(Path('src/awa_orchestrator').glob('*.py')))
+          for token in ['EntityService','StateDelta(','registry.add(','canonical_write=True']:
+              assert token not in source, token
+          assert 'BoundedAssembler' in source
+          assert 'ThreadPoolExecutor' in source
+          PY

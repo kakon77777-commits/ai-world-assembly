@@ -1,0 +1,71 @@
+{
+  "contract": "multi-world-orchestration-plan.v0.1",
+  "plan_id": "orchestration:phase12.multi-world:v0.1",
+  "authority": "coordination",
+  "project_state_ref": "PROJECT_STATE.json",
+  "execution_policy": {
+    "max_parallel": 2,
+    "max_tasks": 3,
+    "max_total_attempts": 6,
+    "fail_fast": true
+  },
+  "tasks": [
+    {
+      "orchestration_task_id": "alien-audio",
+      "world_scope": "game.alien_lineage",
+      "task_ref": "fixtures/assembler/alien-lineage.attack-audio.task.json",
+      "context": {
+        "semantic_snapshot": "fixtures/sedb/expected.game.alien_lineage.snapshot.json",
+        "composition_receipt": "fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json",
+        "presentation_binding": "fixtures/threejs/alien-lineage.presentation-binding.json",
+        "capability_contract": "fixtures/assembler/audio_generation.capability.json",
+        "nodes": "fixtures/asset_graph/nodes",
+        "edges": "fixtures/asset_graph/edges",
+        "artifacts": "fixtures/asset_graph/artifacts",
+        "validations": "fixtures/asset_graph/validations"
+      },
+      "depends_on": [],
+      "write_claims": [
+        {"scope": "world", "key": "artifact.audio.crystal_filterer.attack"}
+      ]
+    },
+    {
+      "orchestration_task_id": "relay-activation-recipe",
+      "world_scope": "game.relay_station",
+      "task_ref": "fixtures/assembler/relay-station.activation-effect-recipe.task.json",
+      "context": {
+        "semantic_snapshot": "fixtures/sedb/expected.game.relay_station.snapshot.json",
+        "composition_receipt": "fixtures/csc_ocm/expected.relay_station.composition-receipt.json",
+        "presentation_binding": "fixtures/threejs/relay-station.presentation-binding.json",
+        "capability_contract": "fixtures/assembler/presentation_recipe_generation.capability.json",
+        "nodes": "fixtures/relay_presentation_graph/nodes",
+        "edges": "fixtures/relay_presentation_graph/edges",
+        "artifacts": "fixtures/relay_presentation_graph/artifacts",
+        "validations": "fixtures/relay_presentation_graph/validations"
+      },
+      "depends_on": [],
+      "write_claims": [
+        {"scope": "world", "key": "artifact.presentation.threejs.relay_activation_recipe"}
+      ]
+    },
+    {
+      "orchestration_task_id": "alien-mutation-recipe",
+      "world_scope": "game.alien_lineage",
+      "task_ref": "fixtures/assembler/alien-lineage.mutation-effect-recipe.task.json",
+      "context": {
+        "semantic_snapshot": "fixtures/sedb/expected.game.alien_lineage.snapshot.json",
+        "composition_receipt": "fixtures/csc_ocm/expected.alien_lineage.composition-receipt.json",
+        "presentation_binding": "fixtures/threejs/alien-lineage.presentation-binding.json",
+        "capability_contract": "fixtures/assembler/presentation_recipe_generation.capability.json",
+        "nodes": "fixtures/assembler_presentation_graph/nodes",
+        "edges": "fixtures/assembler_presentation_graph/edges",
+        "artifacts": "fixtures/assembler_presentation_graph/artifacts",
+        "validations": "fixtures/assembler_presentation_graph/validations"
+      },
+      "depends_on": ["alien-audio"],
+      "write_claims": [
+        {"scope": "world", "key": "artifact.presentation.threejs.mutation_effect_recipe"}
+      ]
+    }
+  ]
+}

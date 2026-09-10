@@ -21,3 +21,5 @@ These schemas define exchange structure only. They do not transfer semantic/runt
 - `relay-runtime-projection.v0.1` — allowlisted Relay Station Runtime-to-Presentation projection contract.
 - `presentation-effect-recipe.v0.2` — presentation-only effect recipe generalized to bounded `creature_visual` or `relay_visual` targets without Runtime authority.
 
+- `multi-world-orchestration-plan.v0.1` — reviewed Phase 12 dependency/budget/write-claim plan over independent bounded assembler tasks; authority is coordination only.
+- `multi-world-orchestration-receipt.v0.1` — deterministic Phase 12 batch/task/world evidence receipt with conflicts and budget accounting; canonical writes are structurally disabled.

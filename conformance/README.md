@@ -10,3 +10,4 @@ Phase 9 adds `presentation-effect-recipe.v0.1` valid/invalid evidence. The inval
 
 Phase 10 adds valid/invalid evidence for the reviewed spawn profile, spawn receipt and dynamic-entity assertion sidecar.
 Phase 11 adds valid/invalid evidence for Relay Station runtime slice/receipt/assertions, the Relay runtime projection, and `presentation-effect-recipe.v0.2`; invalid fixtures fail closed on missing required structure or forbidden/unknown authority-shaped fields.
+Phase 12 adds valid/invalid evidence for the reviewed multi-world orchestration plan and receipt. Invalid evidence fails closed on non-coordination authority, invalid budgets, empty plans, or any attempt to grant canonical write permission.
