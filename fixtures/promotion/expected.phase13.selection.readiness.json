@@ -1,0 +1,43 @@
+{
+  "contract": "promotion-readiness-receipt.v0.1",
+  "readiness_id": "promotion-readiness:eed8c1f19d9d2c53",
+  "conflict_set_id": "phase13:selection:v0.1",
+  "policy_id": "phase13:explicit-reviewed-rank:v0.1",
+  "status": "ready",
+  "authority": "readiness_evaluation",
+  "source_hashes": {
+    "conflict_set": "f41c8e5b97cb5bd64dffbc114cbf59d3b5bb1b707e37e97ac6a21c62b2ddb135",
+    "policy": "e66bc8ff40c58bd19d0ec896e0471ab58d20f54e5f0e3fd8c76fb2a9a7d876a8"
+  },
+  "decisions": [
+    {
+      "slot_id": "world:game.alien_lineage:presentation.effect.primary",
+      "claim": {"scope": "world", "key": "presentation.effect.primary"},
+      "world_scopes": ["game.alien_lineage"],
+      "candidate_ids": ["alien-glow-c"],
+      "conflict": false,
+      "decision": "uncontested",
+      "selected_candidate": {"candidate_id": "alien-glow-c", "world_scope": "game.alien_lineage", "candidate_sha256": "a2142934702157fd86721c03e9805768f06e21d619869c8df00e9e0a7b66692b"},
+      "ranking": [{"candidate_id": "alien-glow-c", "values": [15]}],
+      "reason": "one independently validated candidate claims this governed slot"
+    },
+    {
+      "slot_id": "world:game.relay_station:presentation.effect.primary",
+      "claim": {"scope": "world", "key": "presentation.effect.primary"},
+      "world_scopes": ["game.relay_station"],
+      "candidate_ids": ["relay-glow-a", "relay-glow-b"],
+      "conflict": true,
+      "decision": "selected",
+      "selected_candidate": {"candidate_id": "relay-glow-a", "world_scope": "game.relay_station", "candidate_sha256": "99f50f9dbcfd9e3e6a1bcdedee2ca39f0155f38ed80fea82ba983e6892f72392"},
+      "ranking": [{"candidate_id": "relay-glow-a", "values": [20]}, {"candidate_id": "relay-glow-b", "values": [10]}],
+      "reason": "explicit reviewed numeric policy uniquely selected one validated candidate"
+    }
+  ],
+  "ready_candidates": [
+    {"candidate_id": "alien-glow-c", "world_scope": "game.alien_lineage", "candidate_sha256": "a2142934702157fd86721c03e9805768f06e21d619869c8df00e9e0a7b66692b"},
+    {"candidate_id": "relay-glow-a", "world_scope": "game.relay_station", "candidate_sha256": "99f50f9dbcfd9e3e6a1bcdedee2ca39f0155f38ed80fea82ba983e6892f72392"}
+  ],
+  "promotion_authority_required": true,
+  "canonical_write": false,
+  "evidence_hash": "69ff384de025979d68d84633cdf1a41cce7504d287f7ad0a47ea7a1ce0aac329"
+}

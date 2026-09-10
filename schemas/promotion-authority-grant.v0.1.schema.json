@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:promotion-authority-grant-v0-1",
+  "title": "AWA Promotion Authority Grant v0.1",
+  "description": "Separate grant binding exact readiness evidence, policy, slot and selected candidate; no writer capability.",
+  "type": "object",
+  "required": ["contract", "grant_id", "authority", "issuer", "readiness_evidence_hash", "policy_id", "policy_sha256", "slot_id", "candidate_id", "candidate_sha256", "nonce", "canonical_write"],
+  "properties": {
+    "contract": {"const": "promotion-authority-grant.v0.1"},
+    "grant_id": {"type": "string", "minLength": 1},
+    "authority": {"const": "promotion_grant"},
+    "issuer": {"type": "string", "minLength": 1},
+    "readiness_evidence_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "policy_id": {"type": "string", "minLength": 1},
+    "policy_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "slot_id": {"type": "string", "minLength": 1},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "candidate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "nonce": {"type": "string", "minLength": 8},
+    "canonical_write": {"const": false}
+  },
+  "additionalProperties": false
+}

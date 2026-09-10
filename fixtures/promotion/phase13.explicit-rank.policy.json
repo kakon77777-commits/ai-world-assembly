@@ -1,0 +1,16 @@
+{
+  "contract": "conflict-evaluation-policy.v0.1",
+  "policy_id": "phase13:explicit-reviewed-rank:v0.1",
+  "authority": "selection_policy",
+  "mode": "ordered_numeric_criteria",
+  "criteria": [
+    {
+      "field": "reviewed_priority",
+      "direction": "max"
+    }
+  ],
+  "tie_behavior": "block",
+  "last_writer_wins": false,
+  "implicit_tiebreakers": false,
+  "canonical_write": false
+}

@@ -23,3 +23,9 @@ These schemas define exchange structure only. They do not transfer semantic/runt
 
 - `multi-world-orchestration-plan.v0.1` — reviewed Phase 12 dependency/budget/write-claim plan over independent bounded assembler tasks; authority is coordination only.
 - `multi-world-orchestration-receipt.v0.1` — deterministic Phase 12 batch/task/world evidence receipt with conflicts and budget accounting; canonical writes are structurally disabled.
+
+- `candidate-conflict-set.v0.1` — promotion-time comparison envelope over independently validated exact-byte candidates with world/shared write claims and per-candidate policy evidence.
+- `conflict-evaluation-policy.v0.1` — explicit ordered numeric selection policy; ties block, last-writer-wins is false, implicit tiebreakers are false, and canonical writes are disabled.
+- `promotion-readiness-receipt.v0.1` — deterministic Phase 13 conflict/selection evidence. Readiness requires separate promotion authority and never grants canonical write.
+- `promotion-authority-grant.v0.1` — separate authority grant bound to exact readiness evidence, policy hash, governed slot and selected candidate SHA-256. It is not a writer capability.
+- `promotion-authority-receipt.v0.1` — verification receipt proving an exact grant matches an exact ready selection; Phase 13 still fixes `canonical_write=false`.

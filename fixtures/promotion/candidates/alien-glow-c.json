@@ -1,0 +1,12 @@
+{
+  "contract": "presentation-effect-recipe.v0.2",
+  "recipe_id": "alien.phase13.glow-c",
+  "event_type": "alien_lineage.mutated",
+  "effect": {
+    "target": "creature_visual",
+    "scale_peak": 1.16,
+    "duration_ms": 280,
+    "emissive_boost": 1.3
+  },
+  "version": "v0.2"
+}

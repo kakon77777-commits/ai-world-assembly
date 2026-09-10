@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:candidate-conflict-set-v0-1",
+  "title": "AWA Candidate Conflict Set v0.1",
+  "description": "Promotion-time comparison input over independently validated candidates.",
+  "type": "object",
+  "required": [
+    "contract",
+    "conflict_set_id",
+    "authority",
+    "candidates"
+  ],
+  "properties": {
+    "contract": {
+      "const": "candidate-conflict-set.v0.1"
+    },
+    "conflict_set_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority": {
+      "const": "comparison_input"
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "required": [
+          "candidate_id",
+          "world_scope",
+          "task_id",
+          "run_id",
+          "status",
+          "artifact_ref",
+          "artifact_contract",
+          "candidate_sha256",
+          "validation_evidence",
+          "canonical_write",
+          "write_claim",
+          "policy_evidence"
+        ],
+        "properties": {
+          "candidate_id": {"type": "string", "minLength": 1},
+          "world_scope": {"type": "string", "minLength": 1},
+          "task_id": {"type": "string", "minLength": 1},
+          "run_id": {"type": "string", "minLength": 1},
+          "status": {"const": "validated_candidate"},
+          "artifact_ref": {"type": "string", "minLength": 1},
+          "artifact_contract": {"type": "string", "minLength": 1},
+          "candidate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "validation_evidence": {
+            "type": "object",
+            "required": ["status", "validators", "evidence_hash"],
+            "properties": {
+              "status": {"const": "validated_candidate"},
+              "validators": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+              "evidence_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            },
+            "additionalProperties": false
+          },
+          "canonical_write": {"const": false},
+          "write_claim": {
+            "type": "object",
+            "required": ["scope", "key"],
+            "properties": {
+              "scope": {"enum": ["world", "shared"]},
+              "key": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          },
+          "policy_evidence": {
+            "type": "object",
+            "required": ["facts", "source", "evidence_hash"],
+            "properties": {
+              "facts": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "integer"}},
+              "source": {"type": "string", "minLength": 1},
+              "evidence_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

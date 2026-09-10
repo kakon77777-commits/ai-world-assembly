@@ -1,0 +1,16 @@
+{
+  "contract": "promotion-authority-receipt.v0.1",
+  "authorization_id": "promotion-authorization:fa493357b80be6aa",
+  "status": "promotion_authorized",
+  "authority": "promotion_verification",
+  "readiness_evidence_hash": "69ff384de025979d68d84633cdf1a41cce7504d287f7ad0a47ea7a1ce0aac329",
+  "grant_hash": "4c93038774fbcf79fb9cde00aacb47e3744bb9cb1819b8c64352df61128a368c",
+  "policy_id": "phase13:explicit-reviewed-rank:v0.1",
+  "policy_sha256": "e66bc8ff40c58bd19d0ec896e0471ab58d20f54e5f0e3fd8c76fb2a9a7d876a8",
+  "slot_id": "world:game.relay_station:presentation.effect.primary",
+  "candidate_id": "relay-glow-a",
+  "candidate_sha256": "99f50f9dbcfd9e3e6a1bcdedee2ca39f0155f38ed80fea82ba983e6892f72392",
+  "canonical_write": false,
+  "reason": "exact promotion grant verified against an explicit ready selection; Phase 13 performs no canonical write",
+  "evidence_hash": "53dc880fd8b6c6bcb5be41adb6daafe86416eef93d7cee99a281489175db20f0"
+}

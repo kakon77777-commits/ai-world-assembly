@@ -1,0 +1,35 @@
+{
+  "contract": "candidate-conflict-set.v0.1",
+  "conflict_set_id": "phase13:shared-tie:v0.1",
+  "authority": "comparison_input",
+  "candidates": [
+    {
+      "candidate_id": "relay-glow-a",
+      "world_scope": "game.relay_station",
+      "task_id": "assembler:phase13:relay-glow-a",
+      "run_id": "assembler-run:phase13:relay-glow-a",
+      "status": "validated_candidate",
+      "artifact_ref": "fixtures/promotion/candidates/relay-glow-a.json",
+      "artifact_contract": "presentation-effect-recipe.v0.2",
+      "candidate_sha256": "99f50f9dbcfd9e3e6a1bcdedee2ca39f0155f38ed80fea82ba983e6892f72392",
+      "validation_evidence": {"status": "validated_candidate", "validators": ["jsonschema:presentation-effect-recipe.v0.2"], "evidence_hash": "eccda39d5036fa7227b218b3a5f2fdddc0939824a22a72c29bf6d62ee8052029"},
+      "canonical_write": false,
+      "write_claim": {"scope": "shared", "key": "presentation.shared.effect-registry"},
+      "policy_evidence": {"facts": {"reviewed_priority": 20}, "source": "review:phase13-reference-board", "evidence_hash": "de7be60180be22ea8a06ee0bdda19c4c6a167776b18cdd556fe8c868d58ee9e7"}
+    },
+    {
+      "candidate_id": "alien-glow-c",
+      "world_scope": "game.alien_lineage",
+      "task_id": "assembler:phase13:alien-glow-c",
+      "run_id": "assembler-run:phase13:alien-glow-c",
+      "status": "validated_candidate",
+      "artifact_ref": "fixtures/promotion/candidates/alien-glow-c.json",
+      "artifact_contract": "presentation-effect-recipe.v0.2",
+      "candidate_sha256": "a2142934702157fd86721c03e9805768f06e21d619869c8df00e9e0a7b66692b",
+      "validation_evidence": {"status": "validated_candidate", "validators": ["jsonschema:presentation-effect-recipe.v0.2"], "evidence_hash": "fe7531a0bc7bde559b2399b4c1e73640db6782e736866b1ab81bc68a35e8e21f"},
+      "canonical_write": false,
+      "write_claim": {"scope": "shared", "key": "presentation.shared.effect-registry"},
+      "policy_evidence": {"facts": {"reviewed_priority": 20}, "source": "review:phase13-reference-board", "evidence_hash": "fa3443cab2e577118b6957e9fe87726a13d8e47c753b8483b3d0f459fbc56010"}
+    }
+  ]
+}

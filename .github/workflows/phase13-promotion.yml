@@ -1,0 +1,31 @@
+name: phase13-promotion
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  phase13-promotion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m pytest -q tests/test_promotion_governance.py tests/test_contracts.py
+      - name: Reference readiness
+        run: |
+          awa-promotion evaluate \
+            --conflict-set fixtures/promotion/phase13.selection.conflict-set.json \
+            --policy fixtures/promotion/phase13.explicit-rank.policy.json \
+            --out build/phase13-promotion
+          cmp build/phase13-promotion/promotion-readiness-receipt.json fixtures/promotion/expected.phase13.selection.readiness.json
+      - name: Reference authority verification
+        run: |
+          awa-promotion authorize \
+            --readiness build/phase13-promotion/promotion-readiness-receipt.json \
+            --grant fixtures/promotion/phase13.relay-glow-a.authority-grant.json \
+            --out build/phase13-authority
+          cmp build/phase13-authority/promotion-authority-receipt.json fixtures/promotion/expected.phase13.relay-glow-a.authority.json
