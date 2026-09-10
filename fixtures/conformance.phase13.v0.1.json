@@ -1,1 +1,342 @@
-{"fixtures":{"candidate-conflict-set.v0.1":{"valid":{"contract":"candidate-conflict-set.v0.1","conflict_set_id":"test","authority":"comparison_input","candidates":[{"candidate_id":"a","world_scope":"game.test","task_id":"task","run_id":"run","status":"validated_candidate","artifact_ref":"candidate.json","artifact_contract":"presentation-effect-recipe.v0.2","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","validation_evidence":{"status":"validated_candidate","validators":["jsonschema"],"evidence_hash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"canonical_write":false,"write_claim":{"scope":"world","key":"artifact.test"},"policy_evidence":{"facts":{"rank":1},"source":"review","evidence_hash":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}},{"candidate_id":"b","world_scope":"game.test","task_id":"task","run_id":"run","status":"validated_candidate","artifact_ref":"candidate.json","artifact_contract":"presentation-effect-recipe.v0.2","candidate_sha256":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","validation_evidence":{"status":"validated_candidate","validators":["jsonschema"],"evidence_hash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"canonical_write":false,"write_claim":{"scope":"world","key":"artifact.test"},"policy_evidence":{"facts":{"rank":1},"source":"review","evidence_hash":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}}]},"invalid":{"contract":"candidate-conflict-set.v0.1","conflict_set_id":"test","authority":"comparison_input","candidates":[{"candidate_id":"a","world_scope":"game.test","task_id":"task","run_id":"run","status":"validated_candidate","artifact_ref":"candidate.json","artifact_contract":"presentation-effect-recipe.v0.2","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","validation_evidence":{"status":"validated_candidate","validators":["jsonschema"],"evidence_hash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"canonical_write":true,"write_claim":{"scope":"world","key":"artifact.test"},"policy_evidence":{"facts":{"rank":1},"source":"review","evidence_hash":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}},{"candidate_id":"b","world_scope":"game.test","task_id":"task","run_id":"run","status":"validated_candidate","artifact_ref":"candidate.json","artifact_contract":"presentation-effect-recipe.v0.2","candidate_sha256":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","validation_evidence":{"status":"validated_candidate","validators":["jsonschema"],"evidence_hash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"canonical_write":false,"write_claim":{"scope":"world","key":"artifact.test"},"policy_evidence":{"facts":{"rank":1},"source":"review","evidence_hash":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"}}]}}},"conflict-evaluation-policy.v0.1":{"valid":{"contract":"conflict-evaluation-policy.v0.1","policy_id":"test","authority":"selection_policy","mode":"ordered_numeric_criteria","criteria":[{"field":"rank","direction":"max"}],"tie_behavior":"block","last_writer_wins":false,"implicit_tiebreakers":false,"canonical_write":false},"invalid":{"contract":"conflict-evaluation-policy.v0.1","policy_id":"test","authority":"selection_policy","mode":"ordered_numeric_criteria","criteria":[{"field":"rank","direction":"max"}],"tie_behavior":"block","last_writer_wins":true,"implicit_tiebreakers":false,"canonical_write":false}},"promotion-readiness-receipt.v0.1":{"valid":{"contract":"promotion-readiness-receipt.v0.1","readiness_id":"ready:test","conflict_set_id":"test","policy_id":"test","status":"ready","authority":"readiness_evaluation","source_hashes":{"conflict_set":"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee","policy":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"},"decisions":[{"slot_id":"world:game.test:artifact.test","claim":{"scope":"world","key":"artifact.test"},"world_scopes":["game.test"],"candidate_ids":["a"],"conflict":false,"decision":"uncontested","selected_candidate":{"candidate_id":"a","world_scope":"game.test","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"ranking":[{"candidate_id":"a","values":[1]}],"reason":"test"}],"ready_candidates":[{"candidate_id":"a","world_scope":"game.test","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}],"promotion_authority_required":true,"canonical_write":false,"evidence_hash":"1111111111111111111111111111111111111111111111111111111111111111"},"invalid":{"contract":"promotion-readiness-receipt.v0.1","readiness_id":"ready:test","conflict_set_id":"test","policy_id":"test","status":"ready","authority":"readiness_evaluation","source_hashes":{"conflict_set":"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee","policy":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"},"decisions":[{"slot_id":"world:game.test:artifact.test","claim":{"scope":"world","key":"artifact.test"},"world_scopes":["game.test"],"candidate_ids":["a"],"conflict":false,"decision":"uncontested","selected_candidate":{"candidate_id":"a","world_scope":"game.test","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"ranking":[{"candidate_id":"a","values":[1]}],"reason":"test"}],"ready_candidates":[{"candidate_id":"a","world_scope":"game.test","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}],"promotion_authority_required":true,"canonical_write":true,"evidence_hash":"1111111111111111111111111111111111111111111111111111111111111111"}},"promotion-authority-grant.v0.1":{"valid":{"contract":"promotion-authority-grant.v0.1","grant_id":"grant:test","authority":"promotion_grant","issuer":"reviewer","readiness_evidence_hash":"1111111111111111111111111111111111111111111111111111111111111111","policy_id":"test","policy_sha256":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff","slot_id":"world:game.test:artifact.test","candidate_id":"a","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","nonce":"nonce-test","canonical_write":false},"invalid":{"contract":"promotion-authority-grant.v0.1","grant_id":"grant:test","authority":"promotion_grant","issuer":"reviewer","readiness_evidence_hash":"1111111111111111111111111111111111111111111111111111111111111111","policy_id":"test","policy_sha256":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff","slot_id":"world:game.test:artifact.test","candidate_id":"a","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","nonce":"nonce-test","canonical_write":true}},"promotion-authority-receipt.v0.1":{"valid":{"contract":"promotion-authority-receipt.v0.1","authorization_id":"auth:test","status":"promotion_authorized","authority":"promotion_verification","readiness_evidence_hash":"1111111111111111111111111111111111111111111111111111111111111111","grant_hash":"2222222222222222222222222222222222222222222222222222222222222222","policy_id":"test","policy_sha256":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff","slot_id":"world:game.test:artifact.test","candidate_id":"a","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","canonical_write":false,"reason":"test","evidence_hash":"3333333333333333333333333333333333333333333333333333333333333333"},"invalid":{"contract":"promotion-authority-receipt.v0.1","authorization_id":"auth:test","status":"promotion_authorized","authority":"promotion_verification","readiness_evidence_hash":"1111111111111111111111111111111111111111111111111111111111111111","grant_hash":"2222222222222222222222222222222222222222222222222222222222222222","policy_id":"test","policy_sha256":"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff","slot_id":"world:game.test:artifact.test","candidate_id":"a","candidate_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","canonical_write":true,"reason":"test","evidence_hash":"3333333333333333333333333333333333333333333333333333333333333333"}}}}
+{
+  "fixtures": {
+    "candidate-conflict-set.v0.1": {
+      "valid": {
+        "contract": "candidate-conflict-set.v0.1",
+        "conflict_set_id": "test",
+        "authority": "comparison_input",
+        "candidates": [
+          {
+            "candidate_id": "a",
+            "world_scope": "game.test",
+            "task_id": "task",
+            "run_id": "run",
+            "status": "validated_candidate",
+            "artifact_ref": "candidate.json",
+            "artifact_contract": "presentation-effect-recipe.v0.2",
+            "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "validation_evidence": {
+              "status": "validated_candidate",
+              "validators": [
+                "jsonschema"
+              ],
+              "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+            },
+            "canonical_write": false,
+            "write_claim": {
+              "scope": "world",
+              "key": "artifact.test"
+            },
+            "policy_evidence": {
+              "facts": {
+                "rank": 1
+              },
+              "source": "review",
+              "evidence_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          },
+          {
+            "candidate_id": "b",
+            "world_scope": "game.test",
+            "task_id": "task",
+            "run_id": "run",
+            "status": "validated_candidate",
+            "artifact_ref": "candidate.json",
+            "artifact_contract": "presentation-effect-recipe.v0.2",
+            "candidate_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "validation_evidence": {
+              "status": "validated_candidate",
+              "validators": [
+                "jsonschema"
+              ],
+              "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+            },
+            "canonical_write": false,
+            "write_claim": {
+              "scope": "world",
+              "key": "artifact.test"
+            },
+            "policy_evidence": {
+              "facts": {
+                "rank": 1
+              },
+              "source": "review",
+              "evidence_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          }
+        ]
+      },
+      "invalid": {
+        "contract": "candidate-conflict-set.v0.1",
+        "conflict_set_id": "test",
+        "authority": "comparison_input",
+        "candidates": [
+          {
+            "candidate_id": "a",
+            "world_scope": "game.test",
+            "task_id": "task",
+            "run_id": "run",
+            "status": "validated_candidate",
+            "artifact_ref": "candidate.json",
+            "artifact_contract": "presentation-effect-recipe.v0.2",
+            "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "validation_evidence": {
+              "status": "validated_candidate",
+              "validators": [
+                "jsonschema"
+              ],
+              "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+            },
+            "canonical_write": true,
+            "write_claim": {
+              "scope": "world",
+              "key": "artifact.test"
+            },
+            "policy_evidence": {
+              "facts": {
+                "rank": 1
+              },
+              "source": "review",
+              "evidence_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          },
+          {
+            "candidate_id": "b",
+            "world_scope": "game.test",
+            "task_id": "task",
+            "run_id": "run",
+            "status": "validated_candidate",
+            "artifact_ref": "candidate.json",
+            "artifact_contract": "presentation-effect-recipe.v0.2",
+            "candidate_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "validation_evidence": {
+              "status": "validated_candidate",
+              "validators": [
+                "jsonschema"
+              ],
+              "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+            },
+            "canonical_write": false,
+            "write_claim": {
+              "scope": "world",
+              "key": "artifact.test"
+            },
+            "policy_evidence": {
+              "facts": {
+                "rank": 1
+              },
+              "source": "review",
+              "evidence_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          }
+        ]
+      }
+    },
+    "conflict-evaluation-policy.v0.1": {
+      "valid": {
+        "contract": "conflict-evaluation-policy.v0.1",
+        "policy_id": "test",
+        "authority": "selection_policy",
+        "mode": "ordered_numeric_criteria",
+        "criteria": [
+          {
+            "field": "rank",
+            "direction": "max"
+          }
+        ],
+        "tie_behavior": "block",
+        "last_writer_wins": false,
+        "implicit_tiebreakers": false,
+        "canonical_write": false
+      },
+      "invalid": {
+        "contract": "conflict-evaluation-policy.v0.1",
+        "policy_id": "test",
+        "authority": "selection_policy",
+        "mode": "ordered_numeric_criteria",
+        "criteria": [
+          {
+            "field": "rank",
+            "direction": "max"
+          }
+        ],
+        "tie_behavior": "block",
+        "last_writer_wins": true,
+        "implicit_tiebreakers": false,
+        "canonical_write": false
+      }
+    },
+    "promotion-readiness-receipt.v0.1": {
+      "valid": {
+        "contract": "promotion-readiness-receipt.v0.1",
+        "readiness_id": "ready:test",
+        "conflict_set_id": "test",
+        "policy_id": "test",
+        "status": "ready",
+        "authority": "readiness_evaluation",
+        "source_hashes": {
+          "conflict_set": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "policy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "decisions": [
+          {
+            "slot_id": "world:game.test:artifact.test",
+            "claim": {
+              "scope": "world",
+              "key": "artifact.test"
+            },
+            "world_scopes": [
+              "game.test"
+            ],
+            "candidate_ids": [
+              "a"
+            ],
+            "conflict": false,
+            "decision": "uncontested",
+            "selected_candidate": {
+              "candidate_id": "a",
+              "world_scope": "game.test",
+              "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "ranking": [
+              {
+                "candidate_id": "a",
+                "values": [
+                  1
+                ]
+              }
+            ],
+            "reason": "test"
+          }
+        ],
+        "ready_candidates": [
+          {
+            "candidate_id": "a",
+            "world_scope": "game.test",
+            "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "promotion_authority_required": true,
+        "canonical_write": false,
+        "evidence_hash": "1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "invalid": {
+        "contract": "promotion-readiness-receipt.v0.1",
+        "readiness_id": "ready:test",
+        "conflict_set_id": "test",
+        "policy_id": "test",
+        "status": "ready",
+        "authority": "readiness_evaluation",
+        "source_hashes": {
+          "conflict_set": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "policy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        },
+        "decisions": [
+          {
+            "slot_id": "world:game.test:artifact.test",
+            "claim": {
+              "scope": "world",
+              "key": "artifact.test"
+            },
+            "world_scopes": [
+              "game.test"
+            ],
+            "candidate_ids": [
+              "a"
+            ],
+            "conflict": false,
+            "decision": "uncontested",
+            "selected_candidate": {
+              "candidate_id": "a",
+              "world_scope": "game.test",
+              "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "ranking": [
+              {
+                "candidate_id": "a",
+                "values": [
+                  1
+                ]
+              }
+            ],
+            "reason": "test"
+          }
+        ],
+        "ready_candidates": [
+          {
+            "candidate_id": "a",
+            "world_scope": "game.test",
+            "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "promotion_authority_required": true,
+        "canonical_write": true,
+        "evidence_hash": "1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    },
+    "promotion-authority-grant.v0.1": {
+      "valid": {
+        "contract": "promotion-authority-grant.v0.1",
+        "grant_id": "grant:test",
+        "authority": "promotion_grant",
+        "issuer": "reviewer",
+        "readiness_evidence_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+        "policy_id": "test",
+        "policy_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "slot_id": "world:game.test:artifact.test",
+        "candidate_id": "a",
+        "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nonce": "nonce-test",
+        "canonical_write": false
+      },
+      "invalid": {
+        "contract": "promotion-authority-grant.v0.1",
+        "grant_id": "grant:test",
+        "authority": "promotion_grant",
+        "issuer": "reviewer",
+        "readiness_evidence_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+        "policy_id": "test",
+        "policy_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "slot_id": "world:game.test:artifact.test",
+        "candidate_id": "a",
+        "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nonce": "nonce-test",
+        "canonical_write": true
+      }
+    },
+    "promotion-authority-receipt.v0.1": {
+      "valid": {
+        "contract": "promotion-authority-receipt.v0.1",
+        "authorization_id": "auth:test",
+        "status": "promotion_authorized",
+        "authority": "promotion_verification",
+        "readiness_evidence_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+        "grant_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+        "policy_id": "test",
+        "policy_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "slot_id": "world:game.test:artifact.test",
+        "candidate_id": "a",
+        "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "canonical_write": false,
+        "reason": "test",
+        "evidence_hash": "3333333333333333333333333333333333333333333333333333333333333333"
+      },
+      "invalid": {
+        "contract": "promotion-authority-receipt.v0.1",
+        "authorization_id": "auth:test",
+        "status": "promotion_authorized",
+        "authority": "promotion_verification",
+        "readiness_evidence_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+        "grant_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+        "policy_id": "test",
+        "policy_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "slot_id": "world:game.test:artifact.test",
+        "candidate_id": "a",
+        "candidate_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "canonical_write": true,
+        "reason": "test",
+        "evidence_hash": "3333333333333333333333333333333333333333333333333333333333333333"
+      }
+    }
+  }
+}
