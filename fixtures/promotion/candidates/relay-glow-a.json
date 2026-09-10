@@ -1,0 +1,12 @@
+{
+  "contract": "presentation-effect-recipe.v0.2",
+  "recipe_id": "relay.phase13.glow-a",
+  "event_type": "relay_station.relay_activated",
+  "effect": {
+    "target": "relay_visual",
+    "scale_peak": 1.18,
+    "duration_ms": 300,
+    "emissive_boost": 1.4
+  },
+  "version": "v0.2"
+}

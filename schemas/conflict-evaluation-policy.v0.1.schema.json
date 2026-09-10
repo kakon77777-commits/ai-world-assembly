@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:conflict-evaluation-policy-v0-1",
+  "title": "AWA Conflict Evaluation Policy v0.1",
+  "description": "Explicit deterministic selection criteria; ties block and hidden/LWW tiebreakers are forbidden.",
+  "type": "object",
+  "required": ["contract", "policy_id", "authority", "mode", "criteria", "tie_behavior", "last_writer_wins", "implicit_tiebreakers", "canonical_write"],
+  "properties": {
+    "contract": {"const": "conflict-evaluation-policy.v0.1"},
+    "policy_id": {"type": "string", "minLength": 1},
+    "authority": {"const": "selection_policy"},
+    "mode": {"const": "ordered_numeric_criteria"},
+    "criteria": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["field", "direction"],
+        "properties": {
+          "field": {"type": "string", "minLength": 1},
+          "direction": {"enum": ["max", "min"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "tie_behavior": {"const": "block"},
+    "last_writer_wins": {"const": false},
+    "implicit_tiebreakers": {"const": false},
+    "canonical_write": {"const": false}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,14 @@
+{
+  "contract": "promotion-authority-grant.v0.1",
+  "grant_id": "phase13:relay-glow-a:grant:v0.1",
+  "authority": "promotion_grant",
+  "issuer": "review:phase13-reference-authority",
+  "readiness_evidence_hash": "69ff384de025979d68d84633cdf1a41cce7504d287f7ad0a47ea7a1ce0aac329",
+  "policy_id": "phase13:explicit-reviewed-rank:v0.1",
+  "policy_sha256": "e66bc8ff40c58bd19d0ec896e0471ab58d20f54e5f0e3fd8c76fb2a9a7d876a8",
+  "slot_id": "world:game.relay_station:presentation.effect.primary",
+  "candidate_id": "relay-glow-a",
+  "candidate_sha256": "99f50f9dbcfd9e3e6a1bcdedee2ca39f0155f38ed80fea82ba983e6892f72392",
+  "nonce": "phase13-reference-nonce-001",
+  "canonical_write": false
+}

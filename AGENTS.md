@@ -19,12 +19,24 @@ Build the AI World Assembly integration layer without collapsing existing author
 
 ## Current milestone
 
-Phase 13 — governed multi-candidate conflict and promotion closure.
+Phase 14 — provider-backed multi-world assembly under governed promotion boundaries.
 
-Phases 1–12 are complete. Alien Lineage and Relay Station can now be coordinated through one bounded
-multi-world orchestration plan while preserving independent child evidence and authority. Current work
-must add explicit conflict resolution / promotion policy without turning orchestration success into
-canonical write permission.
+Phases 1–13 are complete. Phase 13 now separates validated-candidate comparison, explicit selection,
+promotion readiness and promotion authority while keeping canonical write execution absent. Current work
+must introduce provider-backed multi-world candidate production without letting provider identity or
+provider success bypass the Phase 13 governance boundary.
+
+## Frozen Phase 13 promotion semantics
+
+- Phase 13 operates on independently validated candidates at promotion time; Phase 12 still blocks colliding write claims before generation inside one orchestration plan.
+- World promotion slots are namespaced by `world_scope`; shared promotion slots are global.
+- Candidate bytes, declared artifact contract, validation evidence and explicit policy evidence are hash-bound and revalidated before comparison.
+- Selection policy is explicit and deterministic. Last-writer-wins and implicit tiebreakers are forbidden; a valid tie is `blocked_tie`.
+- Candidate input order cannot affect readiness receipt identity.
+- `promotion-readiness-receipt.v0.1` is selection/readiness evidence only and always requires separate promotion authority.
+- `promotion-authority-grant.v0.1` binds exact readiness evidence, policy hash, slot and candidate SHA-256. Mismatch or blocked readiness fails closed.
+- `promotion-authority-receipt.v0.1` verifies the grant but still fixes `canonical_write=false`; Phase 13 contains no canonical writer, StateDelta, EntityDelta or registry mutation path.
+- Writer-side expiry, cryptographic signing, nonce consumption and single-use enforcement remain deferred until a real canonical writer/protocol exists.
 
 ## Frozen Phase 12 orchestration semantics
 
