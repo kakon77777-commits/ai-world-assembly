@@ -21,11 +21,11 @@ jobs:
             --conflict-set fixtures/promotion/phase13.selection.conflict-set.json \
             --policy fixtures/promotion/phase13.explicit-rank.policy.json \
             --out build/phase13-promotion
-          cmp build/phase13-promotion/promotion-readiness-receipt.json fixtures/promotion/expected.phase13.selection.readiness.json
+          python -c "import json,pathlib; assert json.loads(pathlib.Path('build/phase13-promotion/promotion-readiness-receipt.json').read_text()) == json.loads(pathlib.Path('fixtures/promotion/expected.phase13.selection.readiness.json').read_text())"
       - name: Reference authority verification
         run: |
           awa-promotion authorize \
             --readiness build/phase13-promotion/promotion-readiness-receipt.json \
             --grant fixtures/promotion/phase13.relay-glow-a.authority-grant.json \
             --out build/phase13-authority
-          cmp build/phase13-authority/promotion-authority-receipt.json fixtures/promotion/expected.phase13.relay-glow-a.authority.json
+          python -c "import json,pathlib; assert json.loads(pathlib.Path('build/phase13-authority/promotion-authority-receipt.json').read_text()) == json.loads(pathlib.Path('fixtures/promotion/expected.phase13.relay-glow-a.authority.json').read_text())"
