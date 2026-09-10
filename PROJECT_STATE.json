@@ -1,10 +1,10 @@
 {
   "project": "ai-world-assembly",
-  "version": "v0.11-second-world-relay-station",
-  "updated_at": "2026-09-09",
-  "current_milestone": "Phase 12 — multi-world / multi-target assembler orchestration",
+  "version": "v0.12-multi-world-orchestration",
+  "updated_at": "2026-09-10",
+  "current_milestone": "Phase 13 — governed multi-candidate conflict and promotion closure",
   "status": "ready",
-  "current_goal": "Coordinate multiple independent world/task graphs and candidate targets without collapsing per-world semantic, runtime, presentation, evidence or promotion authority.",
+  "current_goal": "Add explicit governed conflict-resolution and promotion-readiness contracts over multiple validated candidates without granting the orchestrator canonical write authority.",
   "completed": [
     "Repository initialized and architecture boundaries recorded",
     "Versioned contracts and Draft 2020-12 conformance added",
@@ -65,16 +65,24 @@
     "Three.js target now consumes both Alien Lineage and Relay Station through versioned projection-role dispatch without a second renderer",
     "Relay Station browser smoke completes restore-link and observes transactionally created signal.beacon.001",
     "Phase 11 assembler repairs a separate relay_visual presentation-effect-recipe.v0.2 candidate from authority/bounds diagnostics",
-    "Relay assembler promotion remains validated_candidate with canonical_write=false and temporary browser overlay only"
+    "Relay assembler promotion remains validated_candidate with canonical_write=false and temporary browser overlay only",
+    "Phase 12 multi-world orchestration plan coordinates Alien Lineage and Relay Station without merging per-world authority",
+    "Existing assembler tasks execute through deterministic dependency DAG batches with bounded max_parallel scheduling",
+    "Parallel child completion order is normalized so orchestration receipt identity remains deterministic",
+    "World-scoped target write claims allow independent same-key resources across worlds while duplicate same-world/shared claims block pre-generation",
+    "Orchestration attempt budget reserves declared child repair ceilings before execution",
+    "Child assembler evidence hashes remain grouped by originating world in the orchestration receipt",
+    "Phase 12 canonical proof coordinates three existing tasks across two worlds and six deterministic repair attempts",
+    "Multi-world orchestration success remains coordination-only with canonical_write=false"
   ],
   "active_tasks": [
-    "Define a multi-world orchestration contract that references independent semantic/composition/asset/runtime/presentation receipts instead of merging their authorities",
-    "Order or parallelize multiple Generation Tasks using graph dependencies and bounded execution budgets",
-    "Keep candidate/evidence identity scoped to the originating world and target while supporting cross-world scheduling",
-    "Detect cross-task or cross-world conflicts before any promotion decision",
-    "Preserve explicit promotion authority; orchestration success must not imply canonical write permission"
+    "Define governed candidate conflict-resolution policy without last-writer-wins or hidden priority",
+    "Represent promotion readiness separately from promotion authority and canonical write execution",
+    "Prove multiple validated candidates can conflict, be compared, blocked or selected with explicit evidence",
+    "Keep world-scoped and shared-resource conflict semantics distinct through Phase 13",
+    "Require a separate promotion authority token/receipt before any future canonical write path exists"
   ],
-  "next_milestone": "Phase 13 — governed multi-candidate conflict and promotion closure after orchestration proof",
+  "next_milestone": "Phase 14 — provider-backed multi-world assembly under governed promotion boundaries",
   "blocked": [],
   "non_goals": [
     "SEDB kernel rewrite",

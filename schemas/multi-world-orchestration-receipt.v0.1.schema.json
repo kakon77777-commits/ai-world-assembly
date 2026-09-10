@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:multi-world-orchestration-receipt-v0-1",
+  "title": "AWA Multi-World Orchestration Receipt v0.1",
+  "description": "Deterministic evidence for scheduling independent world-scoped assembler tasks without authority collapse.",
+  "type": "object",
+  "required": ["contract","orchestration_id","plan_id","status","authority","source_hashes","execution_batches","task_results","world_evidence","conflicts","budget","promotion","evidence_hash"],
+  "properties": {
+    "contract": {"const": "multi-world-orchestration-receipt.v0.1"},
+    "orchestration_id": {"type": "string", "minLength": 1},
+    "plan_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["completed","blocked"]},
+    "authority": {"const": "coordination"},
+    "source_hashes": {
+      "type": "object",
+      "required": ["plan","project_state"],
+      "properties": {
+        "plan": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "project_state": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "execution_batches": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 1,
+        "items": {"type": "string", "minLength": 1}
+      }
+    },
+    "task_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["orchestration_task_id","world_scope","task_id","target_node_id","status","attempts","run_id","evidence_hash","selected_candidate_sha256","graph_snapshot_id","canonical_write"],
+        "properties": {
+          "orchestration_task_id": {"type": "string", "minLength": 1},
+          "world_scope": {"type": "string", "minLength": 1},
+          "task_id": {"type": "string", "minLength": 1},
+          "target_node_id": {"type": "string", "minLength": 1},
+          "status": {"enum": ["validated_candidate","blocked"]},
+          "attempts": {"type": "integer", "minimum": 1},
+          "run_id": {"type": "string", "minLength": 1},
+          "evidence_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "selected_candidate_sha256": {
+            "oneOf": [
+              {"type": "null"},
+              {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            ]
+          },
+          "graph_snapshot_id": {
+            "oneOf": [
+              {"type": "null"},
+              {"type": "string", "minLength": 1}
+            ]
+          },
+          "canonical_write": {"const": false}
+        },
+        "additionalProperties": false
+      }
+    },
+    "world_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["world_scope","orchestration_task_ids","child_evidence_hashes","evidence_hash"],
+        "properties": {
+          "world_scope": {"type": "string", "minLength": 1},
+          "orchestration_task_ids": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "child_evidence_hashes": {"type": "array", "items": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+          "evidence_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim","task_ids","world_scopes","reason"],
+        "properties": {
+          "claim": {
+            "type": "object",
+            "required": ["scope","key"],
+            "properties": {
+              "scope": {"enum": ["world","shared"]},
+              "key": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          },
+          "task_ids": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 1}},
+          "world_scopes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "reason": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "budget": {
+      "type": "object",
+      "required": ["max_parallel","max_tasks","max_total_attempts","used_tasks","used_attempts"],
+      "properties": {
+        "max_parallel": {"type": "integer", "minimum": 1},
+        "max_tasks": {"type": "integer", "minimum": 1},
+        "max_total_attempts": {"type": "integer", "minimum": 1},
+        "used_tasks": {"type": "integer", "minimum": 0},
+        "used_attempts": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "promotion": {
+      "type": "object",
+      "required": ["status","canonical_write","reason"],
+      "properties": {
+        "status": {"enum": ["coordination_complete","blocked"]},
+        "canonical_write": {"const": false},
+        "reason": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "evidence_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

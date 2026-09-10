@@ -1,0 +1,99 @@
+{
+  "authority": "coordination",
+  "budget": {
+    "max_parallel": 2,
+    "max_tasks": 3,
+    "max_total_attempts": 6,
+    "used_attempts": 6,
+    "used_tasks": 3
+  },
+  "conflicts": [],
+  "contract": "multi-world-orchestration-receipt.v0.1",
+  "evidence_hash": "6f6c5cbeca1463a118900e0412d027b0697dce327c673899847c0ca582ed938f",
+  "execution_batches": [
+    [
+      "alien-audio",
+      "relay-activation-recipe"
+    ],
+    [
+      "alien-mutation-recipe"
+    ]
+  ],
+  "orchestration_id": "orchestration-run:65cec67cd201af01",
+  "plan_id": "orchestration:phase12.multi-world:v0.1",
+  "promotion": {
+    "canonical_write": false,
+    "reason": "all scheduled child tasks produced independently validated candidates; orchestration grants no canonical write authority",
+    "status": "coordination_complete"
+  },
+  "source_hashes": {
+    "plan": "a6d99eb50f58353a07f154dfe087317bbe2aec418aa70eb3e55c8447efd1200d",
+    "project_state": "d3e38fd0c258bcbe81e54920a3ec8ac6d8ff362a096644875d08fb9602006bb0"
+  },
+  "status": "completed",
+  "task_results": [
+    {
+      "attempts": 2,
+      "canonical_write": false,
+      "evidence_hash": "a1fa6b0c26f4c08de4e03eaa614adf34ae9c10ff6d63036663bc24012b606774",
+      "graph_snapshot_id": "graph:7b410aa3cc2a3551",
+      "orchestration_task_id": "alien-audio",
+      "run_id": "assembler-run:617424431686bb98",
+      "selected_candidate_sha256": "28f03358e57423849a0a88e87221412ad7421c5c1defea70662f8e23191baabf",
+      "status": "validated_candidate",
+      "target_node_id": "artifact.audio.crystal_filterer.attack",
+      "task_id": "assembler:alien-lineage.attack-audio:v0.1",
+      "world_scope": "game.alien_lineage"
+    },
+    {
+      "attempts": 2,
+      "canonical_write": false,
+      "evidence_hash": "d9c25a2d60b1b4a0bb5b79c481c1e55489c3ca06dd3110784d320e888ec249bb",
+      "graph_snapshot_id": "graph:1dc2d56086e476f4",
+      "orchestration_task_id": "relay-activation-recipe",
+      "run_id": "assembler-run:006fa0c21884e6b2",
+      "selected_candidate_sha256": "ea8e25f916df287242fa2096933f7576c3f8efa560245d05e067dbb6f9f11817",
+      "status": "validated_candidate",
+      "target_node_id": "artifact.presentation.threejs.relay_activation_recipe",
+      "task_id": "assembler:relay-station.activation-effect-recipe:v0.1",
+      "world_scope": "game.relay_station"
+    },
+    {
+      "attempts": 2,
+      "canonical_write": false,
+      "evidence_hash": "dda53fa61f4f09a5cd3cf818f432260d6e8e7642385898718e1f1a5055e08bde",
+      "graph_snapshot_id": "graph:f5b7af776a90a295",
+      "orchestration_task_id": "alien-mutation-recipe",
+      "run_id": "assembler-run:736f79fb67312698",
+      "selected_candidate_sha256": "c26cd3b1af92ca515ca81680f2982bb296237ff38f4fe95ca930f2eb83bcaeb5",
+      "status": "validated_candidate",
+      "target_node_id": "artifact.presentation.threejs.mutation_effect_recipe",
+      "task_id": "assembler:alien-lineage.mutation-effect-recipe:v0.1",
+      "world_scope": "game.alien_lineage"
+    }
+  ],
+  "world_evidence": [
+    {
+      "child_evidence_hashes": [
+        "a1fa6b0c26f4c08de4e03eaa614adf34ae9c10ff6d63036663bc24012b606774",
+        "dda53fa61f4f09a5cd3cf818f432260d6e8e7642385898718e1f1a5055e08bde"
+      ],
+      "evidence_hash": "c782cbc9a9945149d67aa5e069e9928642481aade0deefe1c407d8425235f5e1",
+      "orchestration_task_ids": [
+        "alien-audio",
+        "alien-mutation-recipe"
+      ],
+      "world_scope": "game.alien_lineage"
+    },
+    {
+      "child_evidence_hashes": [
+        "d9c25a2d60b1b4a0bb5b79c481c1e55489c3ca06dd3110784d320e888ec249bb"
+      ],
+      "evidence_hash": "f829bec44b130e9d0ce9807b47f6b53c0557833a5695ce097d902aa90c106f59",
+      "orchestration_task_ids": [
+        "relay-activation-recipe"
+      ],
+      "world_scope": "game.relay_station"
+    }
+  ]
+}

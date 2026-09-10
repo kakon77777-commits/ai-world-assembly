@@ -1,0 +1,87 @@
+{
+  "fixtures": {
+    "multi-world-orchestration-plan.v0.1": {
+      "valid": {
+        "contract": "multi-world-orchestration-plan.v0.1",
+        "plan_id": "orchestration:test:v0.1",
+        "authority": "coordination",
+        "project_state_ref": "PROJECT_STATE.json",
+        "execution_policy": {"max_parallel": 2, "max_tasks": 1, "max_total_attempts": 2, "fail_fast": true},
+        "tasks": [{
+          "orchestration_task_id": "task-a",
+          "world_scope": "game.test",
+          "task_ref": "fixtures/task.json",
+          "context": {
+            "semantic_snapshot": "semantic.json",
+            "composition_receipt": "composition.json",
+            "presentation_binding": "presentation.json",
+            "capability_contract": "capability.json",
+            "nodes": "nodes",
+            "edges": "edges",
+            "artifacts": "artifacts",
+            "validations": "validations"
+          },
+          "depends_on": [],
+          "write_claims": [{"scope": "world", "key": "artifact.test"}]
+        }]
+      },
+      "invalid": {
+        "contract": "multi-world-orchestration-plan.v0.1",
+        "plan_id": "orchestration:test:v0.1",
+        "authority": "canonical",
+        "project_state_ref": "PROJECT_STATE.json",
+        "execution_policy": {"max_parallel": 0, "max_tasks": 1, "max_total_attempts": 1, "fail_fast": true},
+        "tasks": []
+      }
+    },
+    "multi-world-orchestration-receipt.v0.1": {
+      "valid": {
+        "contract": "multi-world-orchestration-receipt.v0.1",
+        "orchestration_id": "orchestration-run:abc",
+        "plan_id": "orchestration:test:v0.1",
+        "status": "completed",
+        "authority": "coordination",
+        "source_hashes": {"plan": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "project_state": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+        "execution_batches": [["task-a"]],
+        "task_results": [{
+          "orchestration_task_id": "task-a",
+          "world_scope": "game.test",
+          "task_id": "assembler:test:v0.1",
+          "target_node_id": "artifact.test",
+          "status": "validated_candidate",
+          "attempts": 2,
+          "run_id": "assembler-run:test",
+          "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "selected_candidate_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "graph_snapshot_id": "graph:test",
+          "canonical_write": false
+        }],
+        "world_evidence": [{
+          "world_scope": "game.test",
+          "orchestration_task_ids": ["task-a"],
+          "child_evidence_hashes": ["cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"],
+          "evidence_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }],
+        "conflicts": [],
+        "budget": {"max_parallel": 2, "max_tasks": 1, "max_total_attempts": 2, "used_tasks": 1, "used_attempts": 2},
+        "promotion": {"status": "coordination_complete", "canonical_write": false, "reason": "coordination only"},
+        "evidence_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      },
+      "invalid": {
+        "contract": "multi-world-orchestration-receipt.v0.1",
+        "orchestration_id": "orchestration-run:bad",
+        "plan_id": "orchestration:test:v0.1",
+        "status": "completed",
+        "authority": "coordination",
+        "source_hashes": {"plan": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "project_state": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+        "execution_batches": [],
+        "task_results": [],
+        "world_evidence": [],
+        "conflicts": [],
+        "budget": {"max_parallel": 1, "max_tasks": 1, "max_total_attempts": 1, "used_tasks": 0, "used_attempts": 0},
+        "promotion": {"status": "coordination_complete", "canonical_write": true, "reason": "bad"},
+        "evidence_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      }
+    }
+  }
+}

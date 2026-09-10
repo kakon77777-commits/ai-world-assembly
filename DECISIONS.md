@@ -227,3 +227,23 @@ prototype/placeholder builds; v0.1 does not.
 ## ADR-055 — Relay assembler repair remains candidate-only
 
 **Decision:** Phase 11 adds `presentation-effect-recipe.v0.2` for bounded `relay_visual` effects and proves a fail-first authority repair for the Relay activation effect. The repaired artifact is consumed only through a temporary build overlay; `canonical_write=false` remains structural and no canonical presentation/graph registry is rewritten by the assembler.
+
+## ADR-056 — Multi-world orchestration coordinates receipts; it does not merge authority
+
+**Decision:** Phase 12 schedules independent `assembler-task.v0.1` jobs and aggregates their evidence hashes. Semantic snapshots, Composition Receipts, Asset Graphs, Runtime authority and child promotion state remain scoped to the originating world/task.
+
+## ADR-057 — Reviewed write claims define orchestration conflicts
+
+**Decision:** Every orchestration task declares a world-scoped target write claim. World claims are namespaced by `world_scope`; shared claims are global. Colliding shared claims or duplicate same-world claims block before child generation. Phase 12 does not auto-resolve conflicts.
+
+## ADR-058 — Dependency DAG and bounded parallel batches are deterministic evidence
+
+**Decision:** Phase 12 topologically orders reviewed task dependencies, chunks ready tasks by `max_parallel`, and may execute one batch concurrently. Receipt/result ordering follows the reviewed deterministic schedule rather than wall-clock completion order.
+
+## ADR-059 — Orchestration budget reserves child repair ceilings
+
+**Decision:** `max_total_attempts` must cover the sum of declared child `repair_policy.max_attempts` before execution begins. Runtime usage is also recorded. Budget exhaustion is never repaired by silently increasing limits.
+
+## ADR-060 — Orchestration success never implies canonical promotion
+
+**Decision:** `multi-world-orchestration-receipt.v0.1` structurally fixes `canonical_write=false`. Phase 12 can report `coordination_complete`, but canonical promotion remains a separate future authority decision.

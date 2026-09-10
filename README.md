@@ -26,9 +26,10 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Phase 9 — broader assembler proof with declarative presentation recipe:** complete.
 - **Phase 10 — transaction-safe Runtime spawn:** complete.
 - **Phase 11 — Relay Station second world vertical slice:** complete.
-- **Next: Phase 12 — multi-world / multi-target assembler orchestration.**
+- **Phase 12 — multi-world / multi-target assembler orchestration:** complete.
+- **Next: Phase 13 — governed multi-candidate conflict and promotion closure.**
 
-Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. Phase 9 proves the same governance loop on a different modality: a declarative Three.js mutation-effect recipe whose first candidate violates presentation authority/contract bounds and whose repaired candidate is consumed only through a temporary browser overlay. Both proofs stop at `validated_candidate` with `canonical_write=false`. Phase 10 closes the previously deferred Runtime spawn gap through the pinned CompilableWorld `entity_transaction/v0.1` boundary. Phase 11 then carries a materially different Relay Station facility/logistics world through the same SEDB, CSC-OCM, Asset Graph, CompilableWorld, Three.js and assembler stack, including a transactionally created `signal.beacon.001` and an independent presentation-recipe repair proof.
+Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. Phase 9 proves the same governance loop on a different modality: a declarative Three.js mutation-effect recipe whose first candidate violates presentation authority/contract bounds and whose repaired candidate is consumed only through a temporary browser overlay. Both proofs stop at `validated_candidate` with `canonical_write=false`. Phase 10 closes the previously deferred Runtime spawn gap through the pinned CompilableWorld `entity_transaction/v0.1` boundary. Phase 11 then carries a materially different Relay Station facility/logistics world through the same SEDB, CSC-OCM, Asset Graph, CompilableWorld, Three.js and assembler stack, including a transactionally created `signal.beacon.001` and an independent presentation-recipe repair proof. Phase 12 coordinates three existing bounded assembler tasks across both worlds through deterministic dependency batches, world/shared write claims, bounded attempt budgets and per-world child evidence while keeping `canonical_write=false`.
 
 ## Bootstrap roadmap
 
@@ -45,7 +46,8 @@ Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filter
 11. second independent presentation/assembler proof — **complete**;
 12. transaction-safe Runtime entity spawn — **complete**;
 13. second world vertical slice — **complete**;
-14. multi-world / multi-target assembler orchestration — **next**.
+14. multi-world / multi-target assembler orchestration — **complete**;
+15. governed multi-candidate conflict / promotion closure — **next**.
 
 ## Quick start
 
@@ -119,9 +121,14 @@ awa-assembler run \
   --artifacts fixtures/assembler_presentation_graph/artifacts \
   --validations fixtures/assembler_presentation_graph/validations \
   --out build/phase9-assembler
+
+# Phase 12 multi-world orchestration proof
+awa-orchestrate run \
+  --plan fixtures/orchestration/phase12.multi-world.plan.json \
+  --out build/phase12-orchestration
 ```
 
-See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, `docs/THREEJS_PRESENTATION.md`, and `docs/AI_WORLD_ASSEMBLER.md`. Phase 9 broader-proof details are in `docs/ASSEMBLER_BROADER_PROOF.md`; the Phase 11 second-world proof is documented in `docs/SECOND_WORLD_RELAY_STATION.md`.
+See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, `docs/THREEJS_PRESENTATION.md`, and `docs/AI_WORLD_ASSEMBLER.md`. Phase 9 broader-proof details are in `docs/ASSEMBLER_BROADER_PROOF.md`; the Phase 11 second-world proof is documented in `docs/SECOND_WORLD_RELAY_STATION.md`; Phase 12 orchestration is documented in `docs/MULTI_WORLD_ORCHESTRATION.md`.
 
 ## Non-goals for the bootstrap
 
