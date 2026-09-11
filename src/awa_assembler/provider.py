@@ -2,14 +2,32 @@ from __future__ import annotations
 
 import json
 import struct
-from dataclasses import dataclass
-from typing import Protocol
+import urllib.error
+import urllib.request
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Protocol, runtime_checkable
+
+from awa_asset_graph.graph import sha256_json
+
+from .common import sha_bytes, validate
 
 
 class CandidateProducer(Protocol):
     producer_id: str
 
     def produce(self, *, attempt: int, task: dict, diagnostics: list[str]) -> bytes: ...
+
+
+@runtime_checkable
+class ProviderEvidencedProducer(Protocol):
+    def invocation_receipt(self, *, attempt: int) -> dict: ...
+
+
+def provider_invocation_for(producer: CandidateProducer, *, attempt: int) -> dict | None:
+    if not isinstance(producer, ProviderEvidencedProducer):
+        return None
+    return producer.invocation_receipt(attempt=attempt)
 
 
 def _pcm_wav(samples: list[int], *, sample_rate: int = 22050) -> bytes:
@@ -25,6 +43,102 @@ def _pcm_wav(samples: list[int], *, sample_rate: int = 22050) -> bytes:
 
 def _canonical_json_bytes(document: dict) -> bytes:
     return (json.dumps(document, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n").encode("utf-8")
+
+
+@dataclass
+class HTTPProviderProducer:
+    """Provider-agnostic HTTP gateway implementing the existing CandidateProducer boundary.
+
+    The remote endpoint receives a proposal-only, versioned request and returns raw candidate
+    bytes. Provider/model identity is recorded only in locally derived invocation evidence; the
+    stable artifact generator identity remains this adapter ID so vendor choice cannot become
+    world or module semantics.
+    """
+
+    root: str | Path
+    endpoint: str
+    provider_id: str
+    model_id: str
+    timeout_seconds: float = 30.0
+    producer_id: str = "provider-backed.http.v0.1"
+    _receipts: dict[int, dict] = field(default_factory=dict, init=False, repr=False)
+
+    def __post_init__(self) -> None:
+        self.root = Path(self.root).resolve()
+        if not self.endpoint.startswith(("http://", "https://")):
+            raise ValueError("provider endpoint must use http or https")
+        if not self.provider_id or not self.model_id:
+            raise ValueError("provider_id and model_id are required")
+        if self.timeout_seconds <= 0:
+            raise ValueError("provider timeout must be positive")
+
+    def _request_document(self, *, attempt: int, task: dict, diagnostics: list[str]) -> dict:
+        request = {
+            "contract": "provider-generation-request.v0.1",
+            "authority": "proposal",
+            "task_id": task["task_id"],
+            "capability_id": task["capability_id"],
+            "generation_task": task["generation_task"],
+            "target": task["target"],
+            "validators": task["validators"],
+            "attempt": attempt,
+            "diagnostics": list(diagnostics),
+            "canonical_write": False,
+        }
+        return validate(self.root, "provider-generation-request.v0.1", request, "provider generation request")
+
+    def produce(self, *, attempt: int, task: dict, diagnostics: list[str]) -> bytes:
+        request_doc = self._request_document(attempt=attempt, task=task, diagnostics=diagnostics)
+        request_bytes = _canonical_json_bytes(request_doc)
+        request = urllib.request.Request(
+            self.endpoint,
+            data=request_bytes,
+            method="POST",
+            headers={"Content-Type": "application/json", "Accept": task["target"]["mime_type"]},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout_seconds) as response:
+                status = int(response.status)
+                payload = response.read()
+                content_type = response.headers.get_content_type() or "application/octet-stream"
+        except urllib.error.HTTPError as exc:
+            raise ValueError(f"provider returned HTTP {exc.code}") from exc
+        except urllib.error.URLError as exc:
+            raise ValueError(f"provider transport failed: {exc.reason}") from exc
+        if status < 200 or status >= 300:
+            raise ValueError(f"provider returned HTTP {status}")
+        if not payload:
+            raise ValueError("provider returned empty response")
+
+        basis = {
+            "authority": "candidate_generation_evidence",
+            "adapter_id": self.producer_id,
+            "provider_id": self.provider_id,
+            "model_id": self.model_id,
+            "task_id": task["task_id"],
+            "attempt": attempt,
+            "request_sha256": sha_bytes(request_bytes),
+            "response_sha256": sha_bytes(payload),
+            "http_status": status,
+            "response_content_type": content_type,
+            "canonical_write": False,
+        }
+        body = {
+            "contract": "provider-invocation-receipt.v0.1",
+            "invocation_id": f"provider-invocation:{sha256_json(basis)[:16]}",
+            **basis,
+        }
+        receipt = {**body, "evidence_hash": sha256_json(body)}
+        self._receipts[attempt] = validate(
+            self.root, "provider-invocation-receipt.v0.1", receipt, "provider invocation receipt"
+        )
+        return payload
+
+    def invocation_receipt(self, *, attempt: int) -> dict:
+        try:
+            return self._receipts[attempt]
+        except KeyError as exc:
+            raise ValueError(f"no provider invocation evidence for attempt {attempt}") from exc
 
 
 @dataclass(frozen=True)

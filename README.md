@@ -28,9 +28,10 @@ This repository is an **integration layer**, not a replacement for SEDB or Compi
 - **Phase 11 — Relay Station second world vertical slice:** complete.
 - **Phase 12 — multi-world / multi-target assembler orchestration:** complete.
 - **Phase 13 — governed multi-candidate conflict and promotion closure:** complete.
-- **Next: Phase 14 — provider-backed multi-world assembly under governed promotion boundaries.**
+- **Phase 14 — provider-backed multi-world assembly under governed promotion boundaries:** complete.
+- **Next milestone:** TBD after Phase 14 closure review.
 
-Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. Phase 9 proves the same governance loop on a different modality: a declarative Three.js mutation-effect recipe whose first candidate violates presentation authority/contract bounds and whose repaired candidate is consumed only through a temporary browser overlay. Both proofs stop at `validated_candidate` with `canonical_write=false`. Phase 10 closes the previously deferred Runtime spawn gap through the pinned CompilableWorld `entity_transaction/v0.1` boundary. Phase 11 then carries a materially different Relay Station facility/logistics world through the same SEDB, CSC-OCM, Asset Graph, CompilableWorld, Three.js and assembler stack, including a transactionally created `signal.beacon.001` and an independent presentation-recipe repair proof. Phase 12 coordinates three existing bounded assembler tasks across both worlds through deterministic dependency batches, world/shared write claims, bounded attempt budgets and per-world child evidence while keeping `canonical_write=false`. Phase 13 adds a separate promotion-time governance layer over independently validated candidates: world/shared promotion slots, explicit reviewed numeric selection criteria, fail-closed ties, deterministic order-independent readiness evidence, and exact evidence-bound promotion grants. Readiness and authorization remain separate from canonical write execution; every Phase 13 receipt still fixes `canonical_write=false`.
+Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filterer attack-audio gap. Phase 9 proves the same governance loop on a different modality: a declarative Three.js mutation-effect recipe whose first candidate violates presentation authority/contract bounds and whose repaired candidate is consumed only through a temporary browser overlay. Both proofs stop at `validated_candidate` with `canonical_write=false`. Phase 10 closes the previously deferred Runtime spawn gap through the pinned CompilableWorld `entity_transaction/v0.1` boundary. Phase 11 then carries a materially different Relay Station facility/logistics world through the same SEDB, CSC-OCM, Asset Graph, CompilableWorld, Three.js and assembler stack, including a transactionally created `signal.beacon.001` and an independent presentation-recipe repair proof. Phase 12 coordinates three existing bounded assembler tasks across both worlds through deterministic dependency batches, world/shared write claims, bounded attempt budgets and per-world child evidence while keeping `canonical_write=false`. Phase 13 adds a separate promotion-time governance layer over independently validated candidates: world/shared promotion slots, explicit reviewed numeric selection criteria, fail-closed ties, deterministic order-independent readiness evidence, and exact evidence-bound promotion grants. Readiness and authorization remain separate from canonical write execution; every Phase 13 receipt still fixes `canonical_write=false`. Phase 14 then attaches a provider-agnostic HTTP candidate producer to the same bounded assembler protocol, binds exact provider request/response evidence in `assembler-run-receipt.v0.2`, injects provider execution through the unchanged Phase 12 orchestration authority boundary, and proves that independently generated provider candidates still enter Phase 13 without provider/model identity becoming a selection criterion.
 
 ## Bootstrap roadmap
 
@@ -49,7 +50,8 @@ Phase 8 adds the first bounded assembler loop over the deliberate Crystal Filter
 13. second world vertical slice — **complete**;
 14. multi-world / multi-target assembler orchestration — **complete**;
 15. governed multi-candidate conflict / promotion closure — **complete**;
-16. provider-backed multi-world assembly under governed promotion boundaries — **next**.
+16. provider-backed multi-world assembly under governed promotion boundaries — **complete**.
+17. post-Phase 14 milestone — **TBD after closure review**.
 
 ## Quick start
 
@@ -129,6 +131,13 @@ awa-orchestrate run \
   --plan fixtures/orchestration/phase12.multi-world.plan.json \
   --out build/phase12-orchestration
 
+
+# Phase 14 provider-backed orchestration (provider bindings are execution-only)
+awa-orchestrate run \
+  --plan fixtures/orchestration/phase12.multi-world.plan.json \
+  --provider-bindings path/to/provider-bindings.json \
+  --out build/phase14-provider-orchestration
+
 # Phase 13 promotion-time candidate comparison / readiness
 awa-promotion evaluate \
   --conflict-set fixtures/promotion/phase13.selection.conflict-set.json \
@@ -142,7 +151,7 @@ awa-promotion authorize \
   --out build/phase13-authority
 ```
 
-See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, `docs/THREEJS_PRESENTATION.md`, and `docs/AI_WORLD_ASSEMBLER.md`. Phase 9 broader-proof details are in `docs/ASSEMBLER_BROADER_PROOF.md`; the Phase 11 second-world proof is documented in `docs/SECOND_WORLD_RELAY_STATION.md`; Phase 12 orchestration is documented in `docs/MULTI_WORLD_ORCHESTRATION.md`; Phase 13 governed promotion is documented in `docs/GOVERNED_PROMOTION.md`.
+See `docs/SEDB_READ_ADAPTER.md`, `docs/CSC_OCM_RESOLVER.md`, `docs/DYNAMIC_ASSET_GRAPH.md`, `docs/COMPILABLEWORLD_INTAKE.md`, `docs/ALIEN_LINEAGE_RUNTIME.md`, `docs/THREEJS_PRESENTATION.md`, and `docs/AI_WORLD_ASSEMBLER.md`. Phase 9 broader-proof details are in `docs/ASSEMBLER_BROADER_PROOF.md`; the Phase 11 second-world proof is documented in `docs/SECOND_WORLD_RELAY_STATION.md`; Phase 12 orchestration is documented in `docs/MULTI_WORLD_ORCHESTRATION.md`; Phase 13 governed promotion is documented in `docs/GOVERNED_PROMOTION.md`; Phase 14 provider integration is documented in `docs/PROVIDER_BACKED_ASSEMBLY.md`.
 
 ## Non-goals for the bootstrap
 

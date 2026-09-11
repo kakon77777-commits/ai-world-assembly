@@ -1,0 +1,120 @@
+{
+  "fixtures": {
+    "provider-generation-request.v0.1": {
+      "valid": {
+        "contract": "provider-generation-request.v0.1",
+        "authority": "proposal",
+        "task_id": "task.test",
+        "capability_id": "capability.test",
+        "generation_task": {},
+        "target": {"layer": "presentation", "node_id": "artifact.test", "kind": "presentation_recipe", "filename": "test.json", "mime_type": "application/json", "version": "v0.1"},
+        "validators": ["validator.test"],
+        "attempt": 1,
+        "diagnostics": [],
+        "canonical_write": false
+      },
+      "invalid": {
+        "contract": "provider-generation-request.v0.1",
+        "authority": "proposal",
+        "task_id": "task.test",
+        "capability_id": "capability.test",
+        "generation_task": {},
+        "target": {"layer": "presentation", "node_id": "artifact.test", "kind": "presentation_recipe", "filename": "test.json", "mime_type": "application/json", "version": "v0.1"},
+        "validators": ["validator.test"],
+        "attempt": 1,
+        "diagnostics": [],
+        "canonical_write": true
+      }
+    },
+    "provider-invocation-receipt.v0.1": {
+      "valid": {
+        "contract": "provider-invocation-receipt.v0.1",
+        "invocation_id": "provider-invocation:test",
+        "authority": "candidate_generation_evidence",
+        "adapter_id": "provider-backed.http.v0.1",
+        "provider_id": "provider.test",
+        "model_id": "model.test",
+        "task_id": "task.test",
+        "attempt": 1,
+        "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "response_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "http_status": 200,
+        "response_content_type": "application/json",
+        "canonical_write": false,
+        "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "invalid": {
+        "contract": "provider-invocation-receipt.v0.1",
+        "invocation_id": "provider-invocation:test",
+        "authority": "candidate_generation_evidence",
+        "adapter_id": "provider-backed.http.v0.1",
+        "provider_id": "provider.test",
+        "model_id": "model.test",
+        "task_id": "task.test",
+        "attempt": 1,
+        "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "response_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "http_status": 200,
+        "response_content_type": "application/json",
+        "canonical_write": true,
+        "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    },
+    "provider-bindings.v0.1": {
+      "valid": {
+        "contract": "provider-bindings.v0.1",
+        "authority": "execution_binding",
+        "canonical_write": false,
+        "bindings": [{"orchestration_task_id": "task-a", "adapter": "http", "provider_id": "provider.test", "model_id": "model.test", "endpoint": "https://provider.example/generate", "timeout_seconds": 10}]
+      },
+      "invalid": {
+        "contract": "provider-bindings.v0.1",
+        "authority": "execution_binding",
+        "canonical_write": true,
+        "bindings": [{"orchestration_task_id": "task-a", "adapter": "http", "provider_id": "provider.test", "model_id": "model.test", "endpoint": "https://provider.example/generate", "timeout_seconds": 10}]
+      }
+    },
+    "assembler-run-receipt.v0.2": {
+      "valid": {
+        "contract": "assembler-run-receipt.v0.2",
+        "run_id": "assembler-run:001",
+        "task_id": "assembler:alien-lineage.attack-audio:v0.1",
+        "status": "validated_candidate",
+        "source_hashes": {
+          "project_state": "1111111111111111111111111111111111111111111111111111111111111111",
+          "semantic_snapshot": "2222222222222222222222222222222222222222222222222222222222222222",
+          "composition_receipt": "3333333333333333333333333333333333333333333333333333333333333333",
+          "graph_snapshot_before": "4444444444444444444444444444444444444444444444444444444444444444",
+          "presentation_binding": "5555555555555555555555555555555555555555555555555555555555555555",
+          "capability_contract": "6666666666666666666666666666666666666666666666666666666666666666"
+        },
+        "attempts": [{"attempt": 1, "producer_id": "provider-backed.http.v0.1", "artifact_id": "artifact.audio.candidate", "artifact_sha256": "7777777777777777777777777777777777777777777777777777777777777777", "validation_ids": ["validation.audio.decode"], "validation_status": "passed", "diagnostics": [], "provider_evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}],
+        "selected_candidate": {"artifact_id": "artifact.audio.candidate", "sha256": "7777777777777777777777777777777777777777777777777777777777777777", "uri": "bundle://candidate/x.wav", "mime_type": "audio/wav"},
+        "graph_preview": {"snapshot_id": "graph:preview", "sha256": "8888888888888888888888888888888888888888888888888888888888888888", "missing_required": 0, "generation_tasks": 0, "target_effective_status": "passed"},
+        "promotion": {"status": "validated_candidate", "target_node_status": "candidate", "canonical_write": false, "reason": "validated candidate only"},
+        "evidence_hash": "9999999999999999999999999999999999999999999999999999999999999999",
+        "provider_invocations": [{"contract": "provider-invocation-receipt.v0.1", "invocation_id": "provider-invocation:test", "authority": "candidate_generation_evidence", "adapter_id": "provider-backed.http.v0.1", "provider_id": "provider.test", "model_id": "model.test", "task_id": "task.test", "attempt": 1, "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "response_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "http_status": 200, "response_content_type": "application/json", "canonical_write": false, "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}]
+      },
+      "invalid": {
+        "contract": "assembler-run-receipt.v0.2",
+        "run_id": "assembler-run:001",
+        "task_id": "assembler:alien-lineage.attack-audio:v0.1",
+        "status": "validated_candidate",
+        "source_hashes": {
+          "project_state": "1111111111111111111111111111111111111111111111111111111111111111",
+          "semantic_snapshot": "2222222222222222222222222222222222222222222222222222222222222222",
+          "composition_receipt": "3333333333333333333333333333333333333333333333333333333333333333",
+          "graph_snapshot_before": "4444444444444444444444444444444444444444444444444444444444444444",
+          "presentation_binding": "5555555555555555555555555555555555555555555555555555555555555555",
+          "capability_contract": "6666666666666666666666666666666666666666666666666666666666666666"
+        },
+        "attempts": [{"attempt": 1, "producer_id": "provider-backed.http.v0.1", "artifact_id": "artifact.audio.candidate", "artifact_sha256": "7777777777777777777777777777777777777777777777777777777777777777", "validation_ids": ["validation.audio.decode"], "validation_status": "passed", "diagnostics": [], "provider_evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}],
+        "selected_candidate": {"artifact_id": "artifact.audio.candidate", "sha256": "7777777777777777777777777777777777777777777777777777777777777777", "uri": "bundle://candidate/x.wav", "mime_type": "audio/wav"},
+        "graph_preview": {"snapshot_id": "graph:preview", "sha256": "8888888888888888888888888888888888888888888888888888888888888888", "missing_required": 0, "generation_tasks": 0, "target_effective_status": "passed"},
+        "promotion": {"status": "validated_candidate", "target_node_status": "candidate", "canonical_write": true, "reason": "validated candidate only"},
+        "evidence_hash": "9999999999999999999999999999999999999999999999999999999999999999",
+        "provider_invocations": [{"contract": "provider-invocation-receipt.v0.1", "invocation_id": "provider-invocation:test", "authority": "candidate_generation_evidence", "adapter_id": "provider-backed.http.v0.1", "provider_id": "provider.test", "model_id": "model.test", "task_id": "task.test", "attempt": 1, "request_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "response_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "http_status": 200, "response_content_type": "application/json", "canonical_write": false, "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}]
+      }
+    }
+  }
+}
