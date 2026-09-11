@@ -7,7 +7,7 @@ from typing import Any
 from .common import AssemblerError, candidate_artifact_id, sha_bytes, slug, write_json
 from .context import load_context
 from .evidence import artifact_reference, preview_graph, run_receipt, validation_documents
-from .provider import CandidateProducer
+from .provider import CandidateProducer, provider_invocation_for
 
 
 class BoundedAssembler:
@@ -31,6 +31,7 @@ class BoundedAssembler:
         write_json(output / "observed.graph-snapshot.before.json", context["graph_before"])
 
         attempts, prior = [], []
+        provider_invocations: list[dict[str, Any]] = []
         selected = payload_selected = validations_selected = None
         for attempt in range(1, task["repair_policy"]["max_attempts"] + 1):
             try:
@@ -40,6 +41,9 @@ class BoundedAssembler:
             if not isinstance(payload, (bytes, bytearray)) or not payload:
                 raise AssemblerError("candidate producer must return non-empty bytes")
             payload = bytes(payload)
+            provider_evidence = provider_invocation_for(self.producer, attempt=attempt)
+            if provider_evidence is not None:
+                provider_invocations.append(provider_evidence)
             sha = sha_bytes(payload)
             aid = candidate_artifact_id(task, sha)
             vdocs, aggregate, diagnostics = validation_documents(self.root, task, payload, aid, sha, attempt)
@@ -52,7 +56,7 @@ class BoundedAssembler:
             write_json(adir / "artifact-reference.json", artifact)
             for validation in vdocs:
                 write_json(adir / f"validation.{slug(validation['validator'])}.json", validation)
-            attempts.append({
+            attempt_receipt = {
                 "attempt": attempt,
                 "producer_id": self.producer.producer_id,
                 "artifact_id": artifact["artifact_id"],
@@ -60,7 +64,11 @@ class BoundedAssembler:
                 "validation_ids": [validation["validation_id"] for validation in vdocs],
                 "validation_status": aggregate,
                 "diagnostics": diagnostics,
-            })
+            }
+            if provider_evidence is not None:
+                attempt_receipt["provider_evidence_hash"] = provider_evidence["evidence_hash"]
+                write_json(adir / "provider-invocation-receipt.json", provider_evidence)
+            attempts.append(attempt_receipt)
             if aggregate == "passed":
                 payload_selected, validations_selected = payload, vdocs
                 selected = artifact_reference(
@@ -85,6 +93,9 @@ class BoundedAssembler:
                 write_json(cdir / f"validated-by-edge.{key}.json", edge)
             write_json(cdir / "graph-snapshot.preview.json", preview)
 
-        receipt = run_receipt(self.root, task, source_hashes, attempts, selected, preview)
+        receipt = run_receipt(
+            self.root, task, source_hashes, attempts, selected, preview,
+            provider_invocations=provider_invocations or None,
+        )
         write_json(output / "assembler-run-receipt.json", receipt)
         return receipt

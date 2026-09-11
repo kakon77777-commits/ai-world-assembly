@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:provider-generation-request-v0-1",
+  "title": "AWA Provider Generation Request v0.1",
+  "description": "Provider-agnostic proposal request for candidate bytes. It grants no world or canonical write authority.",
+  "type": "object",
+  "required": ["contract","authority","task_id","capability_id","generation_task","target","validators","attempt","diagnostics","canonical_write"],
+  "properties": {
+    "contract": {"const": "provider-generation-request.v0.1"},
+    "authority": {"const": "proposal"},
+    "task_id": {"type": "string", "minLength": 1},
+    "capability_id": {"type": "string", "minLength": 1},
+    "generation_task": {"type": "object"},
+    "target": {
+      "type": "object",
+      "required": ["layer","node_id","kind","filename","mime_type","version"],
+      "properties": {
+        "layer": {"enum": ["semantic","composition","asset","runtime","presentation"]},
+        "node_id": {"type": "string", "minLength": 1},
+        "kind": {"type": "string", "minLength": 1},
+        "filename": {"type": "string", "pattern": "^[A-Za-z0-9._-]+$"},
+        "mime_type": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "pattern": "^v\\d+\\.\\d+$"}
+      },
+      "additionalProperties": false
+    },
+    "validators": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "attempt": {"type": "integer", "minimum": 1},
+    "diagnostics": {"type": "array", "items": {"type": "string"}},
+    "canonical_write": {"const": false}
+  },
+  "additionalProperties": false
+}

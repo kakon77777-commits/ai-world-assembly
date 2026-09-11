@@ -116,7 +116,8 @@ def preview_graph(root: Path, task: dict[str, Any], generation: dict[str, Any],
 
 def run_receipt(root: Path, task: dict[str, Any], source_hashes: dict[str, str],
                 attempts: list[dict[str, Any]], selected: dict[str, Any] | None,
-                preview: dict[str, Any] | None):
+                preview: dict[str, Any] | None,
+                provider_invocations: list[dict[str, Any]] | None = None):
     if selected and preview:
         target_status = next(x for x in preview["artifact_statuses"] if x["node_id"] == task["target"]["node_id"])
         status = "validated_candidate"
@@ -151,6 +152,10 @@ def run_receipt(root: Path, task: dict[str, Any], source_hashes: dict[str, str],
         "graph_preview": graph,
         "promotion": promotion,
     }
-    body = {"contract": "assembler-run-receipt.v0.1", "run_id": f"assembler-run:{sha256_json(basis)[:16]}", **basis}
+    contract = "assembler-run-receipt.v0.1"
+    if provider_invocations:
+        basis["provider_invocations"] = provider_invocations
+        contract = "assembler-run-receipt.v0.2"
+    body = {"contract": contract, "run_id": f"assembler-run:{sha256_json(basis)[:16]}", **basis}
     receipt = {**body, "evidence_hash": sha256_json(body)}
-    return validate(root, "assembler-run-receipt.v0.1", receipt, "assembler run receipt")
+    return validate(root, contract, receipt, "assembler run receipt")

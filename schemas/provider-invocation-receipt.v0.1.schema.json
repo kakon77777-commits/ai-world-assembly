@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:provider-invocation-receipt-v0-1",
+  "title": "AWA Provider Invocation Receipt v0.1",
+  "description": "Locally derived evidence binding one provider-backed candidate generation request to exact response bytes. Provider identity is evidence, not world semantics.",
+  "type": "object",
+  "required": ["contract","invocation_id","authority","adapter_id","provider_id","model_id","task_id","attempt","request_sha256","response_sha256","http_status","response_content_type","canonical_write","evidence_hash"],
+  "properties": {
+    "contract": {"const": "provider-invocation-receipt.v0.1"},
+    "invocation_id": {"type": "string", "minLength": 1},
+    "authority": {"const": "candidate_generation_evidence"},
+    "adapter_id": {"const": "provider-backed.http.v0.1"},
+    "provider_id": {"type": "string", "minLength": 1},
+    "model_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "attempt": {"type": "integer", "minimum": 1},
+    "request_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "response_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "http_status": {"type": "integer", "minimum": 200, "maximum": 299},
+    "response_content_type": {"type": "string", "minLength": 1},
+    "canonical_write": {"const": false},
+    "evidence_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

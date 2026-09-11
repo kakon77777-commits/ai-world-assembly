@@ -1,0 +1,26 @@
+name: phase14-provider
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  provider-backed-assembly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m pytest -q tests/test_provider_backed_assembly.py tests/test_contracts.py
+      - name: Provider authority source scan
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          paths = [Path('src/awa_assembler/provider.py'), Path('src/awa_orchestrator/providers.py'), Path('src/awa_promotion/bridge.py')]
+          source = '\n'.join(p.read_text(encoding='utf-8') for p in paths)
+          for token in ['StateDelta(', 'EntityDelta(', 'registry.add(', 'canonical_write=True']:
+              assert token not in source, token
+          PY

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:awa:schema:provider-bindings-v0-1",
+  "title": "AWA Provider Bindings v0.1",
+  "description": "Execution-only provider bindings for orchestration tasks. Bindings are deployment policy, not world/module semantics, and grant no canonical write authority.",
+  "type": "object",
+  "required": ["contract","authority","canonical_write","bindings"],
+  "properties": {
+    "contract": {"const": "provider-bindings.v0.1"},
+    "authority": {"const": "execution_binding"},
+    "canonical_write": {"const": false},
+    "bindings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["orchestration_task_id","adapter","provider_id","model_id","endpoint","timeout_seconds"],
+        "properties": {
+          "orchestration_task_id": {"type": "string", "minLength": 1},
+          "adapter": {"const": "http"},
+          "provider_id": {"type": "string", "minLength": 1},
+          "model_id": {"type": "string", "minLength": 1},
+          "endpoint": {"type": "string", "pattern": "^https?://"},
+          "timeout_seconds": {"type": "number", "exclusiveMinimum": 0, "maximum": 120}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

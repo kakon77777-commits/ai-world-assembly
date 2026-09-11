@@ -26,6 +26,20 @@ promotion readiness and promotion authority while keeping canonical write execut
 must introduce provider-backed multi-world candidate production without letting provider identity or
 provider success bypass the Phase 13 governance boundary.
 
+## Frozen Phase 14 provider-backed assembly semantics
+
+- External providers implement the existing `CandidateProducer` boundary; Phase 14 does not create a provider-specific world/module architecture.
+- `provider-generation-request.v0.1` is proposal-only and structurally fixes `canonical_write=false`.
+- `provider-invocation-receipt.v0.1` is locally derived and binds provider/model provenance to exact canonical request and raw response SHA-256.
+- Provider-backed runs use `assembler-run-receipt.v0.2`; deterministic reference producers remain on v0.1 so Phase 8–13 evidence stays reproducible.
+- Artifact semantic identity uses the stable adapter generator `provider-backed.http.v0.1`; provider/model identity is evidence only.
+- `provider-bindings.v0.1` is execution/deployment policy outside `multi-world-orchestration-plan.v0.1`. It cannot broaden world scope or write claims.
+- The default Phase 12 resolver remains the deterministic reference producer path. Provider injection is opt-in.
+- Same-world/shared claim conflicts still block before generation. Competing candidates for Phase 13 must come from independent governed workflows rather than weakening Phase 12.
+- The assembler-to-promotion bridge copies exact candidate/validation/write-claim evidence but deliberately excludes provider/model identity from `candidate-conflict-set.v0.1`.
+- Provider identity is not a legal selection or tiebreak field. Explicit reviewed policy still selects; valid ties remain `blocked_tie`.
+- Provider generation, validation, selection, readiness, authority verification and canonical write remain distinct. Phase 14 adds no canonical writer.
+
 ## Frozen Phase 13 promotion semantics
 
 - Phase 13 operates on independently validated candidates at promotion time; Phase 12 still blocks colliding write claims before generation inside one orchestration plan.

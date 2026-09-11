@@ -3,13 +3,13 @@ from __future__ import annotations
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from awa_asset_graph.graph import sha256_json
 from awa_contracts.validator import load_json
 from awa_assembler.common import validate, write_json
 from awa_assembler.loop import BoundedAssembler
-from awa_assembler.provider import reference_producer_for
+from awa_assembler.provider import CandidateProducer, reference_producer_for
 
 from .preflight import OrchestrationError, detect_claim_conflicts, prepare_jobs, resolve_ref
 
@@ -63,8 +63,10 @@ def _world_evidence(results: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 class MultiWorldOrchestrator:
-    def __init__(self, *, root: str | Path) -> None:
+    def __init__(self, *, root: str | Path,
+                 producer_resolver: Callable[[dict[str, Any]], CandidateProducer] | None = None) -> None:
         self.root = Path(root).resolve()
+        self.producer_resolver = producer_resolver or (lambda job: reference_producer_for(job["task"]))
 
     def _receipt(self, *, plan: dict[str, Any], project_state: dict[str, Any],
                  batches: list[list[str]], results: list[dict[str, Any]],
@@ -145,7 +147,7 @@ class MultiWorldOrchestrator:
                 for task_id in batch:
                     job = by_id[task_id]
                     child_out = output / "tasks" / task_id
-                    assembler = BoundedAssembler(root=self.root, producer=reference_producer_for(job["task"]))
+                    assembler = BoundedAssembler(root=self.root, producer=self.producer_resolver(job))
                     future = pool.submit(
                         assembler.run,
                         task=job["task"],
